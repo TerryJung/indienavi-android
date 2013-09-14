@@ -33,7 +33,7 @@ public class LoginActivity extends Activity {
 	public ProgressDialog dialog = null;
 	private Button loginBtn;
 	private Button signupBtn;
-	
+	// test 
 	private EditText idEdit;
 	private EditText pwEdit;
 	private HttpPost httppost;
