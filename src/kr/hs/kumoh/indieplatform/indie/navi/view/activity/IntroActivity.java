@@ -1,4 +1,4 @@
-package kr.hs.kumoh.indieplatform.the.band.view.activity;
+package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 
 import kr.hs.kumoh.indieplatform.theBand.R;

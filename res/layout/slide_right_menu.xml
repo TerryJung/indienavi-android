@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="kr.hs.kumoh.indieplatform.the.band.view.fragment.RightSlidingMenuFragment"
+        android:name="kr.hs.kumoh.indieplatform.indie.navi.view.fragment.RightSlidingMenuFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     

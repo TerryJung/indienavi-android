@@ -1,4 +1,4 @@
-package kr.hs.kumoh.indieplatform.the.band.view.fragment;
+package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 
 import kr.hs.kumoh.indieplatform.theBand.R;
 import android.os.Bundle;

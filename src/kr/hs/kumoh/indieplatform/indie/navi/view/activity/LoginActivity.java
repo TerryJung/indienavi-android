@@ -1,4 +1,4 @@
-package kr.hs.kumoh.indieplatform.the.band.view.activity;
+package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 
 import java.io.IOException;
