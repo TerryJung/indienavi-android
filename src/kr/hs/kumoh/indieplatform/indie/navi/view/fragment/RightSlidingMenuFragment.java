@@ -1,6 +1,6 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 
-import kr.hs.kumoh.indieplatform.theBand.R;
+import kr.hs.kumoh.indieplatform.indie.navi.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

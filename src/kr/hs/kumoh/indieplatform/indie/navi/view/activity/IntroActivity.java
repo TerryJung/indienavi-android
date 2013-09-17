@@ -1,7 +1,8 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 
-import kr.hs.kumoh.indieplatform.theBand.R;
+
+import kr.hs.kumoh.indieplatform.indie.navi.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

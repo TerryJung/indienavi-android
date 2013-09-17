@@ -1,15 +1,14 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
-import kr.hs.kumoh.indieplatform.theBand.R;
+//import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.R;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 
 public class MainActivity extends SherlockFragmentActivity {
 	
@@ -24,7 +23,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getSupportActionBar().setDisplayShowHomeEnabled(true);
+//		getSupportActionBar().setBackgroundDrawable(d)
+		//getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("FF4444")));
 		
 		setContentView(R.layout.activity_main);
 //		leftMenu = getSl
