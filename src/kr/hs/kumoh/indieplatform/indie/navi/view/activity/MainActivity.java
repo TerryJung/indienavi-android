@@ -2,7 +2,10 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 //import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistListFragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -14,34 +17,23 @@ public class MainActivity extends SherlockFragmentActivity {
 	
 	private SlidingMenu leftMenu; 
 	private SlidingMenu rightMenu;
-	
-//	private Fragment leftF;
-//	private Fragment rightF;
-
-//	private FragmentManager lfm = getSupportFragmentManager();
-//	private FragmentTransaction ft;
+	FragmentManager fragmentManager;
+	FragmentTransaction fragmentTransaction;
+	ArtistListFragment alf = new ArtistListFragment();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		getSupportActionBar().setBackgroundDrawable(d)
-		//getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("FF4444")));
-		
 		setContentView(R.layout.activity_main);
-//		leftMenu = getSl
+		
 		leftMenu = new SlidingMenu(getApplicationContext());
 		rightMenu = new SlidingMenu(getApplicationContext());
 		leftMenu.setMode(SlidingMenu.LEFT);
 		leftMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-//      leftMenu.setShadowWidthRes(R.dimen.shadow_width);
-//      leftMenu.setShadowDrawable(R.drawable.ic_launcher);
 		leftMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		leftMenu.setFadeDegree(0.35f);
-//		leftMenu.attachToActivity(this, SlidingMenu.)
 		leftMenu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
 		leftMenu.setMenu(R.layout.slide_left_fragment);
-		
-		
-		
+				
 		rightMenu.setMode(SlidingMenu.RIGHT);
 		rightMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 //      rightMenu.setShadowWidthRes(R.dimen.shadow_width);
@@ -50,6 +42,12 @@ public class MainActivity extends SherlockFragmentActivity {
 		rightMenu.setFadeDegree(0.35f);
 		rightMenu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
 		rightMenu.setMenu(R.layout.slide_right_fragment);
+		
+		fragmentManager = getSupportFragmentManager();
+		fragmentTransaction = fragmentManager.beginTransaction();
+		
+		fragmentTransaction.add(R.id.mainFrame, alf);
+		fragmentTransaction.commit();
 	}
 	
 	@Override

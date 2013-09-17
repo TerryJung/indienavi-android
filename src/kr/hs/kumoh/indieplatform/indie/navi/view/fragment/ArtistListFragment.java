@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class ArtistListFragment extends Fragment {
 	@Override
@@ -13,6 +14,8 @@ public class ArtistListFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View root = inflater.inflate(R.layout.artist_fragment, container, false);
 		// TODO Auto-generated method stub
+		TextView tv = (TextView) root.findViewById(R.id.textView1);
+//		tv.setText("wwwww");
 		return root;
 	}
 }
