@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_row_of_list"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:layout_margin="10dp">
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/artistImg"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher" 
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +59,7 @@
                 android:text="[장르 명]" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/debutYearTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
