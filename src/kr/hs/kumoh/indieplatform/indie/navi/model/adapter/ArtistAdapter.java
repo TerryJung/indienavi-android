@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.volley.toolbox.NetworkImageView;
 
 public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 	
@@ -20,7 +21,8 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 	private int artistResource;
 	private ArrayList<ArtistData> artistList;
     private LayoutInflater artistInflater;
-
+//    private RequestQueue mRequestQueue = Volley.newRequestQueue(mContext);
+//    private ImageLoader imload = new ImageLoader(mRequestQueue, null);
     public ArtistAdapter(Context context, int resource, ArrayList<ArtistData> objects) {
 		super(context, resource, objects);
 		this.mContext = context;
@@ -41,17 +43,22 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 			convertView = artistInflater.inflate(artistResource, null);
 		}
 		// TODO Auto-generated method stub
-		ImageView artistImg = (ImageView) convertView.findViewById(R.id.artistImg);
+		NetworkImageView artistImg = (NetworkImageView) convertView.findViewById(R.id.artistImg);
 		TextView artistNameTv = (TextView) convertView.findViewById(R.id.artistName);
 		TextView labelNameTv = (TextView) convertView.findViewById(R.id.lableName);
 		TextView debutYearTv = (TextView) convertView.findViewById(R.id.debutYearTv);
 		TextView genreNameTv = (TextView) convertView.findViewById(R.id.genreName);
 		
-		
-		artistNameTv.setText(artist.getArtistName());
-		labelNameTv.setText(artist.getLabelName());
-		debutYearTv.setText(artist.getDebutYear());
-		genreNameTv.setText(artist.getGenreName());
+//		artistImg.setImageUrl("http://img.maniadb.com/images/artist/134/134096.jpg", imload);
+		artistNameTv.setText("aa");
+		labelNameTv.setText("aa");
+		debutYearTv.setText("aa");
+		genreNameTv.setText("aa");
+//		artistImg.setImageUrl(artist.getArtistImgURL(), imload);
+//		artistNameTv.setText(artist.getArtistName());
+//		labelNameTv.setText(artist.getLabelName());
+//		debutYearTv.setText(artist.getDebutYear());
+//		genreNameTv.setText(artist.getGenreName());
 		return convertView;
 	}
 

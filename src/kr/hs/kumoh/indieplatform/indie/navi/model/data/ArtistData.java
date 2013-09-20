@@ -1,6 +1,7 @@
 package kr.hs.kumoh.indieplatform.indie.navi.model.data;
 
 public class ArtistData {
+	private String artistImgURL;
 	private String artistName;
 	private String artistDesc;
 	private String labelName;
@@ -8,6 +9,20 @@ public class ArtistData {
 	private String genreName;
 	private int likeCnt;
 	
+	public ArtistData(String artistImgURL, String artistName, String labelName, String debutYear, String genreName) {
+		this.setArtistImgURL(artistImgURL);
+		this.setArtistName(artistName);
+		this.setLabelName(labelName);
+		this.setDebutYear(debutYear);
+		this.setGenreName(genreName);
+	}
+	
+	public String getArtistImgURL() {
+		return artistImgURL;
+	}
+	public void setArtistImgURL(String artistImgURL) {
+		this.artistImgURL = artistImgURL;
+	}
 	public String getArtistName() {
 		return artistName;
 	}
