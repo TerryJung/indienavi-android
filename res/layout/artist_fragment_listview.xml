@@ -6,7 +6,7 @@
     android:orientation="vertical" 
     android:layout_margin="10dp">
 
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView 
         android:id="@+id/artistImg"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

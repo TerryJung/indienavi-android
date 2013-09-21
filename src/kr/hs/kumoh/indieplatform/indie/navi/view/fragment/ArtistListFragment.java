@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 
@@ -45,10 +46,18 @@ public class ArtistListFragment extends Fragment {
 		
 		artistData = new ArrayList<ArtistData>();
 		lv = (ListView) root.findViewById(R.id.listView1);
-		artistAdapter = new ArtistAdapter(getActivity(), getId(), artistData);
+		artistAdapter = new ArtistAdapter(getActivity(),0, artistData, MyVolley.getImageLoader());
 		lv.setAdapter(artistAdapter);
-		loadPage();
+		
 		return root;
+	}
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if (!mHasData && !mInError) {
+	            loadPage();
+	    }
 	}
 	private void loadPage() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
