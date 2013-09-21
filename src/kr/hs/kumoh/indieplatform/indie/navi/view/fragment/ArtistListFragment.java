@@ -1,17 +1,20 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
-import kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -64,16 +67,15 @@ public class ArtistListFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONObject artist = response.getJSONObject("artist");
-                    
-                    JSONArray entries = artist.getJSONArray("artist");
-//                    JSONObject entry;
+//                	String JSON = ""
+                	JSONObject feed = response.getJSONObject("feed");
+                    JSONArray entries = feed.getJSONArray("artist");
+                    JSONObject entry;
                     for (int i = 0; i < entries.length(); i++) {
-//                        entry = entries.getJSONObject(i);
-                        
+                    	entry = entries.getJSONObject(i);
                         String url = null;
                         
-                        artistData.add(new ArtistData(url, artist.getString("artist_name"), artist.getString("label"), artist.getString("debut_year"), artist.getString("genre")));
+                        artistData.add(new ArtistData(url, entry.getString("artist_name"), entry.getString("label"), entry.getString("debut_year"), entry.getString("genre")));
                     }
                     artistAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
@@ -95,6 +97,7 @@ public class ArtistListFragment extends Fragment {
 	        
 	        AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
 	        b.setMessage("불러올수 없습니다");
+	      
 	        b.show();
 	 }
 	
