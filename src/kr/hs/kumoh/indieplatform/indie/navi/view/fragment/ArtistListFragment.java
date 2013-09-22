@@ -65,7 +65,7 @@ public class ArtistListFragment extends Fragment {
         int startIndex = 1 + artistData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/artist_list.php" ,
+        						"http://chilchil.me/apps/server/indie/artist_list.php?alt=10" ,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 
@@ -81,10 +81,11 @@ public class ArtistListFragment extends Fragment {
                     JSONArray entries = feed.getJSONArray("artist");
                     JSONObject entry;
                     for (int i = 0; i < entries.length(); i++) {
-                    	entry = entries.getJSONObject(i);
-                        String url = null;
+                    	entry = entries.getJSONObject(i);                   
                         
-                        artistData.add(new ArtistData(url, entry.getString("artist_name"), entry.getString("label"), entry.getString("debut_year"), entry.getString("genre")));
+                        artistData.add(new ArtistData("http://img.maniadb.com/images/artist/134/134096.jpg", entry.getString("artist_name"), 
+                        					entry.getString("label"), entry.getString("debut_year"), 
+                        					entry.getString("genre"), entry.getString("like_count")));
                     }
                     artistAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {

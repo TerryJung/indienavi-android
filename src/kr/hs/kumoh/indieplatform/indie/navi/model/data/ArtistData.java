@@ -7,14 +7,15 @@ public class ArtistData {
 	private String labelName;
 	private String debutYear;
 	private String genreName;
-	private int likeCnt;
+	private String likeCnt;
 	
-	public ArtistData(String artistImgURL, String artistName, String labelName, String debutYear, String genreName) {
+	public ArtistData(String artistImgURL, String artistName, String labelName, String debutYear, String genreName, String likeCnt) {
 		this.setArtistImgURL(artistImgURL);
 		this.setArtistName(artistName);
 		this.setLabelName(labelName);
 		this.setDebutYear(debutYear);
 		this.setGenreName(genreName);
+		this.setLikeCnt(likeCnt);
 	}
 	
 	public String getArtistImgURL() {
@@ -53,10 +54,10 @@ public class ArtistData {
 	public String getGenreName() {
 		return genreName;
 	}
-	public int getLikeCnt() {
+	public String getLikeCnt() {
 		return likeCnt;
 	}
-	public void setLikeCnt(int likeCnt) {
+	public void setLikeCnt(String likeCnt) {
 		this.likeCnt = likeCnt;
 	}
 }

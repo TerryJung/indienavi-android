@@ -54,32 +54,47 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
         }        
         
         ArtistData artist = getItem(position);
-        if (artist.getArtistImgURL() != null) {
-            holder.artistImg.setImageUrl(artist.getArtistImgURL(), mImageLoader);
+        if (artist.getArtistImgURL() == null) {
+//        	holder.artistImg.setImageURI(uri)
+//        	holder.artistImg.setImageResource(R.drawable.no_image);
+        	
+
         } else {
-            holder.artistImg.setImageResource(R.drawable.no_image);
+//        	holder.artistImg.setImageUrl(artist.getArtistImgURL(), mImageLoader);
         }
         
         holder.artistNameTv.setText(artist.getArtistName());
-		holder.labelNameTv.setText(artist.getLabelName());
+        
+        if(artist.getLabelName().equals("null"))  {
+        	holder.labelNameTv.setText("");
+        } else {
+        	holder.labelNameTv.setText(artist.getLabelName());
+        }
+		
 		holder.debutYearTv.setText(artist.getDebutYear());
 		holder.genreNameTv.setText(artist.getGenreName());
+		holder.likeCntTv.setText(artist.getLikeCnt());
 		
 		return v;
 		
 	}
 	private class ViewHolder {
-        NetworkImageView artistImg;
+//		ArtistData artist = new ArtistData(artistImgURL, artistName, labelName, debutYear, genreName, likeCnt)
+		final ImageView networkimage;
         TextView artistNameTv; 
         TextView labelNameTv;
         TextView debutYearTv;
         TextView genreNameTv;
+        TextView likeCntTv;
         public ViewHolder(View v) {
-        	artistImg = (NetworkImageView) v.findViewById(R.id.artistImg);
+        	networkimage = ImageView.class.cast(v.findViewById(R.id.artistImg));
+//        	mImageLoader.get(ArtistData.class., ImageLoader.getImageListener(networkimage, R.drawable.ic_launcher, R.drawable.no_image));
+//        	artistImg = (NetworkImageView) v.findViewById(R.id.artistImg);
             artistNameTv = (TextView) v.findViewById(R.id.artistName);
             labelNameTv = (TextView) v.findViewById(R.id.lableName);
             debutYearTv = (TextView) v.findViewById(R.id.debutYearTv);
             genreNameTv = (TextView) v.findViewById(R.id.genreName);
+            likeCntTv = (TextView) v.findViewById(R.id.panInt);
             v.setTag(this);
         }
     }
