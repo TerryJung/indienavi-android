@@ -118,7 +118,5 @@ public class ArtistListFragment extends SherlockFragment {
 	        b.setMessage("불러올수 없습니다");
 	      
 	        b.show();
-	 }
-	
-	    
+	 }   
 }

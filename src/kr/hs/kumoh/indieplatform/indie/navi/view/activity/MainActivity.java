@@ -3,6 +3,7 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 //import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistListFragment;
+import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ConcertListFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.LeftSlidingMenuFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.RightSlidingMenuFragment;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	ArtistListFragment alf = new ArtistListFragment();
 	LeftSlidingMenuFragment lsmf = new LeftSlidingMenuFragment();
 	RightSlidingMenuFragment rsmf = new RightSlidingMenuFragment();
+	ConcertListFragment clf = new ConcertListFragment();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,7 +57,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		
-		fragmentTransaction.add(R.id.mainFrame, alf);
+		fragmentTransaction.add(R.id.mainFrame, clf);
 		fragmentTransaction.add(R.id.leftMenu, lsmf);
 		fragmentTransaction.add(R.id.rightMenu, rsmf);
 		fragmentTransaction.commit();
