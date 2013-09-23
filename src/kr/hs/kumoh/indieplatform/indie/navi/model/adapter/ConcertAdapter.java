@@ -29,13 +29,10 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
 		mImageLoader = imageLoader;
 		// TODO Auto-generated constructor stub
 	}
-	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		View v = convertView;
-		
-		
+		View v = convertView;	
 		aq = new AQuery(v);
 		if (v == null) {
 	    	LayoutInflater vi = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,11 +56,10 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
 //        	holder.artistImg.setImageUrl(artist.getArtistImgURL(), mImageLoader);
 //        	mImageLoader.get(artist.getArtistImgURL(), ImageLoader.getImageListener(holder.artistImg, R.drawable.ic_launcher, R.drawable.no_image));
         }
-        
         holder.concertNameTv.setText(concert.getConcertName());
 		holder.concertTimeTv.setText(concert.getConcertDate());
 		holder.concertPlaceTv.setText(concert.getPlaceName());
-		
+
 		return v;
 	}
 	private class ViewHolder {

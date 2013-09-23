@@ -7,7 +7,6 @@ import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
-import kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,16 +23,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-public class ArtistListFragment extends SherlockFragment {
-	
-//	ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>();
+public class FavoriteArtistListFragment extends SherlockFragment {
+	private String name = "chilchil";
 	ListView lv;
 	private boolean mHasData = false;
     private boolean mInError = false;
@@ -77,7 +75,7 @@ public class ArtistListFragment extends SherlockFragment {
         int startIndex = 1 + artistData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/artist_list.php?alt=10" ,
+        						"http://chilchil.me/apps/server/indie/favorite_artist_list.php?name="+name ,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 
@@ -91,7 +89,7 @@ public class ArtistListFragment extends SherlockFragment {
                 	
 //                	String JSON = ""
                 	JSONObject feed = response.getJSONObject("feed");
-                    JSONArray entries = feed.getJSONArray("artist");
+                    JSONArray entries = feed.getJSONArray("favorite_artist");
                     JSONObject entry;
                     for (int i = 0; i < entries.length(); i++) {
                     	entry = entries.getJSONObject(i);         
@@ -125,3 +123,4 @@ public class ArtistListFragment extends SherlockFragment {
 	        b.show();
 	 }   
 }
+
