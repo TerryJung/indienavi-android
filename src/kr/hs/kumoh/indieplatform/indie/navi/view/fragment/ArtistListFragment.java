@@ -18,8 +18,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,7 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-public class ArtistListFragment extends Fragment {
+public class ArtistListFragment extends SherlockFragment {
 	
 //	ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>();
 	ListView lv;
@@ -45,7 +47,15 @@ public class ArtistListFragment extends Fragment {
 		lv = (ListView) root.findViewById(R.id.listView1);
 		artistAdapter = new ArtistAdapter(getActivity(),0, artistData, MyVolley.getImageLoader());
 		lv.setAdapter(artistAdapter);
-		
+		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View v, int position,
+					long arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		return root;
 	}
 	@Override

@@ -57,7 +57,7 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 
         } else {
         	Log.d("Artist Adapter ", artist.getArtistImgURL());
-        	aq.id(R.id.artistImg).image(artist.getArtistImgURL());
+        	aq.id(R.id.artistImg).image(artist.getArtistImgURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
 //        	holder.artistImg.setImageUrl(artist.getArtistImgURL(), mImageLoader);
 //        	mImageLoader.get(artist.getArtistImgURL(), ImageLoader.getImageListener(holder.artistImg, R.drawable.ic_launcher, R.drawable.no_image));
         }

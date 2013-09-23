@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -55,8 +56,13 @@ public class MainActivity extends SherlockFragmentActivity {
 		fragmentTransaction.add(R.id.leftMenu, lsmf);
 		fragmentTransaction.add(R.id.rightMenu, rsmf);
 		fragmentTransaction.commit();
+//		switchContent();
 		
 		
+	}
+	public void switchContent(SherlockFragment fragment) {
+		fragmentTransaction.replace(R.id.mainFrame, fragment);
+		fragmentTransaction.commit();
 	}
 	
 	@Override

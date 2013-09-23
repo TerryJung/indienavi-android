@@ -3,12 +3,15 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -32,8 +35,25 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 		slidelist = (ListView) root.findViewById(R.id.leftSlideMenu);
 		slidelist.setAdapter(adapter);
 		slidelist.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-	
+		slidelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				ArtistListFragment alf = new ArtistListFragment();
+				switchFragment(alf);
+			}
+		});
 		
 		return root;
+	}
+	private  void switchFragment(SherlockFragment fragment) {
+		if (getActivity() == null)
+			return;
+		if (getActivity() instanceof MainActivity) {
+			MainActivity ma = (MainActivity) getActivity();
+			ma.switchContent(fragment);
+		}
 	}
 }

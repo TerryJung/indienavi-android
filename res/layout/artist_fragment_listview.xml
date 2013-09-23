@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_row_of_list"
     android:orientation="vertical" 
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:layout_marginBottom="15dp">
 
     <ImageView
         android:id="@+id/artistImg"
