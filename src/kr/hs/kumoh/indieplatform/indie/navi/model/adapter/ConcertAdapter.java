@@ -61,25 +61,20 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
         }
         
         holder.concertNameTv.setText(concert.getConcertName());
-        holder.concertArtistTv.setText(concert.getPlaceName());
 		holder.concertTimeTv.setText(concert.getConcertDate());
 		holder.concertPlaceTv.setText(concert.getPlaceName());
 		
 		return v;
 	}
 	private class ViewHolder {
-//		ArtistData artist = new ArtistData(artistImgURL, artistName, labelName, debutYear, genreName, likeCnt)
 		ImageView concertImg;
         TextView concertNameTv; 
-        TextView concertArtistTv;
         TextView concertTimeTv;
         TextView concertPlaceTv;
         
         public ViewHolder(View v) {
-//        	NetworkImageView.class.cast
         	concertImg = (ImageView) v.findViewById(R.id.concertImg);
         	concertNameTv = (TextView) v.findViewById(R.id.concertName);
-        	concertArtistTv = (TextView) v.findViewById(R.id.concertArtist);
             concertTimeTv = (TextView) v.findViewById(R.id.concertTime);
             concertPlaceTv = (TextView) v.findViewById(R.id.placeName);
             v.setTag(this);

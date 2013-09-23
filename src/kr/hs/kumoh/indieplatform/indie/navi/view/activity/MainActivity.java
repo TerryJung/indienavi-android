@@ -33,7 +33,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 		
 		leftMenu = new SlidingMenu(getApplicationContext());
 		rightMenu = new SlidingMenu(getApplicationContext());
