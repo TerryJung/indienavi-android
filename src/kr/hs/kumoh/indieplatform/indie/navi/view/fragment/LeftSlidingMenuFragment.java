@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -38,22 +39,15 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 		slidelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-				ArtistListFragment alf = new ArtistListFragment();
-				switchFragment(alf);
+				Toast.makeText(getSherlockActivity(), "click " + position, Toast.LENGTH_SHORT).show();
+ 				
 			}
 		});
 		
 		return root;
 	}
-	private  void switchFragment(SherlockFragment fragment) {
-		if (getActivity() == null)
-			return;
-		if (getActivity() instanceof MainActivity) {
-			MainActivity ma = (MainActivity) getActivity();
-			ma.switchContent(fragment);
-		}
-	}
+	
 }

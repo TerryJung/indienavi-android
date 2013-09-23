@@ -6,6 +6,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistListFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.LeftSlidingMenuFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.RightSlidingMenuFragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -14,14 +15,15 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
 public class MainActivity extends SherlockFragmentActivity {
 	
 	private SlidingMenu leftMenu; 
 	private SlidingMenu rightMenu;
-	FragmentManager fragmentManager;
-	FragmentTransaction fragmentTransaction;
+	public FragmentManager fragmentManager;
+	public FragmentTransaction fragmentTransaction;
 	ArtistListFragment alf = new ArtistListFragment();
 	LeftSlidingMenuFragment lsmf = new LeftSlidingMenuFragment();
 	RightSlidingMenuFragment rsmf = new RightSlidingMenuFragment();
@@ -29,6 +31,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		leftMenu = new SlidingMenu(getApplicationContext());
 		rightMenu = new SlidingMenu(getApplicationContext());
@@ -60,10 +63,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		
 		
 	}
-	public void switchContent(SherlockFragment fragment) {
-		fragmentTransaction.replace(R.id.mainFrame, fragment);
-		fragmentTransaction.commit();
-	}
+	
 	
 	@Override
 	public void onBackPressed() {
