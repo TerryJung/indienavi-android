@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <fragment
-        android:id="@+id/fragment1"
-        android:name="kr.hs.kumoh.indieplatform.indie.navi.view.fragment.RightSlidingMenuFragment"
+    <FrameLayout
+        android:id="@+id/rightMenu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
 </LinearLayout>
