@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,26 +16,20 @@ import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.androidquery.AQuery;
 
 public class ArtistAdapter extends ArrayAdapter<ArtistData> {
-	
-
-	private Context mContext;
-	private int artistResource;
-	private ArrayList<ArtistData> artistList;
-    private LayoutInflater artistInflater;
-    RequestQueue mRequestQueue = Volley.newRequestQueue(getContext());
+	AQuery aq;
+    RequestQueue mRequestQueue; 
 //    private RequestQueue mRequestQueue = Volley.newRequestQueue(mContext);
     private ImageLoader mImageLoader;
+//    initImageLo
     public ArtistAdapter(Context context, int resource, ArrayList<ArtistData> objects, ImageLoader imageLoader) {
 		super(context, resource, objects);
-		this.mContext = context;
-		this.artistResource = resource;
-		this.artistList = objects;
-		this.artistInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		mRequestQueue = Volley.newRequestQueue(context);
 		mImageLoader = imageLoader;
+//		aq = new AQuery(act)
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,6 +37,7 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
+		aq = new AQuery(v);
 		if (v == null) {
 	    	LayoutInflater vi = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	        v = vi.inflate(R.layout.artist_fragment_listview, null);
@@ -55,12 +51,15 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
         
         ArtistData artist = getItem(position);
         if (artist.getArtistImgURL() == null) {
-//        	holder.artistImg.setImageURI(uri)
-//        	holder.artistImg.setImageResource(R.drawable.no_image);
+
+        	holder.artistImg.setImageResource(R.drawable.no_image);
         	
 
         } else {
+        	Log.d("Artist Adapter ", artist.getArtistImgURL());
+        	aq.id(R.id.artistImg).image(artist.getArtistImgURL());
 //        	holder.artistImg.setImageUrl(artist.getArtistImgURL(), mImageLoader);
+//        	mImageLoader.get(artist.getArtistImgURL(), ImageLoader.getImageListener(holder.artistImg, R.drawable.ic_launcher, R.drawable.no_image));
         }
         
         holder.artistNameTv.setText(artist.getArtistName());
@@ -80,16 +79,15 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 	}
 	private class ViewHolder {
 //		ArtistData artist = new ArtistData(artistImgURL, artistName, labelName, debutYear, genreName, likeCnt)
-		final ImageView networkimage;
+		ImageView artistImg;
         TextView artistNameTv; 
         TextView labelNameTv;
         TextView debutYearTv;
         TextView genreNameTv;
         TextView likeCntTv;
         public ViewHolder(View v) {
-        	networkimage = ImageView.class.cast(v.findViewById(R.id.artistImg));
-//        	mImageLoader.get(ArtistData.class., ImageLoader.getImageListener(networkimage, R.drawable.ic_launcher, R.drawable.no_image));
-//        	artistImg = (NetworkImageView) v.findViewById(R.id.artistImg);
+//        	NetworkImageView.class.cast
+        	artistImg = (ImageView) v.findViewById(R.id.artistImg);
             artistNameTv = (TextView) v.findViewById(R.id.artistName);
             labelNameTv = (TextView) v.findViewById(R.id.lableName);
             debutYearTv = (TextView) v.findViewById(R.id.debutYearTv);

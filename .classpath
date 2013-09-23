@@ -9,5 +9,6 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/actionbarsherlock"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/library"/>
 	<classpathentry exported="true" kind="lib" path="libs/volley.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/android-query-full.0.25.10.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

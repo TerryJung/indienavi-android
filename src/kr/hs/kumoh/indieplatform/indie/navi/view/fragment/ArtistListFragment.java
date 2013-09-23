@@ -1,8 +1,6 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
@@ -14,10 +12,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,14 +73,16 @@ public class ArtistListFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                	
 //                	String JSON = ""
                 	JSONObject feed = response.getJSONObject("feed");
                     JSONArray entries = feed.getJSONArray("artist");
                     JSONObject entry;
                     for (int i = 0; i < entries.length(); i++) {
-                    	entry = entries.getJSONObject(i);                   
-                        
-                        artistData.add(new ArtistData("http://img.maniadb.com/images/artist/134/134096.jpg", entry.getString("artist_name"), 
+                    	entry = entries.getJSONObject(i);         
+                    	String url = entry.getString("artist_img_url");
+                    	Log.d("TAG", url);
+                        artistData.add(new ArtistData(entry.getString("artist_img_url"), entry.getString("artist_name"), 
                         					entry.getString("label"), entry.getString("debut_year"), 
                         					entry.getString("genre"), entry.getString("like_count")));
                     }
