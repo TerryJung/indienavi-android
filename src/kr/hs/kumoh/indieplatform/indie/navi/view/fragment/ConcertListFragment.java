@@ -67,10 +67,10 @@ public class ConcertListFragment extends SherlockFragment {
 	private void loadPage() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
-        int startIndex = 1 + concertData.size();
+        int startIndex = concertData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/concert_list.php?alt=3" ,
+        						"http://chilchil.me/apps/server/indie/concert_list.php?start="+startIndex+"&alt=10",
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 
