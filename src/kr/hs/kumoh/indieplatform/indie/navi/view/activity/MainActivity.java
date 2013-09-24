@@ -59,7 +59,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		
-		fragmentTransaction.add(R.id.mainFrame, falf);
+		fragmentTransaction.add(R.id.mainFrame, alf);
 		fragmentTransaction.add(R.id.leftMenu, lsmf);
 		fragmentTransaction.add(R.id.rightMenu, rsmf);
 		fragmentTransaction.commit();

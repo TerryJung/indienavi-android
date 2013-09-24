@@ -32,7 +32,7 @@
         		android:gravity="right"
         		android:text="[아티스트 이름]"
         		android:textColor="#ffffff"
-        		android:textSize="30dp"
+        		android:textSize="20dp"
         		android:padding="2dp"/>
         	<LinearLayout
         		android:layout_width="match_parent"
@@ -50,7 +50,7 @@
         			android:gravity="right"
         			android:text="[팬 수]"
         			android:textColor="#ffffff"
-        			android:textSize="30dp"
+        			android:textSize="20dp"
         			android:padding="2dp"/>
         		<TextView 
         	    	android:id="@+id/PanTv"
@@ -61,7 +61,7 @@
         			android:layout_marginLeft="10dp"
         			android:text="명의 팬"
         			android:textColor="#ffffff"
-        			android:textSize="30dp"
+        			android:textSize="20dp"
         			android:padding="2dp"/>
         	</LinearLayout>
     	</LinearLayout>
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="[레이블 이름]"
-        android:textSize="30dp" 
+        android:textSize="20dp" 
         />
 	<ScrollView
         android:id="@+id/scrollView1"
@@ -89,7 +89,7 @@
         	android:layout_marginLeft="20dp"
         	android:layout_marginBottom="20dp"
         	android:text="[아티스트 설명]"
-        	android:textSize="20dp" 
+        	android:textSize="15dp" 
         />
     </ScrollView>
 
