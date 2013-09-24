@@ -7,17 +7,114 @@
     
     tools:context=".ArtistDetailActivity" >
 
-    <ImageView
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp" 
+        >
+        <ImageView
         android:id="@+id/artistImg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        
+        
          />
+        <LinearLayout
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:orientation="vertical" 
+        	android:layout_gravity="bottom">
+        	<TextView 
+        	    android:id="@+id/artistName"
+            	android:background="#70000000"
+            	android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:layout_gravity="bottom"
+        		android:gravity="right"
+        		android:text="[아티스트 이름]"
+        		android:textColor="#ffffff"
+        		android:textSize="30dp"
+        		android:padding="2dp"/>
+        	<LinearLayout
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="horizontal"
+        		android:background="#70000000"
+        		android:gravity="right" 
+        		>
+        		<TextView 
+        	    	android:id="@+id/artistPan"
+            		
+            		android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:layout_gravity="bottom"
+        			android:gravity="right"
+        			android:text="[팬 수]"
+        			android:textColor="#ffffff"
+        			android:textSize="30dp"
+        			android:padding="2dp"/>
+        		<TextView 
+        	    	android:id="@+id/PanTv"
+            		android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:layout_gravity="bottom"
+        			android:gravity="right"
+        			android:layout_marginLeft="10dp"
+        			android:text="명의 팬"
+        			android:textColor="#ffffff"
+        			android:textSize="30dp"
+        			android:padding="2dp"/>
+        	</LinearLayout>
+    	</LinearLayout>
+        
+        
+    </FrameLayout>
 
     <TextView
-        android:id="@+id/artistName"
+        android:id="@+id/labelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[아티스트 네임]"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_margin="15dp"
+        android:text="[레이블 이름]"
+        android:textSize="30dp" 
+        />
+	<ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    	<TextView
+        	android:id="@+id/artistText"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginRight="20dp"
+        	android:layout_marginLeft="20dp"
+        	android:layout_marginBottom="20dp"
+        	android:text="[아티스트 설명]"
+        	android:textSize="20dp" 
+        />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/albumInfoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="앨범 정보" />
+
+        <Button
+            android:id="@+id/concertInfoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공연 정보" />
+
+        <Button
+            android:id="@+id/fanclubBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="팬 클럽" />
+
+    </LinearLayout>
 
 </LinearLayout>
