@@ -70,7 +70,7 @@ public class ConcertListFragment extends SherlockFragment {
         int startIndex = concertData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/concert_list.php?start="+startIndex+"&alt=10",
+        						"http://chilchil.me/apps/server/indie/concert_list.php?start="+startIndex+"&alt=5",
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 

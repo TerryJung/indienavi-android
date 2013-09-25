@@ -37,7 +37,7 @@ public class SignupActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				signup();
+				signup(idEdit.getText().toString().trim(),  pwEdit.getText().toString().trim());
 				extra.putString("id", idEdit.getText().toString().trim());
 				extra.putString("pw", pwEdit.getText().toString().trim());
 				data.putExtras(extra);
@@ -55,7 +55,7 @@ public class SignupActivity extends Activity {
 			}
 		});
 	}
-	void signup(){
+	void signup(String id, String pw){
 		
 	}
 
