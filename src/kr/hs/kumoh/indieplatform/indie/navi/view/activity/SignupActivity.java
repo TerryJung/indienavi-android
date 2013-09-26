@@ -16,18 +16,19 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SignupActivity extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
+
+public class SignupActivity extends SherlockActivity {
 	public ProgressDialog dialog = null;
 	private Bundle extra  = new Bundle();
 	 
@@ -50,7 +51,7 @@ public class SignupActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signup);
-		
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		idEdit = (EditText) findViewById(R.id.idEdit);
 		pwEdit = (EditText) findViewById(R.id.pwEdit);
 		emailEdit = (EditText) findViewById(R.id.emailEdit);
@@ -137,10 +138,14 @@ public class SignupActivity extends Activity {
 		finish();
 	}
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.signup, menu);
-		return true;
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
 	}
-
 }

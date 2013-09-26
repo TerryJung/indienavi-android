@@ -2,14 +2,15 @@ package kr.hs.kumoh.indieplatform.indie.navi.model.data;
 
 public class ArtistData {
 	public final static String IMAGE_URL = "http://chilchil.me/apps/server/indie/image";
-	private String artistImgURL;
+	
 	private String artistName;
 	private String artistDesc;
 	private String labelName;
 	private String debutYear;
 	private String genreName;
 	private String likeCnt;
-	
+	private String artistImgURL;
+
 	public ArtistData(String artistImgURL, String artistName, String labelName, String debutYear, String genreName, String likeCnt) {
 		this.setArtistImgURL(artistImgURL);
 		this.setArtistName(artistName);
