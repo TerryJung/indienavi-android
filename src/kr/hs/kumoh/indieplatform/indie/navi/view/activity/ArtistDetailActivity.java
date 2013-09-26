@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -100,6 +101,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 				
 			}
 		});
+		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 			
 			@Override
@@ -123,19 +125,23 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 					e.printStackTrace();
 				}
 				Log.d(ArtistDetailActivity.class.getName()+ "AritstName", artistNameStr);
-//				aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artistImgURLStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
-//				artistName.setText(artistNameStr);
-//				artistFan.setText(artistFanStr);
-//				labelName.setText(artistLabelStr);
-//				artistText.setText(artistTextStr);
+				handler.post(new Runnable(){
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artistImgURLStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
+						artistName.setText(artistNameStr);
+						artistFan.setText(artistFanStr);
+						labelName.setText(artistLabelStr);
+						artistText.setText(artistTextStr);
+					}
+					
+				});
 			}
 		}).start();
-		
-//		
-        
-        
-		
 	}
+	
 	public String readArtist() {
 	    StringBuilder builder = new StringBuilder();
 	    HttpClient client = new DefaultHttpClient();
