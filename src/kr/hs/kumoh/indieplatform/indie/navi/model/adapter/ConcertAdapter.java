@@ -51,7 +51,7 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
         	
 
         } else {
-        	Log.d("concert Adapter ", concert.getConcertImgURL());
+//        	Log.d("concert Adapter ", concert.getConcertImgURL());
         	aq.id(R.id.concertImg).image(concert.getConcertImgURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
 //        	holder.artistImg.setImageUrl(artist.getArtistImgURL(), mImageLoader);
 //        	mImageLoader.get(artist.getArtistImgURL(), ImageLoader.getImageListener(holder.artistImg, R.drawable.ic_launcher, R.drawable.no_image));

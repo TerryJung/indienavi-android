@@ -1,90 +1,54 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-
 import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistAlbumFragment;
+import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistDetailFragment;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.androidquery.AQuery;
 
 public class ArtistDetailActivity extends SherlockFragmentActivity {
-
-	AQuery aq = new AQuery(getParent());
-	
-	private ImageView artistImg;
-	
-	private TextView artistName;
-	private TextView artistFan;
-	private TextView panTv;
-	private TextView labelName;
-	private TextView artistText;
-	
+	private FragmentManager fragmentManager;
+	private FragmentTransaction fragmentTransaction;
 	private Button albumInfoBtn;
 	private Button concertInfoBtn;
 	private Button panclubBtn;
+	FragmentTransaction ft;
 	
-	private String name = "¸ù´Ï";
-	
-	private ArrayList<ArtistData> artistData = new ArrayList<ArtistData>();
-	
-	private boolean mHasData = false;
-    private boolean mInError = false;
-    String artistImgURLStr;
-    String artistNameStr;
-    String artistFanStr;
-    String artistLabelStr;
-    String artistTextStr;
-    ArtistData artist;
+//	ArtistDetailFragment adf = new ArtistDetailFragment()
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_artist_detail);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		fragmentManager = getSupportFragmentManager();
+		fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.add(R.id.ArtistDetailFrame, new ArtistDetailFragment());
 		
-		artistImg = (ImageView) findViewById(R.id.artistImgDetail);
-//		artistImg.s
-//		aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artist.getArtistImgURL(),true, true, R.drawable.no_image, AQuery.FADE_IN);
-		artistName = (TextView) findViewById(R.id.artistName);
-		artistFan = (TextView) findViewById(R.id.artistPan);
-		panTv = (TextView) findViewById(R.id.PanTv);
-		labelName = (TextView) findViewById(R.id.labelName);
-		artistText = (TextView) findViewById(R.id.artistText);
+		
+		
+		
+		fragmentTransaction.commit();
 		albumInfoBtn = (Button) findViewById(R.id.albumInfoBtn);
-		albumInfoBtn.setOnClickListener(new View.OnClickListener() {
+		albumInfoBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistAlbumFragment());
+				ft.addToBackStack(null);
+				ft.commit();
 				
 			}
 		});
 		concertInfoBtn = (Button) findViewById(R.id.concertInfoBtn);
-		concertInfoBtn.setOnClickListener(new View.OnClickListener() {
+		concertInfoBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -93,7 +57,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			}
 		});
 		panclubBtn = (Button) findViewById(R.id.fanclubBtn);
-		panclubBtn.setOnClickListener(new View.OnClickListener() {
+		panclubBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -101,73 +65,9 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 				
 			}
 		});
-		final Handler handler = new Handler();
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				String readArtist = readArtist();
-				try {
-					JSONArray jsonArray = new JSONArray(readArtist);
-					Log.i(ArtistDetailActivity.class.getName(),
-					          "Number of entries " + jsonArray.length());
-					JSONObject jsonObject = jsonArray.getJSONObject(0);
-			        Log.i(ArtistDetailActivity.class.getName(), jsonObject.getString("artist_img_url"));
-			        Log.i(ArtistDetailActivity.class.getName(), jsonObject.getString("artist_name"));
-					artistImgURLStr = jsonObject.getString("artist_img_url");
-		            artistNameStr = jsonObject.getString("artist_name");
-		            artistFanStr = jsonObject.getString("like_count");
-		            artistLabelStr = jsonObject.getString("label");
-		            artistTextStr = jsonObject.getString("artist_text");
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Log.d(ArtistDetailActivity.class.getName()+ "AritstName", artistNameStr);
-				handler.post(new Runnable(){
-
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artistImgURLStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
-						artistName.setText(artistNameStr);
-						artistFan.setText(artistFanStr);
-						labelName.setText(artistLabelStr);
-						artistText.setText(artistTextStr);
-					}
-					
-				});
-			}
-		}).start();
 	}
 	
-	public String readArtist() {
-	    StringBuilder builder = new StringBuilder();
-	    HttpClient client = new DefaultHttpClient();
-	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/artist_detail.php?artist="+name);
-	    try {
-	      HttpResponse response = client.execute(httpGet);
-	      StatusLine statusLine = response.getStatusLine();
-	      int statusCode = statusLine.getStatusCode();
-	      if (statusCode == 200) {
-	        HttpEntity entity = response.getEntity();
-	        InputStream content = entity.getContent();
-	        BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	          builder.append(line);
-	        }
-	      } else {
-	        Log.e(ArtistDetailActivity.class.toString(), "Failed to download file");
-	      }
-	    } catch (ClientProtocolException e) {
-	      e.printStackTrace();
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	    }
-	    return builder.toString();
-	  }
+	
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

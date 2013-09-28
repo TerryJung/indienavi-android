@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/albumCover"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/albumTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="[앨범 타이틀]"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/albumYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="end"
+                    android:text="[발매 년도]"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/albumTitleSong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[앨범 타이틀 곡이름]" 
+                android:textSize="20sp"
+                android:layout_margin="5dp"/>
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>
