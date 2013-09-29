@@ -2,6 +2,7 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistAlbumFragment;
+import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistConcertFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistDetailFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -53,7 +54,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistAlbumFragment());
+				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistConcertFragment());
 				ft.addToBackStack(null);
 				ft.commit();
 			}
