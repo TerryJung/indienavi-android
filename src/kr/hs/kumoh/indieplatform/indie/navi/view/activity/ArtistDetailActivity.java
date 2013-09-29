@@ -21,7 +21,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private Button panclubBtn;
 	FragmentTransaction ft;
 	
-//	ArtistDetailFragment adf = new ArtistDetailFragment()
+	ArtistAlbumFragment aaf = new ArtistAlbumFragment();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistAlbumFragment());
+				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, aaf);
 				ft.addToBackStack(null);
 				ft.commit();
 				
@@ -53,7 +53,9 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistAlbumFragment());
+				ft.addToBackStack(null);
+				ft.commit();
 			}
 		});
 		panclubBtn = (Button) findViewById(R.id.fanclubBtn);

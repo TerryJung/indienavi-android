@@ -3,6 +3,7 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAlbumAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.AlbumData;
 
@@ -39,6 +40,12 @@ public class ArtistAlbumFragment extends SherlockFragment {
 			Bundle savedInstanceState) {
 		View root = inflater.inflate(R.layout.artist_album_fragment, container, false);
 		// TODO Auto-generated method stub
+		albumData = new ArrayList<AlbumData>();
+		lv = (ListView) root.findViewById(R.id.albumList);
+		albumAdapter = new ArtistAlbumAdapter(getSherlockActivity(), 0, albumData, MyVolley.getImageLoader());
+		lv.setAdapter(albumAdapter);
+		lv.setClickable(false);
+//		loadPage();========
 		return root;
 	}
 	
@@ -56,11 +63,11 @@ public class ArtistAlbumFragment extends SherlockFragment {
 //        int startIndex = albumData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/artist_album.php?name="+name ,
+        						"http://chilchil.me/apps/server/indie/artist_album.php?name=¸ù´Ï",
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
-        Log.d("loadpage", "http://chilchil.me/apps/server/indie/artist_album.php?name="+name);
 
+//        Log.d("loadpage", "http://chilchil.me/apps/server/indie/artist_album.php?name="+name);
         queue.add(myReq);
     }
 	private Response.Listener<JSONObject> createMyReqSuccessListener() {
@@ -68,15 +75,14 @@ public class ArtistAlbumFragment extends SherlockFragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-
+                	
                 	JSONObject feed = response.getJSONObject("feed");
                     JSONArray entries = feed.getJSONArray("artist_album");
                     JSONObject entry;
                     for (int i = 0; i < entries.length(); i++) {
                     	entry = entries.getJSONObject(i);         
-                    	String url = entry.getString("album_cover_url");
-                    	Log.d("ArtistAlbumFragment", url);
-                    	albumData.add(new AlbumData(null/*entry.getString("album_cover_url")*/, entry.getString("album_title"), 
+                    	
+                    	albumData.add(new AlbumData(null, entry.getString("album_title"), 
                         					entry.getString("year"), entry.getString("title_song")));
                     }
                     albumAdapter.notifyDataSetChanged();

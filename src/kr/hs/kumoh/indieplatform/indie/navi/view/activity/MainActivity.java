@@ -43,7 +43,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		leftMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		leftMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		leftMenu.setFadeDegree(0.35f);
-		leftMenu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
+		leftMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		leftMenu.setMenu(R.layout.slide_left_menu);
 //		leftMenu.set
 				
@@ -53,7 +53,7 @@ public class MainActivity extends SherlockFragmentActivity {
 //      rightMenu.setShadowDrawable(R.drawable.ic_launcher);
 		rightMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		rightMenu.setFadeDegree(0.35f);
-		rightMenu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
+		rightMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		rightMenu.setMenu(R.layout.slide_right_menu);
 		
 		fragmentManager = getSupportFragmentManager();
