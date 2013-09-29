@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -42,12 +42,30 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
+				if(position == 0 ) {
+					switchFragment(new ConcertListFragment());
+				} else if  (position == 1) {
+					switchFragment(new ArtistListFragment());
+				} else if (position == 2) {
+					switchFragment(new FavoriteArtistListFragment());
+				} else if (position == 3) {
+					
+				}
 				Toast.makeText(getSherlockActivity(), "click " + position, Toast.LENGTH_SHORT).show();
  				
 			}
 		});
 		
 		return root;
+	}
+	private void switchFragment(Fragment fragment) {
+		if (getActivity() == null)
+			return;
+
+		if (getActivity() instanceof MainActivity) {
+			MainActivity ma = (MainActivity) getActivity();
+			ma.switchContent(fragment);
+		}
 	}
 	
 }

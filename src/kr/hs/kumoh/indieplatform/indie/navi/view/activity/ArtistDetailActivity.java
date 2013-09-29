@@ -42,7 +42,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, aaf);
-				ft.addToBackStack(null);
+				ft.addToBackStack("w");
 				ft.commit();
 				
 			}
