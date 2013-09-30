@@ -12,6 +12,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
+import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 public class ArtistConcertFragment extends SherlockFragment {
-	String name = "¸ù´Ï";
+	String name = ArtistDetailActivity.ArtistName;
 	private String encodeResult;
 	ListView lv;
 	private boolean mHasData = false;
