@@ -7,7 +7,6 @@ import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
-import kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +23,8 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.android.volley.Request.Method;
@@ -54,11 +55,13 @@ public class ArtistListFragment extends SherlockFragment {
 		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View v, int position,
+			public void onItemClick(AdapterView<?> av, View v, int position,
 					long arg3) {
+				TextView tv = (TextView) av.getChildAt(position).findViewById(R.id.artistName); 
+				String artistName = tv.getText().toString();
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);
-//				i.putE
+				i.putExtra("artist", artistName);
 				startActivity(i);
 				
 			}

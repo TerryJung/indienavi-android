@@ -33,7 +33,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.androidquery.AQuery;
 
 public class ArtistDetailFragment extends SherlockFragment{
-	AQuery aq = new AQuery(getSherlockActivity());
+	AQuery aq;// = new AQuery(getSherlockActivity());
 	private ImageView artistImg;
 	
 	private TextView artistName;
@@ -53,7 +53,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View root = inflater.inflate(R.layout.artist_detail_fragment, container, false);
-		
+		aq = new AQuery(artistImg);
 		artistImg = (ImageView) root.findViewById(R.id.artistImgDetail);
 //		artistImg.s
 //		aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artist.getArtistImgURL(),true, true, R.drawable.no_image, AQuery.FADE_IN);

@@ -46,6 +46,7 @@ public class ArtistConcertFragment extends SherlockFragment {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Log.d("encode URL " , encodeResult);
 		View root = inflater.inflate(R.layout.concert_fragment, container, false);
 		// TODO Auto-generated method stub
 		concertData = new ArrayList<ConcertData>();
@@ -79,8 +80,6 @@ public class ArtistConcertFragment extends SherlockFragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                	
-//                	String JSON = ""
                 	JSONObject feed = response.getJSONObject("feed");
                     JSONArray entries = feed.getJSONArray("artist_concert");
                     Log.d("Artist Concert", "json Array artist concert");

@@ -4,9 +4,11 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistAlbumFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistConcertFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistDetailFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,20 +23,20 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private Button concertInfoBtn;
 	private Button panclubBtn;
 	FragmentTransaction ft;
+	public String ArtistName;
 	
-	ArtistAlbumFragment aaf = new ArtistAlbumFragment();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_artist_detail);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		Intent intent = getIntent();
+		ArtistName = intent.getExtras().getString("artist");
+		Log.d("INTENT", ArtistName);
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.add(R.id.ArtistDetailFrame, new ArtistDetailFragment());
-		
-		
-		
-		
 		fragmentTransaction.commit();
 		albumInfoBtn = (Button) findViewById(R.id.albumInfoBtn);
 		albumInfoBtn.setOnClickListener(new OnClickListener() {
@@ -42,10 +44,9 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, aaf);
+				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistAlbumFragment());
 				ft.addToBackStack("w");
-				ft.commit();
-				
+				ft.commit();	
 			}
 		});
 		concertInfoBtn = (Button) findViewById(R.id.concertInfoBtn);
@@ -65,7 +66,9 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistDetailFragment());
+				ft.addToBackStack(null);
+				ft.commit();
 			}
 		});
 	}
