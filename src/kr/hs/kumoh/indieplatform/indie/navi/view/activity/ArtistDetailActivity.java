@@ -83,6 +83,5 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
             return super.onOptionsItemSelected(item);
         }
 	}
-//	String artistName, String labelName, String artistDesc, String likeCnt, String artistImgURL
 	
 }

@@ -110,26 +110,25 @@ public class ArtistDetailFragment extends SherlockFragment{
 	    HttpClient client = new DefaultHttpClient();
 	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/artist_detail.php?artist="+name);
 	    try {
-	      HttpResponse response = client.execute(httpGet);
-	      StatusLine statusLine = response.getStatusLine();
-	      int statusCode = statusLine.getStatusCode();
-	      if (statusCode == 200) {
-	        HttpEntity entity = response.getEntity();
-	        InputStream content = entity.getContent();
-	        BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	          builder.append(line);
-	        }
-	      } else {
-	        Log.e(ArtistDetailActivity.class.toString(), "Failed to download file");
-	      }
+	    	HttpResponse response = client.execute(httpGet);
+	    	StatusLine statusLine = response.getStatusLine();
+	    	int statusCode = statusLine.getStatusCode();
+	    	if (statusCode == 200) {
+	    		HttpEntity entity = response.getEntity();
+	    		InputStream content = entity.getContent();
+	    		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+	    		String line;
+	    		while ((line = reader.readLine()) != null) {
+	    			builder.append(line);
+	    		}
+	    	} else {
+	    		Log.e(ArtistDetailActivity.class.toString(), "Failed to download file");
+	    	}
 	    } catch (ClientProtocolException e) {
-	      e.printStackTrace();
+	    	e.printStackTrace();
 	    } catch (IOException e) {
-	      e.printStackTrace();
+	    	e.printStackTrace();
 	    }
 	    return builder.toString();
-	  }
-	
+	}
 }

@@ -1,11 +1,14 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAlbumAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.AlbumData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 
 public class ArtistAlbumFragment extends SherlockFragment {
 	String name = "¸ù´Ï";
+	private String encodeResult;
 	ListView lv;
 	private boolean mHasData = false;
     private boolean mInError = false;
@@ -38,6 +42,12 @@ public class ArtistAlbumFragment extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		try {
+			encodeResult = URLEncoder.encode(name, "UTF8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		View root = inflater.inflate(R.layout.artist_album_fragment, container, false);
 		// TODO Auto-generated method stub
 		albumData = new ArrayList<AlbumData>();
@@ -63,7 +73,7 @@ public class ArtistAlbumFragment extends SherlockFragment {
 //        int startIndex = albumData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/artist_album.php?name=¸ù´Ï",
+        						"http://chilchil.me/apps/server/indie/artist_album.php?name="+encodeResult,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 
@@ -79,11 +89,13 @@ public class ArtistAlbumFragment extends SherlockFragment {
                 	JSONObject feed = response.getJSONObject("feed");
                     JSONArray entries = feed.getJSONArray("artist_album");
                     JSONObject entry;
+//                    Log.d("Artist AlbumFragment", Integer.toString(entries.length()));
                     for (int i = 0; i < entries.length(); i++) {
+//                    	Log.d("Artist AlbumFragment", Integer.toString(i));
                     	// Æ÷¹®¾È¿¡¼­ ÆÄ½ÌÀÌ Á¦´ë·Î ¾ÈµÊ 
                     	entry = entries.getJSONObject(i);         
-                    	
-                    	albumData.add(new AlbumData(null, entry.getString("album_title"), 
+                    	Log.d("Artist AlbumFragment", entry.getString("album_cover_url"));
+                    	albumData.add(new AlbumData(entry.getString("album_cover_url"), entry.getString("album_title"), 
                         					entry.getString("year"), entry.getString("title_song")));
                     }
                     albumAdapter.notifyDataSetChanged();

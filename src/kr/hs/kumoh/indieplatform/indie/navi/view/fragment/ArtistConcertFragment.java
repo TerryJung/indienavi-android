@@ -1,5 +1,7 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -27,7 +29,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 public class ArtistConcertFragment extends SherlockFragment {
-	
+	String name = "¸ù´Ï";
+	private String encodeResult;
 	ListView lv;
 	private boolean mHasData = false;
     private boolean mInError = false;
@@ -37,6 +40,12 @@ public class ArtistConcertFragment extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		try {
+			encodeResult = URLEncoder.encode(name, "UTF8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		View root = inflater.inflate(R.layout.concert_fragment, container, false);
 		// TODO Auto-generated method stub
 		concertData = new ArrayList<ConcertData>();
@@ -59,7 +68,7 @@ public class ArtistConcertFragment extends SherlockFragment {
         int startIndex = concertData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/artist_concert.php?name=¸ù´Ï",
+        						"http://chilchil.me/apps/server/indie/artist_concert.php?name="+encodeResult,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 

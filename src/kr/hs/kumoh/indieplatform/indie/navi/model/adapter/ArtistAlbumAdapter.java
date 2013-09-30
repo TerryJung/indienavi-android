@@ -33,6 +33,7 @@ public class ArtistAlbumAdapter extends ArrayAdapter<AlbumData> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		View v = convertView;
+		aq = new AQuery(v);
 		if (v == null) {
 	    	LayoutInflater vi = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	        v = vi.inflate(R.layout.artist_album_fragment_listview, null);
@@ -46,8 +47,6 @@ public class ArtistAlbumAdapter extends ArrayAdapter<AlbumData> {
         if (album.getAlbumCoverURL() == null) {
 
         	holder.albumCover.setImageResource(R.drawable.no_image);
-        	
-
         } else {
         	Log.d("album Adapter ", ArtistData.IMAGE_URL+album.getAlbumCoverURL());
         	aq.id(R.id.albumCover).image(ArtistData.IMAGE_URL+album.getAlbumCoverURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
