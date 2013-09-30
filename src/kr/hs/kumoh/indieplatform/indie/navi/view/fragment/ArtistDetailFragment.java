@@ -42,7 +42,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 	private TextView labelName;
 	private TextView artistText;
 	
-	private String name = "¸ù´Ï";
+	private String name = ArtistDetailActivity.ArtistName;
 	String artistImgURLStr;
     String artistNameStr;
     String artistFanStr;

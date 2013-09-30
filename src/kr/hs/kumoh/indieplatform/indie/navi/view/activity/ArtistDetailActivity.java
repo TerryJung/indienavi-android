@@ -23,7 +23,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private Button concertInfoBtn;
 	private Button panclubBtn;
 	FragmentTransaction ft;
-	public String ArtistName;
+	public static String ArtistName;
 	
 	
 	@Override
