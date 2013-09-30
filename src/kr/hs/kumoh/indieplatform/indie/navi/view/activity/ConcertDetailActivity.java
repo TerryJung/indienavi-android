@@ -51,13 +51,9 @@ public class ConcertDetailActivity extends SherlockActivity {
 		setContentView(R.layout.activity_concert_detail);
 		Intent intent = getIntent();
 		concertName = intent.getExtras().getString("concertName");
+		Log.d("concert Detail", concertName);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		try {
-			encodeResult = URLEncoder.encode(concertName, "UTF8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
 		concertNameTv = (TextView) findViewById(R.id.concertDetailName);
@@ -119,6 +115,13 @@ public class ConcertDetailActivity extends SherlockActivity {
 	public String readConcert() {
 	    StringBuilder builder = new StringBuilder();
 	    HttpClient client = new DefaultHttpClient();
+	    Log.d("concert Detail", concertName);
+	    try {
+			encodeResult = URLEncoder.encode(concertName, "UTF8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/concert_detail.php?artist="+encodeResult);
 	    try {
 	    	HttpResponse response = client.execute(httpGet);
