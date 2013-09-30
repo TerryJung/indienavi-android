@@ -80,6 +80,7 @@ public class ArtistAlbumFragment extends SherlockFragment {
                     JSONArray entries = feed.getJSONArray("artist_album");
                     JSONObject entry;
                     for (int i = 0; i < entries.length(); i++) {
+                    	// 포문안에서 파싱이 제대로 안됨 
                     	entry = entries.getJSONObject(i);         
                     	
                     	albumData.add(new AlbumData(null, entry.getString("album_title"), 
