@@ -122,7 +122,8 @@ public class ConcertDetailActivity extends SherlockActivity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/concert_detail.php?artist="+encodeResult);
+	    Log.d("concert Detail", encodeResult);
+	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/concert_detail.php?concert="+encodeResult);
 	    try {
 	    	HttpResponse response = client.execute(httpGet);
 	    	StatusLine statusLine = response.getStatusLine();
@@ -143,6 +144,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 	    } catch (IOException e) {
 	    	e.printStackTrace();
 	    }
+	    Log.i("",builder.toString()); 
 	    return builder.toString();
 	}
 	
