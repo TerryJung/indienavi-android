@@ -56,7 +56,6 @@ public class ArtistAlbumFragment extends SherlockFragment {
 		albumAdapter = new ArtistAlbumAdapter(getSherlockActivity(), 0, albumData, MyVolley.getImageLoader());
 		lv.setAdapter(albumAdapter);
 		lv.setClickable(false);
-//		loadPage();========
 		return root;
 	}
 	

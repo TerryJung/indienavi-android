@@ -89,10 +89,9 @@ public class ArtistConcertFragment extends SherlockFragment {
                     	Log.d("Artist Concert", "json Array artist concert parse for");
                     	// 포문안에서 파싱이 제대로 안됨 
                     	entry = entries.getJSONObject(i);         
-                    	String url = entry.getString("concert_img_url");
-                    	Log.d("TAG", url);
+
                     	concertData.add(new ConcertData(entry.getString("concert_name"), 
-                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("link"), entry.getString("concert_img_url")));
+                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("link"), null));
                     }
                     Log.d("Artist Concert", "json Array artist concert parse end");
                     concertAdapter.notifyDataSetChanged();

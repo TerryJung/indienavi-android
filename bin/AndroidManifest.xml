@@ -41,6 +41,10 @@
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity"
             android:label="@string/title_activity_artist_detail" >
         </activity>
+        <activity
+            android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.ConcertDetailActivity"
+            android:label="@string/title_activity_concert_detail" >
+        </activity>
     </application>
 
 </manifest>
