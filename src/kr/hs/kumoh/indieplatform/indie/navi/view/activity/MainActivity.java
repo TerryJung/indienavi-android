@@ -7,6 +7,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ConcertListFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.FavoriteArtistListFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.LeftSlidingMenuFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.RightSlidingMenuFragment;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import android.view.KeyEvent;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -37,9 +40,12 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+		getSupportActionBar().setHomeButtonEnabled(true); 
+//		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 		getSupportActionBar().setDisplayShowCustomEnabled(true);
-		
+		getSupportActionBar().setIcon(R.drawable.menu);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF00edc6));
+//		getSupportActionBar().setTitle("       Indie Navi");
 		leftMenu = new SlidingMenu(getApplicationContext());
 
 		leftMenu.setMode(SlidingMenu.LEFT);
@@ -77,13 +83,13 @@ public class MainActivity extends SherlockFragmentActivity {
         }
 		return super.onKeyDown(keyCode, event);
 	}
-	
+
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case android.R.id.home:
-            this.leftMenu.toggle();
-            return true;
+        	this.leftMenu.toggle();
+        	return true;
         default:
             return super.onOptionsItemSelected(item);
         }

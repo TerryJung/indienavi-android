@@ -24,21 +24,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 public class FavoriteArtistListFragment extends SherlockFragment {
-	private String name = "chilchil";
+	private String name;
 	ListView lv;
 	private boolean mHasData = false;
     private boolean mInError = false;
 	private ArrayList<ArtistData> artistData = new ArrayList<ArtistData>();
 	private ArtistAdapter artistAdapter;
-	private ArtistData data;
+//	private ArtistData data;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -73,10 +73,11 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 	            loadPage();
 	    }
 	}
+	
 	private void loadPage() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-
-        int startIndex = 1 + artistData.size();
+//        SharedPreferences userinfo = getShared
+//        int startIndex = 1 + artistData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
         						"http://chilchil.me/apps/server/indie/favorite_artist_list.php?name="+name ,

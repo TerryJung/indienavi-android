@@ -31,7 +31,9 @@
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="Indie navi" 
+        >
+            
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.SignupActivity"
