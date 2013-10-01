@@ -4,16 +4,16 @@ public class ConcertData {
 	private String concertName;
 	private String placeName;
 	private String concertDate;
-	private String link;
+	private String concertTime;
 	private String concertImgURL;
 	
 	public ConcertData(String concertName, String placeName, String concertDate,
-								String link, String concertImgURL) {
+								String concertTime, String concertImgURL) {
 		// TODO Auto-generated constructor stub
 		this.setConcertName(concertName);
 		this.setPlaceName(placeName);
 		this.setConcertDate(concertDate);
-		this.setLink(link);
+		this.setConcertTime(concertTime);
 		this.setConcertImgURL(concertImgURL);
 		
 	}
@@ -36,11 +36,11 @@ public class ConcertData {
 	public void setConcertDate(String concertDate) {
 		this.concertDate = concertDate;
 	}
-	public String getLink() {
-		return link;
+	public String getConcertTime() {
+		return concertTime;
 	}
-	public void setLink(String link) {
-		this.link = link;
+	public void setConcertTime(String concertTime) {
+		this.concertTime = concertTime;
 	}
 	public String getConcertImgURL() {
 		return concertImgURL;

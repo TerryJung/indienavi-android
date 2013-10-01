@@ -6,7 +6,6 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
-import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ConcertDetailActivity;
 
 import org.json.JSONArray;
@@ -21,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -54,11 +54,17 @@ public class ConcertListFragment extends SherlockFragment {
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-				TextView tv = (TextView) av.getChildAt(position).findViewById(R.id.concertName); 
-				String concertName = tv.getText().toString();
+				TextView concertName = (TextView) av.getChildAt(position).findViewById(R.id.concertName); 
+				TextView placeName = (TextView) av.getChildAt(position).findViewById(R.id.placeName);
+				TextView concertDate = (TextView) av.getChildAt(position).findViewById(R.id.concertDate);
+				String concertNameStr = concertName.getText().toString();
+				String placeNameStr = placeName.getText().toString();
+				String concertDateStr = concertDate.getText().toString();
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ConcertDetailActivity.class);
-				i.putExtra("concertName", concertName);
+				i.putExtra("concertName", concertNameStr);
+				i.putExtra("placeName", placeNameStr);
+				i.putExtra("concertDate", concertDateStr);
 				startActivity(i);
 				
 			}
@@ -100,7 +106,7 @@ public class ConcertListFragment extends SherlockFragment {
                     	String url = entry.getString("concert_img_url");
                     	Log.d("TAG", url);
                     	concertData.add(new ConcertData(entry.getString("concert_name"), 
-                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("link"), entry.getString("concert_img_url")));
+                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("concert_time"), entry.getString("concert_img_url")));
                     }
                     concertAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {

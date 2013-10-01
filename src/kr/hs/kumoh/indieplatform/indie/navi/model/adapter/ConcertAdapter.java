@@ -55,21 +55,24 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
         	aq.id(R.id.concertImg).image(concert.getConcertImgURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
         }
         holder.concertNameTv.setText(concert.getConcertName());
-		holder.concertTimeTv.setText(concert.getConcertDate());
+		holder.concertDateTv.setText(concert.getConcertDate());
 		holder.concertPlaceTv.setText(concert.getPlaceName());
+		holder.concertTimeTv.setText(concert.getConcertTime());
 
 		return v;
 	}
 	private class ViewHolder {
 		ImageView concertImg;
         TextView concertNameTv; 
-        TextView concertTimeTv;
+        TextView concertDateTv;
         TextView concertPlaceTv;
+        TextView concertTimeTv;
         
         public ViewHolder(View v) {
         	concertImg = (ImageView) v.findViewById(R.id.concertImg);
         	concertNameTv = (TextView) v.findViewById(R.id.concertName);
-            concertTimeTv = (TextView) v.findViewById(R.id.concertTime);
+        	concertDateTv = (TextView) v.findViewById(R.id.concertDate);
+        	concertTimeTv = (TextView) v.findViewById(R.id.concertTime);
             concertPlaceTv = (TextView) v.findViewById(R.id.placeName);
             v.setTag(this);
         }

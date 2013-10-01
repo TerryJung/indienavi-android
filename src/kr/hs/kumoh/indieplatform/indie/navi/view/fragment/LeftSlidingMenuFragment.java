@@ -51,11 +51,8 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 				} else if (position == 3) {
 					
 				}
-				Toast.makeText(getSherlockActivity(), "click " + position, Toast.LENGTH_SHORT).show();
- 				
 			}
 		});
-		
 		return root;
 	}
 	private void switchFragment(Fragment fragment) {

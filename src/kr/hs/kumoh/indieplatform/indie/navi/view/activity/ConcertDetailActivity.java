@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import kr.hs.kumoh.indieplatform.indie.navi.R;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -18,8 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,7 +32,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.androidquery.AQuery;
 
 public class ConcertDetailActivity extends SherlockActivity {
-
+//	AQuery aq = new AQuery(getApplicationContext());
 	ImageView concertImage;
 	TextView concertNameTv;
 	TextView concertPlaceTv;
@@ -42,15 +42,18 @@ public class ConcertDetailActivity extends SherlockActivity {
 	private String encodeResult;
 	String imgURL;
 	String nameStr;
-	String placeStr;
+	String placeStr; 
 	String dateStr;
 	String descStr;
+	String linkStr;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_concert_detail);
 		Intent intent = getIntent();
 		concertName = intent.getExtras().getString("concertName");
+		placeStr = intent.getExtras().getString("placeName");
+		dateStr = intent.getExtras().getString("concertDate");
 		Log.d("concert Detail", concertName);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
@@ -74,23 +77,19 @@ public class ConcertDetailActivity extends SherlockActivity {
 					          "Number of entries " + jsonArray.length());
 					JSONObject jsonObject = jsonArray.getJSONObject(0);
 			        imgURL = jsonObject.getString("concert_img_url");
-			        nameStr = jsonObject.getString("concert_name");
-			        placeStr = jsonObject.getString("place");
-		            dateStr = jsonObject.getString("concert_date");
 		            descStr = jsonObject.getString("concert_text");
+		            linkStr = jsonObject.getString("link");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-//				Log.d(ArtistDetailActivity.class.getName()+ "AritstName", artistNameStr);
 				handler.post(new Runnable(){
 
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-//						Log.d("URL", ArtistData.IMAGE_URL+artistImgURLStr);
-//						aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artistImgURLStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
-						concertNameTv.setText(nameStr);
+//						aq.id(R.id.artistImgDetail).image(imgURL,true, true, R.drawable.no_image, AQuery.FADE_IN);
+						concertNameTv.setText(concertName);
 						concertPlaceTv.setText(placeStr);
 						concertDateTv.setText(dateStr);
 						concertDescriptionTv.setText(descStr);
