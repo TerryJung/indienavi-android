@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.android.volley.RequestQueue;
@@ -50,11 +51,14 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View v, int position,
+			public void onItemClick(AdapterView<?> av, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
+				TextView tv = (TextView) av.getChildAt(position).findViewById(R.id.artistName); 
+				String artistName = tv.getText().toString();
+				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);
-//				i.putE
+				i.putExtra("artist", artistName);
 				startActivity(i);
 				
 			}

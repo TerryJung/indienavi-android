@@ -8,12 +8,11 @@ public class ConcertData {
 	private String concertImgURL;
 	
 	public ConcertData(String concertName, String placeName, String concertDate,
-								String concertTime, String concertImgURL) {
+								 String concertImgURL) {
 		// TODO Auto-generated constructor stub
 		this.setConcertName(concertName);
 		this.setPlaceName(placeName);
 		this.setConcertDate(concertDate);
-		this.setConcertTime(concertTime);
 		this.setConcertImgURL(concertImgURL);
 		
 	}
@@ -35,12 +34,6 @@ public class ConcertData {
 	}
 	public void setConcertDate(String concertDate) {
 		this.concertDate = concertDate;
-	}
-	public String getConcertTime() {
-		return concertTime;
-	}
-	public void setConcertTime(String concertTime) {
-		this.concertTime = concertTime;
 	}
 	public String getConcertImgURL() {
 		return concertImgURL;

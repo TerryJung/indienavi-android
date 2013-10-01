@@ -91,7 +91,7 @@ public class ArtistConcertFragment extends SherlockFragment {
                     	entry = entries.getJSONObject(i);         
 
                     	concertData.add(new ConcertData(entry.getString("concert_name"), 
-                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("link"), null));
+                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("concert_img_url")));
                     }
                     Log.d("Artist Concert", "json Array artist concert parse end");
                     concertAdapter.notifyDataSetChanged();

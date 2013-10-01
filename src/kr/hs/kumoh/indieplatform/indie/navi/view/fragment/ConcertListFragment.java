@@ -106,7 +106,7 @@ public class ConcertListFragment extends SherlockFragment {
                     	String url = entry.getString("concert_img_url");
                     	Log.d("TAG", url);
                     	concertData.add(new ConcertData(entry.getString("concert_name"), 
-                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("concert_time"), entry.getString("concert_img_url")));
+                    						entry.getString("place"), entry.getString("concert_date"), entry.getString("concert_img_url")));
                     }
                     concertAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {

@@ -14,7 +14,11 @@
 	<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+		<Button
+            android:id="@+id/artistInfoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아티스트 정보" />
         <Button
             android:id="@+id/albumInfoBtn"
             android:layout_width="wrap_content"
@@ -27,11 +31,7 @@
             android:layout_height="wrap_content"
             android:text="공연 정보" />
 
-        <Button
-            android:id="@+id/fanclubBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="팬 클럽" />
+        
 
     </LinearLayout>
 </LinearLayout>

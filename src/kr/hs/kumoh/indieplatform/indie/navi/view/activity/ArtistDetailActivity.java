@@ -21,7 +21,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private FragmentTransaction fragmentTransaction;
 	private Button albumInfoBtn;
 	private Button concertInfoBtn;
-	private Button panclubBtn;
+	private Button artistInfoBtn;
 	FragmentTransaction ft;
 	public static String ArtistName;
 	
@@ -60,8 +60,8 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 				ft.commit();
 			}
 		});
-		panclubBtn = (Button) findViewById(R.id.fanclubBtn);
-		panclubBtn.setOnClickListener(new OnClickListener() {
+		artistInfoBtn = (Button) findViewById(R.id.artistInfoBtn);
+		artistInfoBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

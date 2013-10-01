@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.androidquery.AQuery;
 
 public class ConcertDetailActivity extends SherlockActivity {
-//	AQuery aq = new AQuery(getApplicationContext());
+	AQuery aq ;
 	ImageView concertImage;
 	TextView concertNameTv;
 	TextView concertPlaceTv;
@@ -50,6 +51,8 @@ public class ConcertDetailActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_concert_detail);
+//		View v = null;
+		
 		Intent intent = getIntent();
 		concertName = intent.getExtras().getString("concertName");
 		placeStr = intent.getExtras().getString("placeName");
@@ -88,7 +91,9 @@ public class ConcertDetailActivity extends SherlockActivity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-//						aq.id(R.id.artistImgDetail).image(imgURL,true, true, R.drawable.no_image, AQuery.FADE_IN);
+						Log.d("ImageURL " , imgURL);
+						aq = new AQuery(getApplication());
+						aq.id(R.id.artistImgDetail).image(imgURL, false, false, R.drawable.no_image, AQuery.FADE_IN);
 						concertNameTv.setText(concertName);
 						concertPlaceTv.setText(placeStr);
 						concertDateTv.setText(dateStr);

@@ -57,7 +57,6 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
         holder.concertNameTv.setText(concert.getConcertName());
 		holder.concertDateTv.setText(concert.getConcertDate());
 		holder.concertPlaceTv.setText(concert.getPlaceName());
-		holder.concertTimeTv.setText(concert.getConcertTime());
 
 		return v;
 	}
@@ -66,13 +65,11 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
         TextView concertNameTv; 
         TextView concertDateTv;
         TextView concertPlaceTv;
-        TextView concertTimeTv;
         
         public ViewHolder(View v) {
         	concertImg = (ImageView) v.findViewById(R.id.concertImg);
         	concertNameTv = (TextView) v.findViewById(R.id.concertName);
         	concertDateTv = (TextView) v.findViewById(R.id.concertDate);
-        	concertTimeTv = (TextView) v.findViewById(R.id.concertTime);
             concertPlaceTv = (TextView) v.findViewById(R.id.placeName);
             v.setTag(this);
         }
