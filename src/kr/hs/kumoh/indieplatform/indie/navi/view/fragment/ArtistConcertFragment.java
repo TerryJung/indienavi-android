@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
+import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistConcertAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
@@ -36,7 +37,7 @@ public class ArtistConcertFragment extends SherlockFragment {
 	private boolean mHasData = false;
     private boolean mInError = false;
 	private ArrayList<ConcertData> concertData = new ArrayList<ConcertData>();
-	private ConcertAdapter concertAdapter;
+	private ArtistConcertAdapter arconcertAdapter;
 	private ConcertData data;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,12 +49,12 @@ public class ArtistConcertFragment extends SherlockFragment {
 			e.printStackTrace();
 		}
 		Log.d("encode URL " , encodeResult);
-		View root = inflater.inflate(R.layout.concert_fragment, container, false);
+		View root = inflater.inflate(R.layout.artist_concert_fragment, container, false);
 		// TODO Auto-generated method stub
 		concertData = new ArrayList<ConcertData>();
-		lv = (ListView) root.findViewById(R.id.concertList);
-		concertAdapter = new ConcertAdapter(getSherlockActivity(), 0, concertData, MyVolley.getImageLoader());
-		lv.setAdapter(concertAdapter);
+		lv = (ListView) root.findViewById(R.id.artist_concert);
+		arconcertAdapter = new ArtistConcertAdapter (getSherlockActivity(), 0, concertData, MyVolley.getImageLoader());
+		lv.setAdapter(arconcertAdapter);
 		return root;
 	}
 	@Override
@@ -94,7 +95,7 @@ public class ArtistConcertFragment extends SherlockFragment {
                     						entry.getString("place"), entry.getString("concert_date"), entry.getString("concert_img_url")));
                     }
                     Log.d("Artist Concert", "json Array artist concert parse end");
-                    concertAdapter.notifyDataSetChanged();
+                    arconcertAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     showErrorDialog();
                 }
