@@ -41,7 +41,8 @@ public class LoginActivity extends Activity {
 	
     private HttpResponse response;
     private HttpClient httpclient;
-    
+    private String name;
+    private String pw;
     private List<NameValuePair> nameValuePairs;
     
     public static final int REQUEST_CODE = 101;
@@ -63,8 +64,10 @@ public class LoginActivity extends Activity {
                         "로그인중입니다....", true);
                  new Thread(new Runnable() {  // 쓰레드시작후 로그
                         public void run() {
-                        	String name = idEdit.getText().toString().trim();
-                            String pw = pwEdit.getText().toString().trim();
+                        	
+                        	name = idEdit.getText().toString().trim();
+                            pw = pwEdit.getText().toString().trim();
+                            
                         	login(name, pw);
                                                  
                         }
@@ -127,11 +130,13 @@ public class LoginActivity extends Activity {
             if(response.equalsIgnoreCase("1")){
                 runOnUiThread(new Runnable() {
                     public void run() {
+                    	
+
                         Toast.makeText(LoginActivity.this,"로그인 성공", Toast.LENGTH_SHORT).show();
                     }
                 });
                 putSharedPreference(name, pw);
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
             }else{}
              
         }catch(IOException e){
@@ -139,6 +144,13 @@ public class LoginActivity extends Activity {
             System.out.println("IOException : " + e.getMessage());
         }
 		
+	}
+//	String getSharedPreference()
+	void getSharedPreference() {
+		SharedPreferences userinfo = getSharedPreferences("userinfo", MODE_PRIVATE);
+		SharedPreferences.Editor editor = userinfo.edit();    
+	    name = userinfo.getString("id", "");
+	    pw = userinfo.getString("pw", "");
 	}
 	void putSharedPreference(String name, String pw){
 		SharedPreferences userinfo = getSharedPreferences("userinfo", MODE_PRIVATE);
