@@ -5,6 +5,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistAlbumFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistConcertFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistDetailFragment;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -31,6 +32,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_artist_detail);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF00edc6));
 		Intent intent = getIntent();
 		ArtistName = intent.getExtras().getString("artist");
 		Log.d("INTENT", ArtistName);

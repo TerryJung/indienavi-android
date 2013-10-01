@@ -85,6 +85,13 @@ public class MainActivity extends SherlockFragmentActivity {
 	}
 
 	@Override
+	 public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.action_menu, menu);
+		return true;
+	  
+	 }
+	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case android.R.id.home:

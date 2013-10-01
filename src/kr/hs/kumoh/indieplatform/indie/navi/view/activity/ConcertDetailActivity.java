@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -52,7 +53,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_concert_detail);
 //		View v = null;
-		
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF00edc6));
 		Intent intent = getIntent();
 		concertName = intent.getExtras().getString("concertName");
 		placeStr = intent.getExtras().getString("placeName");
