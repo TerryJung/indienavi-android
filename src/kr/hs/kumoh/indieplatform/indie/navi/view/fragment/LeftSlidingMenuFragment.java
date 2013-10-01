@@ -31,6 +31,7 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 		arrayList.add("아티스트정보");
 		arrayList.add("팬클럽");
 		arrayList.add("설정");
+		arrayList.add("로그아웃");
 		
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrayList);
 		slidelist = (ListView) root.findViewById(R.id.leftSlideMenu);

@@ -38,46 +38,31 @@ public class MainActivity extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+		getSupportActionBar().setDisplayShowCustomEnabled(true);
 		
 		leftMenu = new SlidingMenu(getApplicationContext());
-		rightMenu = new SlidingMenu(getApplicationContext());
+
 		leftMenu.setMode(SlidingMenu.LEFT);
 		leftMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		leftMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		leftMenu.setFadeDegree(0.35f);
+		leftMenu.setShadowWidth(R.dimen.slidingmenu_offset);
+		leftMenu.setFadeDegree(1f);
 		leftMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		leftMenu.setMenu(R.layout.slide_left_menu);
-//		leftMenu.set
-				
-		rightMenu.setMode(SlidingMenu.RIGHT);
-		rightMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-//      rightMenu.setShadowWidthRes(R.dimen.shadow_width);
-//      rightMenu.setShadowDrawable(R.drawable.ic_launcher);
-		rightMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		rightMenu.setFadeDegree(0.35f);
-		rightMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		rightMenu.setMenu(R.layout.slide_right_menu);
-		
+//		leftMenu.setAlpha(alpha)
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		
 		fragmentTransaction.add(R.id.mainFrame, alf);
 		fragmentTransaction.add(R.id.leftMenu, lsmf);
-		fragmentTransaction.add(R.id.rightMenu, rsmf);
-		
-//		switchContent();
 		fragmentTransaction.commit();
 		
 	}
-	
-	
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		if ( leftMenu.isMenuShowing()) {
 			leftMenu.toggle();
-        } else if (rightMenu.isMenuShowing()) {
-        	rightMenu.toggle();
         } else {
             super.onBackPressed();
         }

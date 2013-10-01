@@ -133,10 +133,13 @@ public class LoginActivity extends Activity {
                     	
 
                         Toast.makeText(LoginActivity.this,"로그인 성공", Toast.LENGTH_SHORT).show();
+                        
                     }
                 });
-                putSharedPreference(name, pw);
+                
+                putSharedPreference(name, pw, true);
                 startActivity(new Intent(this, MainActivity.class));
+                finish();
             }else{}
              
         }catch(IOException e){
@@ -146,17 +149,13 @@ public class LoginActivity extends Activity {
 		
 	}
 //	String getSharedPreference()
-	void getSharedPreference() {
-		SharedPreferences userinfo = getSharedPreferences("userinfo", MODE_PRIVATE);
-		SharedPreferences.Editor editor = userinfo.edit();    
-	    name = userinfo.getString("id", "");
-	    pw = userinfo.getString("pw", "");
-	}
-	void putSharedPreference(String name, String pw){
+
+	void putSharedPreference(String name, String pw, boolean login){
 		SharedPreferences userinfo = getSharedPreferences("userinfo", MODE_PRIVATE);
 		SharedPreferences.Editor edits = userinfo.edit();  // 에디터 객체를 생성하여 
 		edits.putString("id", name);  // 으로 저장
 		edits.putString("pw", pw);
+		edits.putBoolean("login", login);
 		edits.commit();
 	}
 	public void showAlert(){
