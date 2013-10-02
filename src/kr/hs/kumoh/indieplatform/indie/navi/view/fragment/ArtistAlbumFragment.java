@@ -8,7 +8,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAlbumAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.AlbumData;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 
 import org.json.JSONArray;
@@ -30,7 +30,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 public class ArtistAlbumFragment extends SherlockFragment {
 	String name = ArtistDetailActivity.ArtistName;
 	private String encodeResult;
@@ -73,7 +72,7 @@ public class ArtistAlbumFragment extends SherlockFragment {
 //        int startIndex = albumData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        								ArtistData.SERVER_URL+"apps/server/indie/artist_album.php?name="+encodeResult,
+        								Constant.SERVER_URL+"apps/server/indie/artist_album.php?name="+encodeResult,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 

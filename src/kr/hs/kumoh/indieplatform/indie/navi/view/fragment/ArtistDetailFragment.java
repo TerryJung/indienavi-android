@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -16,16 +21,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
-import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -92,8 +93,8 @@ public class ArtistDetailFragment extends SherlockFragment{
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						Log.d("URL", ArtistData.IMAGE_URL+artistImgURLStr);
-						aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artistImgURLStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
+						Log.d("URL", Constant.IMAGE_URL+artistImgURLStr);
+						aq.id(R.id.artistImgDetail).image(Constant.IMAGE_URL+artistImgURLStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
 						artistName.setText(artistNameStr);
 						artistFan.setText(artistFanStr);
 						labelName.setText(artistLabelStr);
@@ -108,7 +109,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 	public String readArtist() {
 	    StringBuilder builder = new StringBuilder();
 	    HttpClient client = new DefaultHttpClient();
-	    HttpGet httpGet = new HttpGet(ArtistData.SERVER_URL+"apps/server/indie/artist_detail.php?artist="+name);
+	    HttpGet httpGet = new HttpGet(Constant.SERVER_URL+"apps/server/indie/artist_detail.php?artist="+name);
 	    try {
 	    	HttpResponse response = client.execute(httpGet);
 	    	StatusLine statusLine = response.getStatusLine();

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +57,7 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 
         } else {
 //        	Log.d("Artist Adapter ", ArtistData.IMAGE_URL+artist.getArtistImgURL());
-        	aq.id(R.id.artistImg).image(ArtistData.IMAGE_URL+artist.getArtistImgURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
+        	aq.id(R.id.artistImg).image(Constant.IMAGE_URL+artist.getArtistImgURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
 //        	holder.artistImg.setImageUrl(artist.getArtistImgURL(), mImageLoader);
 //        	mImageLoader.get(artist.getArtistImgURL(), ImageLoader.getImageListener(holder.artistImg, R.drawable.ic_launcher, R.drawable.no_image));
         }

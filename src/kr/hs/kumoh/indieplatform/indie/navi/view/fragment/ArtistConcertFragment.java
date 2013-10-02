@@ -4,17 +4,17 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
+import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistConcertAdapter;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
-import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistConcertAdapter;
-import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertAdapter;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
-import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,10 +24,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -72,7 +72,7 @@ public class ArtistConcertFragment extends SherlockFragment {
         int startIndex = concertData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        								ArtistData.SERVER_URL+"apps/server/indie/artist_concert.php?name="+encodeResult,
+        								Constant.SERVER_URL+"apps/server/indie/artist_concert.php?name="+encodeResult,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 

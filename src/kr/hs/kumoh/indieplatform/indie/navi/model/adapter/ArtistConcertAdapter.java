@@ -3,8 +3,8 @@ package kr.hs.kumoh.indieplatform.indie.navi.model.adapter;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +57,7 @@ public class ArtistConcertAdapter extends ArrayAdapter<ConcertData> {
         	
         } else {
 //        	Log.d("Artist Adapter ", ArtistData.IMAGE_URL+artist.getArtistImgURL());
-        	aq.id(R.id.artistImg).image(ArtistData.IMAGE_URL+concert.getConcertImgURL() ,true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
+        	aq.id(R.id.artistImg).image(Constant.IMAGE_URL+concert.getConcertImgURL() ,true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
         }
         
         holder.concertNameTv.setText(concert.getConcertName());

@@ -1,9 +1,6 @@
 package kr.hs.kumoh.indieplatform.indie.navi.model.data;
 
 public class ArtistData {
-	public final static String IMAGE_URL = "http://chilchil.dominohosting.kr/apps/server/indie/image";
-	
-	public final static String SERVER_URL = "http://chilchil.dominohosting.kr/";
 	
 	private String artistName;
 	private String artistDesc;

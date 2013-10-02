@@ -6,6 +6,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ConcertDetailActivity;
 
 import org.json.JSONArray;
@@ -85,7 +86,7 @@ public class ConcertListFragment extends SherlockFragment {
         int startIndex = concertData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/concert_list.php?start="+startIndex+"&alt=5",
+        								Constant.SERVER_URL+"apps/server/indie/concert_list.php?start="+startIndex+"&alt=5",
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 

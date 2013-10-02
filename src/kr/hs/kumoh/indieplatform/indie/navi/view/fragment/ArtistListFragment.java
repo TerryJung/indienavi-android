@@ -6,6 +6,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 
 import org.json.JSONArray;
@@ -24,7 +25,6 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.android.volley.Request.Method;
@@ -83,7 +83,7 @@ public class ArtistListFragment extends SherlockFragment {
         int startIndex = artistData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        								ArtistData.SERVER_URL+"apps/server/indie/artist_list.php?start="+startIndex+"&alt=5" ,
+        								Constant.SERVER_URL+"apps/server/indie/artist_list.php?start="+startIndex+"&alt=5" ,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 

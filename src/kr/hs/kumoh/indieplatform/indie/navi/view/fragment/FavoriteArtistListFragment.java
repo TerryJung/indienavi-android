@@ -6,6 +6,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 
 import org.json.JSONArray;
@@ -14,6 +15,7 @@ import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +45,7 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View root = inflater.inflate(R.layout.artist_fragment, container, false);
-		
+//		SharedPreferences userinfo = getShare
 		artistData = new ArrayList<ArtistData>();
 		lv = (ListView) root.findViewById(R.id.listView1);
 		artistAdapter = new ArtistAdapter(getActivity(),0, artistData, MyVolley.getImageLoader());
@@ -80,7 +82,7 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 //        int startIndex = 1 + artistData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
-        						"http://chilchil.me/apps/server/indie/favorite_artist_list.php?name="+name ,
+        								Constant.SERVER_URL+"apps/server/indie/favorite_artist_list.php?name="+Constant.USER_NAME ,
         						null, createMyReqSuccessListener(),
                                 createMyReqErrorListener());
 

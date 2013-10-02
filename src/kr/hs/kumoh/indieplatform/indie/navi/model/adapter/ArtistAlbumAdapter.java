@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.AlbumData;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,8 +48,8 @@ public class ArtistAlbumAdapter extends ArrayAdapter<AlbumData> {
 
         	holder.albumCover.setImageResource(R.drawable.no_image);
         } else {
-        	Log.d("album Adapter ", ArtistData.IMAGE_URL+album.getAlbumCoverURL());
-        	aq.id(R.id.albumCover).image(ArtistData.IMAGE_URL+album.getAlbumCoverURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
+        	Log.d("album Adapter ", Constant.IMAGE_URL+album.getAlbumCoverURL());
+        	aq.id(R.id.albumCover).image(Constant.IMAGE_URL+album.getAlbumCoverURL(),true, true, v.getWidth(), R.drawable.no_image, null, AQuery.FADE_IN);
        }
         
         holder.albumTitle.setText(album.getAlbumTitle());

@@ -1,6 +1,7 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import android.R.bool;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -69,7 +70,8 @@ public class IntroActivity extends Activity {
 	}
 	void getSharedPreference() {
 		SharedPreferences userinfo = getSharedPreferences("userinfo", MODE_PRIVATE);
-		SharedPreferences.Editor editor = userinfo.edit();    
+		SharedPreferences.Editor editor = userinfo.edit(); 
+		Constant.USER_NAME = userinfo.getString("id", "");
 	    name = userinfo.getString("id", "");
 	    pw = userinfo.getString("pw", "");
 	    login = userinfo.getBoolean("login", false);
