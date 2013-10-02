@@ -3,36 +3,42 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#fefee0"
+    android:orientation="vertical"
     tools:context=".ArtistDetailActivity" >
-	
+
     <FrameLayout
         android:id="@+id/ArtistDetailFrame"
         android:layout_width="match_parent"
-        android:layout_height="400dp" >
+        android:layout_height="300dp" >
+
     </FrameLayout>
-	<LinearLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-		<Button
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="20dp">
+
+        <Button
             android:id="@+id/artistInfoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아티스트 정보" />
-        <Button
+            android:text="아티스트 정보"
+            android:layout_weight="1" />
+
+        <ImageView
             android:id="@+id/albumInfoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="앨범 정보" />
+            android:src="@drawable/album_info" 
+            android:layout_weight="1"/>
 
-        <Button
+        <ImageView
             android:id="@+id/concertInfoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="공연 정보" />
-
-        
-
+            android:src="@drawable/concert_info" 
+            android:layout_weight="1" />
     </LinearLayout>
+
 </LinearLayout>

@@ -19,10 +19,9 @@ import org.apache.http.message.BasicNameValuePair;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -35,8 +34,8 @@ public class SignupActivity extends SherlockActivity {
 	private Intent data = new Intent();
 	
 	private boolean sign = false;
-	private Button submitBtn;
-	private Button cancelBtn;
+	private ImageView submitBtn;
+	private ImageView cancelBtn;
 	
 	private EditText idEdit;
 	private EditText pwEdit;
@@ -56,7 +55,7 @@ public class SignupActivity extends SherlockActivity {
 		pwEdit = (EditText) findViewById(R.id.pwEdit);
 		emailEdit = (EditText) findViewById(R.id.emailEdit);
 		
-		submitBtn = (Button) findViewById(R.id.submitBtn);
+		submitBtn = (ImageView) findViewById(R.id.submitBtn);
 		submitBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -75,7 +74,7 @@ public class SignupActivity extends SherlockActivity {
                  }
 			}
 		});
-		cancelBtn = (Button) findViewById(R.id.cancelBtn);
+		cancelBtn = (ImageView) findViewById(R.id.cancelBtn);
 		cancelBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

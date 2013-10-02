@@ -108,7 +108,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 	public String readArtist() {
 	    StringBuilder builder = new StringBuilder();
 	    HttpClient client = new DefaultHttpClient();
-	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/artist_detail.php?artist="+name);
+	    HttpGet httpGet = new HttpGet(ArtistData.SERVER_URL+"apps/server/indie/artist_detail.php?artist="+name);
 	    try {
 	    	HttpResponse response = client.execute(httpGet);
 	    	StatusLine statusLine = response.getStatusLine();

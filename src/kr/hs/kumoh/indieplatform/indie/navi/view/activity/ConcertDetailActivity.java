@@ -53,7 +53,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_concert_detail);
 //		View v = null;
-		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF00edc6));
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF2ecc71));
 		Intent intent = getIntent();
 		concertName = intent.getExtras().getString("concertName");
 		placeStr = intent.getExtras().getString("placeName");

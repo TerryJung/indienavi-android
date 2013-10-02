@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -20,8 +21,8 @@ import com.actionbarsherlock.view.MenuItem;
 public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private FragmentManager fragmentManager;
 	private FragmentTransaction fragmentTransaction;
-	private Button albumInfoBtn;
-	private Button concertInfoBtn;
+	private ImageView albumInfoBtn;
+	private ImageView concertInfoBtn;
 	private Button artistInfoBtn;
 	FragmentTransaction ft;
 	public static String ArtistName;
@@ -32,7 +33,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_artist_detail);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF00edc6));
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF2ecc71));
 		Intent intent = getIntent();
 		ArtistName = intent.getExtras().getString("artist");
 		Log.d("INTENT", ArtistName);
@@ -40,7 +41,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.add(R.id.ArtistDetailFrame, new ArtistDetailFragment());
 		fragmentTransaction.commit();
-		albumInfoBtn = (Button) findViewById(R.id.albumInfoBtn);
+		albumInfoBtn = (ImageView) findViewById(R.id.albumInfoBtn);
 		albumInfoBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -51,7 +52,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 				ft.commit();	
 			}
 		});
-		concertInfoBtn = (Button) findViewById(R.id.concertInfoBtn);
+		concertInfoBtn = (ImageView) findViewById(R.id.concertInfoBtn);
 		concertInfoBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override

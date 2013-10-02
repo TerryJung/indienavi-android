@@ -28,12 +28,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 	public ProgressDialog dialog = null;
-	private Button loginBtn;
-	private Button signupBtn;
+	private ImageView loginBtn;
+	private ImageView signupBtn;
 	// test 
 	private EditText idEdit;
 	private EditText pwEdit;
@@ -54,7 +55,7 @@ public class LoginActivity extends Activity {
 		idEdit = (EditText) findViewById(R.id.idEdit);
 		pwEdit = (EditText) findViewById(R.id.pwEdit);
 		
-		loginBtn = (Button) findViewById(R.id.loginBtn);
+		loginBtn = (ImageView) findViewById(R.id.loginBtn);
 		loginBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -74,7 +75,7 @@ public class LoginActivity extends Activity {
                       }).start(); 
 			}
 		});
-		signupBtn = (Button) findViewById(R.id.signupBtn);
+		signupBtn = (ImageView) findViewById(R.id.signupBtn);
 		signupBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -107,7 +108,7 @@ public class LoginActivity extends Activity {
 		try{            
             
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://chilchil.me/apps/server/indie/signin.php"); // make sure the url is correct.
+            httppost = new HttpPost("http://chilchil.dominohosting.kr/apps/server/indie/signin.php"); // make sure the url is correct.
             //add your post data
             nameValuePairs = new ArrayList<NameValuePair>(2);
             // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
