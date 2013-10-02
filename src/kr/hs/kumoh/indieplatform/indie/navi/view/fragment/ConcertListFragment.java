@@ -21,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,7 +38,7 @@ public class ConcertListFragment extends SherlockFragment {
     private boolean mInError = false;
 	private ArrayList<ConcertData> concertData = new ArrayList<ConcertData>();
 	private ConcertAdapter concertAdapter;
-	private ConcertData data;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

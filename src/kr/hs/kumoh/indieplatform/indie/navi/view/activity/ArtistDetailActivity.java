@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -23,7 +22,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private FragmentTransaction fragmentTransaction;
 	private ImageView albumInfoBtn;
 	private ImageView concertInfoBtn;
-	private Button artistInfoBtn;
+	private ImageView artistInfoBtn;
 	FragmentTransaction ft;
 	public static String ArtistName;
 	
@@ -63,7 +62,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 				ft.commit();
 			}
 		});
-		artistInfoBtn = (Button) findViewById(R.id.artistInfoBtn);
+		artistInfoBtn = (ImageView) findViewById(R.id.artistInfoBtn);
 		artistInfoBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override

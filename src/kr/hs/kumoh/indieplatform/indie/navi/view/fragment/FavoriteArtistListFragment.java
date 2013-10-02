@@ -15,7 +15,6 @@ import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,7 +33,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 public class FavoriteArtistListFragment extends SherlockFragment {
-	private String name;
+
 	ListView lv;
 	private boolean mHasData = false;
     private boolean mInError = false;

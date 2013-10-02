@@ -69,7 +69,7 @@ public class ArtistConcertFragment extends SherlockFragment {
 	private void loadPage() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
-        int startIndex = concertData.size();
+//        int startIndex = concertData.size();
         JsonObjectRequest myReq = new JsonObjectRequest
         						(Method.GET, 
         								Constant.SERVER_URL+"apps/server/indie/artist_concert.php?name="+encodeResult,

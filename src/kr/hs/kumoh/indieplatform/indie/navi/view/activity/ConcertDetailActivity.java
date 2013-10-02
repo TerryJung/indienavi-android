@@ -25,7 +25,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -116,10 +115,8 @@ public class ConcertDetailActivity extends SherlockActivity {
         }
 	}
 	public String readConcert() {
-		
 	    StringBuilder builder = new StringBuilder();
-	    
-	   
+	    HttpClient client = new DefaultHttpClient();
 	    Log.d("concert Detail", concertName);
 	    try {
 			encodeResult = URLEncoder.encode(concertName, "UTF8");
@@ -128,17 +125,28 @@ public class ConcertDetailActivity extends SherlockActivity {
 			e.printStackTrace();
 		}
 	    Log.d("concert Detail", encodeResult);
-	    new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-	    
+	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/concert_detail.php?concert="+encodeResult);
+	    try {
+	    	HttpResponse response = client.execute(httpGet);
+	    	StatusLine statusLine = response.getStatusLine();
+	    	int statusCode = statusLine.getStatusCode();
+	    	if (statusCode == 200) {
+	    		HttpEntity entity = response.getEntity();
+	    		InputStream content = entity.getContent();
+	    		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+	    		String line;
+	    		while ((line = reader.readLine()) != null) {
+	    			builder.append(line);
+	    		}
+	    	} else {
+	    		Log.e(ArtistDetailActivity.class.toString(), "Failed to download file");
+	    	}
+	    } catch (ClientProtocolException e) {
+	    	e.printStackTrace();
+	    } catch (IOException e) {
+	    	e.printStackTrace();
+	    }
+	    Log.i("",builder.toString()); 
 	    return builder.toString();
 	}
-	
-
 }

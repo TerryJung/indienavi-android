@@ -2,7 +2,6 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
-import android.R.bool;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;

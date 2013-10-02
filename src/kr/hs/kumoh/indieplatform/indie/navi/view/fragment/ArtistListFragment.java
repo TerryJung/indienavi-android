@@ -42,7 +42,7 @@ public class ArtistListFragment extends SherlockFragment {
     private boolean mInError = false;
 	private ArrayList<ArtistData> artistData = new ArrayList<ArtistData>();
 	private ArtistAdapter artistAdapter;
-	private ArtistData data;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

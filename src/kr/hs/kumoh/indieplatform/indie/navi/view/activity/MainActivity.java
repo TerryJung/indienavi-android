@@ -9,26 +9,22 @@ import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.LeftSlidingMenuFragmen
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.RightSlidingMenuFragment;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
 public class MainActivity extends SherlockFragmentActivity {
 	
 	Fragment mContent;
 	private SlidingMenu leftMenu; 
-	private SlidingMenu rightMenu;
 	public FragmentManager fragmentManager;
 	public FragmentTransaction fragmentTransaction;
 	ArtistListFragment alf = new ArtistListFragment();

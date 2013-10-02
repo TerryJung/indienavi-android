@@ -38,7 +38,7 @@ public class ArtistAlbumFragment extends SherlockFragment {
     private boolean mInError = false;
     private ArrayList<AlbumData> albumData = new ArrayList<AlbumData>();
 	private ArtistAlbumAdapter albumAdapter;
-	private AlbumData data;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
