@@ -51,6 +51,8 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 					switchFragment(new FavoriteArtistListFragment());
 				} else if (position == 3) {
 					
+				} else if (position == 4) {
+					
 				}
 			}
 		});

@@ -8,14 +8,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#2ecc71"
     tools:context=".LoginActivity" >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="150dp"
-        android:layout_height="150dp "
-        android:src="@drawable/ic_launcher"
-        android:layout_gravity="center" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/indie_navi_login_logo"
+        android:layout_gravity="center" 
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"/>
 
     <LinearLayout
         android:layout_marginTop="20dp"
@@ -24,8 +27,11 @@
         android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
             android:orientation="vertical" 
             android:layout_weight="1">
 
@@ -33,44 +39,46 @@
                 android:id="@+id/idEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="아이디" />
+                android:hint="아이디"
+                android:drawableStart="@drawable/login_user_icon"
+                android:drawablePadding="10dp"
+                android:background="@drawable/edit_text" 
+                android:layout_marginBottom="20dp"/>
 
             <EditText
                 android:id="@+id/pwEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="패스워드"
-                android:inputType="textPassword" />
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/login_pw_icon"
+                android:inputType="textPassword" 
+                android:background="@drawable/edit_text"
+                />
         </LinearLayout>
-
-        <Button
-            android:layout_marginLeft="10dp"
-            android:id="@+id/loginBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="right"
-            android:text="Login" 
-            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        >
 
-        <Button
+        <ImageView
             android:id="@+id/signupBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="회원가입" 
+            android:src="@drawable/login_signup_btn"
             android:layout_weight="1"
             />
 
-        <Button
-            android:id="@+id/button3"
+        <ImageView
+            android:id="@+id/loginBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Facebook로그인" 
-            android:layout_weight="1"/>
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/login_login_btn"
+             />
 
     </LinearLayout>
 

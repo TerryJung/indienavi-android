@@ -34,7 +34,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.androidquery.AQuery;
 
 public class ConcertDetailActivity extends SherlockActivity {
-	AQuery aq ;
+	AQuery aq = new AQuery(this);
 	ImageView concertImage;
 	TextView concertNameTv;
 	TextView concertPlaceTv;
@@ -60,8 +60,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		dateStr = intent.getExtras().getString("concertDate");
 		Log.d("concert Detail", concertName);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		
+
 		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
 		concertNameTv = (TextView) findViewById(R.id.concertDetailName);
 		concertPlaceTv = (TextView) findViewById(R.id.concertDetailPlace);
@@ -83,7 +82,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 			        imgURL = jsonObject.getString("concert_img_url");
 		            descStr = jsonObject.getString("concert_text");
 		            linkStr = jsonObject.getString("link");
-				} catch (JSONException e) {
+		        } catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -93,8 +92,6 @@ public class ConcertDetailActivity extends SherlockActivity {
 					public void run() {
 						// TODO Auto-generated method stub
 						Log.d("ImageURL " , imgURL);
-						aq = new AQuery(getApplication());
-						aq.id(R.id.artistImgDetail).image(imgURL, false, false, R.drawable.no_image, AQuery.FADE_IN);
 						concertNameTv.setText(concertName);
 						concertPlaceTv.setText(placeStr);
 						concertDateTv.setText(dateStr);
@@ -102,6 +99,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 					}
 					
 				});
+				
 			}
 		}).start();
 	}
@@ -118,8 +116,10 @@ public class ConcertDetailActivity extends SherlockActivity {
         }
 	}
 	public String readConcert() {
+		
 	    StringBuilder builder = new StringBuilder();
-	    HttpClient client = new DefaultHttpClient();
+	    
+	   
 	    Log.d("concert Detail", concertName);
 	    try {
 			encodeResult = URLEncoder.encode(concertName, "UTF8");
@@ -128,28 +128,15 @@ public class ConcertDetailActivity extends SherlockActivity {
 			e.printStackTrace();
 		}
 	    Log.d("concert Detail", encodeResult);
-	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/concert_detail.php?concert="+encodeResult);
-	    try {
-	    	HttpResponse response = client.execute(httpGet);
-	    	StatusLine statusLine = response.getStatusLine();
-	    	int statusCode = statusLine.getStatusCode();
-	    	if (statusCode == 200) {
-	    		HttpEntity entity = response.getEntity();
-	    		InputStream content = entity.getContent();
-	    		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-	    		String line;
-	    		while ((line = reader.readLine()) != null) {
-	    			builder.append(line);
-	    		}
-	    	} else {
-	    		Log.e(ArtistDetailActivity.class.toString(), "Failed to download file");
-	    	}
-	    } catch (ClientProtocolException e) {
-	    	e.printStackTrace();
-	    } catch (IOException e) {
-	    	e.printStackTrace();
-	    }
-	    Log.i("",builder.toString()); 
+	    new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	    
 	    return builder.toString();
 	}
 	

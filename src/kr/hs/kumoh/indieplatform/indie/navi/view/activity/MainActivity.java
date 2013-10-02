@@ -44,7 +44,7 @@ public class MainActivity extends SherlockFragmentActivity {
 //		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 		getSupportActionBar().setDisplayShowCustomEnabled(true);
 		getSupportActionBar().setIcon(R.drawable.menu);
-		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF00edc6));
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF2ecc71));
 //		getSupportActionBar().setTitle("       Indie Navi");
 		leftMenu = new SlidingMenu(getApplicationContext());
 
