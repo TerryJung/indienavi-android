@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLEncoder;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -91,6 +93,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 					public void run() {
 						// TODO Auto-generated method stub
 						Log.d("ImageURL " , imgURL);
+						aq.id(R.id.concertImgDetail).image(imgURL,true, true, R.drawable.no_image, AQuery.FADE_IN);
 						concertNameTv.setText(concertName);
 						concertPlaceTv.setText(placeStr);
 						concertDateTv.setText(dateStr);
@@ -149,4 +152,6 @@ public class ConcertDetailActivity extends SherlockActivity {
 	    Log.i("",builder.toString()); 
 	    return builder.toString();
 	}
+	
+	
 }

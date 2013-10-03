@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
@@ -36,7 +38,7 @@ import com.androidquery.AQuery;
 public class ArtistDetailFragment extends SherlockFragment{
 	AQuery aq;// = new AQuery(getSherlockActivity());
 	private ImageView artistImg;
-	
+	String encodeResult;
 	private TextView artistName;
 	private TextView artistFan;
 	private TextView panTv;
@@ -52,12 +54,13 @@ public class ArtistDetailFragment extends SherlockFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
 		// TODO Auto-generated method stub
 		View root = inflater.inflate(R.layout.artist_detail_fragment, container, false);
-		aq = new AQuery(artistImg);
+		aq = new AQuery(getActivity(), root);
+		Log.d("Artist Detail Constant", Constant.IMAGE_URL+"/artist/monni.jpg");
+		aq.id(R.id.artistImgDetail).image(Constant.IMAGE_URL+"/artist/monni.jpg",true, true, R.drawable.no_image, AQuery.FADE_IN);
 		artistImg = (ImageView) root.findViewById(R.id.artistImgDetail);
-//		artistImg.s
-//		aq.id(R.id.artistImgDetail).image(ArtistData.IMAGE_URL+artist.getArtistImgURL(),true, true, R.drawable.no_image, AQuery.FADE_IN);
 		artistName = (TextView) root.findViewById(R.id.artistName);
 		artistFan = (TextView) root.findViewById(R.id.artistPan);
 		panTv = (TextView) root.findViewById(R.id.PanTv);
@@ -94,7 +97,6 @@ public class ArtistDetailFragment extends SherlockFragment{
 					public void run() {
 						// TODO Auto-generated method stub
 						Log.d("URL", Constant.IMAGE_URL+artistImgURLStr);
-						aq.id(R.id.artistImgDetail).image(Constant.IMAGE_URL+artistImgURLStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
 						artistName.setText(artistNameStr);
 						artistFan.setText(artistFanStr);
 						labelName.setText(artistLabelStr);
@@ -107,9 +109,15 @@ public class ArtistDetailFragment extends SherlockFragment{
 		return root;
 	}
 	public String readArtist() {
+		try {
+			encodeResult = URLEncoder.encode(name, "UTF8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    StringBuilder builder = new StringBuilder();
 	    HttpClient client = new DefaultHttpClient();
-	    HttpGet httpGet = new HttpGet(Constant.SERVER_URL+"apps/server/indie/artist_detail.php?artist="+name);
+	    HttpGet httpGet = new HttpGet(Constant.SERVER_URL+"apps/server/indie/artist_detail.php?artist="+encodeResult);
 	    try {
 	    	HttpResponse response = client.execute(httpGet);
 	    	StatusLine statusLine = response.getStatusLine();

@@ -10,36 +10,42 @@
     <FrameLayout
         android:id="@+id/ArtistDetailFrame"
         android:layout_width="match_parent"
-        android:layout_height="300dp" >
-
+        android:layout_height="300dp"
+        android:layout_weight="0.33" >
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
 
         <ImageView
             android:id="@+id/artistInfoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            android:src="@drawable/band_info"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:src="@drawable/band_info" />
 
         <ImageView
             android:id="@+id/albumInfoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/album_info" 
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:src="@drawable/album_info" />
 
         <ImageView
             android:id="@+id/concertInfoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/concert_info" 
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:src="@drawable/concert_info" />
+
+        <ImageView
+            android:id="@+id/fanAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/favorite_add" />
     </LinearLayout>
 
 </LinearLayout>

@@ -57,7 +57,7 @@ public class ArtistListFragment extends SherlockFragment {
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long arg3) {
-				TextView tv = (TextView) av.getChildAt(position).findViewById(R.id.artistName); 
+				TextView tv = (TextView) av.getChildAt(position).findViewById(R.id.artistListName); 
 				String artistName = tv.getText().toString();
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);

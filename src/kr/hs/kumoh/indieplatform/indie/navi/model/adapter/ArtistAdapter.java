@@ -88,7 +88,7 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
         public ViewHolder(View v) {
 //        	NetworkImageView.class.cast
         	artistImg = (ImageView) v.findViewById(R.id.artistImg);
-            artistNameTv = (TextView) v.findViewById(R.id.artistName);
+            artistNameTv = (TextView) v.findViewById(R.id.artistListName);
             labelNameTv = (TextView) v.findViewById(R.id.lableName);
             debutYearTv = (TextView) v.findViewById(R.id.debutYearTv);
             genreNameTv = (TextView) v.findViewById(R.id.genreName);

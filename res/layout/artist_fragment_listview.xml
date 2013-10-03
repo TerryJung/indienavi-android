@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_row_of_list"
     android:orientation="vertical" 
+    android:layout_marginTop="0dp"
     android:layout_margin="10dp"
     android:layout_marginBottom="15dp">
 
@@ -18,10 +19,11 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/artistName"
+            android:id="@+id/artistListName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[아티스트 네임]"
+            android:layout_marginLeft="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -45,13 +47,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+            android:layout_marginLeft="10dp">
 
             <TextView
                 android:id="@+id/genreName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[장르 명]" />
+                android:text="[장르 명]" 
+                />
 
             <TextView
                 android:id="@+id/debutYearTv"

@@ -3,7 +3,11 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.view.activity.LoginActivity;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,7 +23,7 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 	private ListView slidelist;
 	private ArrayList<String> arrayList;
 	private ArrayAdapter<String> adapter;
-	public static String menuString[] = {"공연정보", "아티스트 정보", "팬클럽", "설정"};
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 		arrayList.add("팬클럽");
 		arrayList.add("설정");
 		arrayList.add("로그아웃");
+		arrayList.add("앱 종료");
 		
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrayList);
 		slidelist = (ListView) root.findViewById(R.id.leftSlideMenu);
@@ -51,11 +56,61 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 				} else if (position == 3) {
 					
 				} else if (position == 4) {
-					
+					LogOutDialogSimple();
+				} else if (position == 5) {
+					appExit();
 				}
 			}
 		});
 		return root;
+	}
+	private void LogOutDialogSimple(){
+	    AlertDialog.Builder alt_bld = new AlertDialog.Builder(getActivity());
+	    alt_bld.setMessage("로그아웃 하시겠습니까?").setCancelable(
+	        false).setPositiveButton("네",
+	        new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int id) {
+	            // Action for 'Yes' Button
+	        	Intent i = new Intent(getActivity(), LoginActivity.class);
+	        	startActivity(i);
+	        	getActivity().finish();
+	        }
+	        }).setNegativeButton("아니오",
+	        new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int id) {
+	            // Action for 'NO' Button
+	            dialog.cancel();
+	        }
+	        });
+	    AlertDialog alert = alt_bld.create();
+	    // Title for AlertDialog
+	    alert.setTitle("로그아읏");
+	    // Icon for AlertDialog
+	    alert.setIcon(R.drawable.ic_launcher);
+	    alert.show();
+	}
+	private void appExit(){
+	    AlertDialog.Builder alt_bld = new AlertDialog.Builder(getActivity());
+	    alt_bld.setMessage("앱을 종료하시겠 습니까?").setCancelable(
+	        false).setPositiveButton("네",
+	        new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int id) {
+	            // Action for 'Yes' Button
+	        	System.exit(1);
+	        }
+	        }).setNegativeButton("아니오",
+	        new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int id) {
+	            // Action for 'NO' Button
+	            dialog.cancel();
+	        }
+	        });
+	    AlertDialog alert = alt_bld.create();
+	    // Title for AlertDialog
+	    alert.setTitle("앱 종료");
+	    // Icon for AlertDialog
+	    alert.setIcon(R.drawable.ic_launcher);
+	    alert.show();
 	}
 	private void switchFragment(Fragment fragment) {
 		if (getActivity() == null)
@@ -66,5 +121,5 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 			ma.switchContent(fragment);
 		}
 	}
-	
+
 }

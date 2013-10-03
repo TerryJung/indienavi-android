@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -138,6 +139,7 @@ public class LoginActivity extends Activity {
                 });
                 
                 putSharedPreference(name, pw, true);
+                Constant.USER_NAME = name;
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
             }else{}

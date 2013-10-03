@@ -23,9 +23,10 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private ImageView albumInfoBtn;
 	private ImageView concertInfoBtn;
 	private ImageView artistInfoBtn;
+	private ImageView favoriteAddBtn;
 	FragmentTransaction ft;
 	public static String ArtistName;
-	
+	ArtistAlbumFragment alf = new ArtistAlbumFragment();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF2ecc71));
 		Intent intent = getIntent();
+//		alf.
 		ArtistName = intent.getExtras().getString("artist");
 		Log.d("INTENT", ArtistName);
 		fragmentManager = getSupportFragmentManager();
@@ -73,6 +75,26 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 				ft.commit();
 			}
 		});
+		favoriteAddBtn = (ImageView) findViewById(R.id.fanAdd);
+		favoriteAddBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						fanAdd(ArtistName);
+					}
+				});
+				
+			}
+		});
+	}
+	public void fanAdd(String name) {
+		
 	}
 	
 	

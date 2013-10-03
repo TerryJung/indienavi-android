@@ -8,4 +8,23 @@ public class Constant {
 	
 	public static String USER_NAME;
 	
+	public static String ARTIST_NAME;
+	
+	public final static String LEFT_SLIDE_TOP_IMAGE_URL_ARRAY[] = {
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+"",
+		Constant.IMAGE_URL+""};
 }
