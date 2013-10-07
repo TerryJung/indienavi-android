@@ -54,12 +54,9 @@ public class ConcertListFragment extends SherlockFragment {
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-				TextView concertName = (TextView) av.getChildAt(position).findViewById(R.id.concertName); 
-				TextView placeName = (TextView) av.getChildAt(position).findViewById(R.id.placeName);
-				TextView concertDate = (TextView) av.getChildAt(position).findViewById(R.id.concertDate);
-				String concertNameStr = concertName.getText().toString();
-				String placeNameStr = placeName.getText().toString();
-				String concertDateStr = concertDate.getText().toString();
+				String concertNameStr = concertData.get(position).getConcertName();
+				String placeNameStr = concertData.get(position).getPlaceName();
+				String concertDateStr = concertData.get(position).getConcertDate();
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ConcertDetailActivity.class);
 				i.putExtra("concertName", concertNameStr);

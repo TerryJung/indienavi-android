@@ -45,6 +45,8 @@ public class ArtistDetailFragment extends SherlockFragment{
 	private TextView labelName;
 	private TextView artistText;
 	
+	private ImageView descImg;
+	private ImageView labelImg;
 	private String name = ArtistDetailActivity.ArtistName;
 	String artistImgURLStr;
     String artistNameStr;
@@ -58,6 +60,8 @@ public class ArtistDetailFragment extends SherlockFragment{
 		// TODO Auto-generated method stub
 		View root = inflater.inflate(R.layout.artist_detail_fragment, container, false);
 		aq = new AQuery(getActivity(), root);
+		descImg = (ImageView) root.findViewById(R.id.descriptionImg);
+		labelImg = (ImageView) root.findViewById(R.id.labelDesc);
 		Log.d("Artist Detail Constant", Constant.IMAGE_URL+"/artist/monni.jpg");
 		aq.id(R.id.artistImgDetail).image(Constant.IMAGE_URL+"/artist/monni.jpg",true, true, R.drawable.no_image, AQuery.FADE_IN);
 		artistImg = (ImageView) root.findViewById(R.id.artistImgDetail);

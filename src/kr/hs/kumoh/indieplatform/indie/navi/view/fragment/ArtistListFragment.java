@@ -52,14 +52,14 @@ public class ArtistListFragment extends SherlockFragment {
 		lv = (ListView) root.findViewById(R.id.listView1);
 		artistAdapter = new ArtistAdapter(getActivity(),0, artistData, MyVolley.getImageLoader());
 		lv.setAdapter(artistAdapter);
+//		lv.setOn
 		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position,
-					long arg3) {
-				TextView tv = (TextView) av.getChildAt(position).findViewById(R.id.artistListName); 
-				String artistName = tv.getText().toString();
-				// TODO Auto-generated method stub
+					long id) {
+				String artistName = artistData.get(position).getArtistName();
+				Log.d("artistName", artistName);
 				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);
 				i.putExtra("artist", artistName);
 				startActivity(i);

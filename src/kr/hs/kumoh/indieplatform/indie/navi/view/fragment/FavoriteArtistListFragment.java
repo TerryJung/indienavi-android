@@ -55,8 +55,8 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-				TextView tv = (TextView) av.getChildAt(position).findViewById(R.id.artistName); 
-				String artistName = tv.getText().toString();
+				 
+				String artistName = artistData.get(position).getArtistName();
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);
 				i.putExtra("artist", artistName);
