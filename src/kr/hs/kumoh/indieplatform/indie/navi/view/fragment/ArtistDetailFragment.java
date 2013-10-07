@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.androidquery.AQuery;
 
-public class ArtistDetailFragment extends SherlockFragment{
+public class ArtistDetailFragment extends Fragment{
 	AQuery aq;// = new AQuery(getSherlockActivity());
 	private ImageView artistImg;
 	String encodeResult;
@@ -60,6 +61,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 		// TODO Auto-generated method stub
 		View root = inflater.inflate(R.layout.artist_detail_fragment, container, false);
 		aq = new AQuery(getActivity(), root);
+		aq.id(R.id.artistImgDetail).image("http://dominohosting.kr/img/hostingsettool.gif");
 		descImg = (ImageView) root.findViewById(R.id.descriptionImg);
 		labelImg = (ImageView) root.findViewById(R.id.labelDesc);
 		Log.d("Artist Detail Constant", Constant.IMAGE_URL+"/artist/monni.jpg");
@@ -103,7 +105,11 @@ public class ArtistDetailFragment extends SherlockFragment{
 						Log.d("URL", Constant.IMAGE_URL+artistImgURLStr);
 						artistName.setText(artistNameStr);
 						artistFan.setText(artistFanStr);
-						labelName.setText(artistLabelStr);
+						if(artistLabelStr == null) {
+							labelName.setVisibility(View.GONE);
+						} else {
+							labelName.setText(artistLabelStr);
+						}
 						artistText.setText(artistTextStr);
 					}
 					
