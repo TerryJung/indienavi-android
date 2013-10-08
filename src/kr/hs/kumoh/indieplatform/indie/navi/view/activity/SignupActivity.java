@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -69,9 +70,9 @@ public class SignupActivity extends SherlockActivity {
                         	signup(idEdit.getText().toString(),  pwEdit.getText().toString(), emailEdit.getText().toString());
                         }
                       }).start(); 
-                 if(sign == true) {
-                	 finishSignup();  
-                 }
+//                 if(sign == true) {
+//                	 finishSignup();  
+//                 }
 			}
 		});
 		cancelBtn = (ImageView) findViewById(R.id.cancelBtn);
@@ -88,7 +89,7 @@ public class SignupActivity extends SherlockActivity {
 		try{            
             
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://chilchil.me/apps/server/indie/signin.php"); // make sure the url is correct.
+            httppost = new HttpPost(Constant.SERVER_URL+"apps/server/indie/signup.php"); // make sure the url is correct.
             //add your post data
             nameValuePairs = new ArrayList<NameValuePair>();
             // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
@@ -110,13 +111,13 @@ public class SignupActivity extends SherlockActivity {
                 }
             });//
              
-            if(responses.equals("1")){
+            if(responses.equals("OK")){
                 runOnUiThread(new Runnable() {
                     public void run() {
                         Toast.makeText(SignupActivity.this,"회원가입 성공", Toast.LENGTH_SHORT).show();
                     }
                 });
-                sign = true;
+                finishSignup();
 //                putSharedPreference(name, pw);
                 
             }else{}
