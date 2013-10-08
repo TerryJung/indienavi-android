@@ -58,12 +58,10 @@ public class ArtistListFragment extends SherlockFragment {
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long id) {
-				String artistName = artistData.get(position).getArtistName();
-				Log.d("artistName", artistName);
 				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);
-				i.putExtra("artist", artistName);
-				startActivity(i);
-				
+				i.putExtra("artist", artistData.get(position).getArtistName());
+				i.putExtra("artistImg", artistData.get(position).getArtistImgURL());
+				startActivity(i);	
 			}
 		});
 		lv.setOnScrollListener(new EndlessScrollListener());

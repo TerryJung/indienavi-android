@@ -49,6 +49,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 	String dateStr;
 	String descStr;
 	String linkStr;
+	String concertImgStr;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +60,10 @@ public class ConcertDetailActivity extends SherlockActivity {
 		concertName = intent.getExtras().getString("concertName");
 		placeStr = intent.getExtras().getString("placeName");
 		dateStr = intent.getExtras().getString("concertDate");
-		Log.d("concert Detail", concertName);
+		concertImgStr = intent.getExtras().getString("concertImg");
+		Log.d("URL", concertImgStr);
+		aq.id(R.id.concertImgDetail).image(concertImgStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
+		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
@@ -77,10 +81,8 @@ public class ConcertDetailActivity extends SherlockActivity {
 				String readArtist = readConcert();
 				try {
 					JSONArray jsonArray = new JSONArray(readArtist);
-					Log.i(ConcertDetailActivity.class.getName(),
-					          "Number of entries " + jsonArray.length());
+
 					JSONObject jsonObject = jsonArray.getJSONObject(0);
-			        imgURL = jsonObject.getString("concert_img_url");
 		            descStr = jsonObject.getString("concert_text");
 		            linkStr = jsonObject.getString("link");
 		        } catch (JSONException e) {
@@ -92,8 +94,6 @@ public class ConcertDetailActivity extends SherlockActivity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						Log.d("ImageURL " , imgURL);
-						aq.id(R.id.concertImgDetail).image(imgURL,true, true, R.drawable.no_image, AQuery.FADE_IN);
 						concertNameTv.setText(concertName);
 						concertPlaceTv.setText(placeStr);
 						concertDateTv.setText(dateStr);

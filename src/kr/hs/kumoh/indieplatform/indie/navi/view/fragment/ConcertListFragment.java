@@ -54,14 +54,11 @@ public class ConcertListFragment extends SherlockFragment {
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-				String concertNameStr = concertData.get(position).getConcertName();
-				String placeNameStr = concertData.get(position).getPlaceName();
-				String concertDateStr = concertData.get(position).getConcertDate();
-				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ConcertDetailActivity.class);
-				i.putExtra("concertName", concertNameStr);
-				i.putExtra("placeName", placeNameStr);
-				i.putExtra("concertDate", concertDateStr);
+				i.putExtra("concertName", concertData.get(position).getConcertName());
+				i.putExtra("placeName", concertData.get(position).getPlaceName());
+				i.putExtra("concertDate", concertData.get(position).getConcertDate());
+				i.putExtra("concertImg", concertData.get(position).getConcertImgURL());
 				startActivity(i);
 				
 			}
