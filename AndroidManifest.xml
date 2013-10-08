@@ -27,7 +27,7 @@
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:windowSoftInputMode="adjustUnspecified" >
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity"

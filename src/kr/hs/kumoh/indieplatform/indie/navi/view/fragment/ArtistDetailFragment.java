@@ -8,7 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 
@@ -25,7 +24,6 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +34,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.androidquery.AQuery;
 
-public class ArtistDetailFragment extends Fragment{
+public class ArtistDetailFragment extends SherlockFragment{
 	AQuery aq;// = new AQuery(getSherlockActivity());
 	private ImageView artistImg;
 	String encodeResult;

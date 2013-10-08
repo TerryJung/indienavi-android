@@ -2,9 +2,9 @@ package kr.hs.kumoh.indieplatform.indie.navi.model.data;
 
 public class Constant {
 
-	public final static String IMAGE_URL = "http://chilchil.dominohosting.kr/apps/server/indie/image";
+	public final static String IMAGE_URL = "http://chilx2.cafe24.com/apps/server/indie/image";
 	
-	public final static String SERVER_URL = "http://chilchil.dominohosting.kr/";
+	public final static String SERVER_URL = "http://chilx2.cafe24.com/";
 	
 	public static String USER_NAME;
 	

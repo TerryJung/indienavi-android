@@ -108,7 +108,7 @@ public class LoginActivity extends Activity {
 		try{            
             
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://chilchil.dominohosting.kr/apps/server/indie/signin.php"); // make sure the url is correct.
+            httppost = new HttpPost(Constant.SERVER_URL+"apps/server/indie/signin.php"); // make sure the url is correct.
             //add your post data
             nameValuePairs = new ArrayList<NameValuePair>(2);
             // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
