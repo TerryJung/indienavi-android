@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.net.URLEncoder;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
@@ -23,11 +22,13 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -41,6 +42,12 @@ public class ConcertDetailActivity extends SherlockActivity {
 	TextView concertPlaceTv;
 	TextView concertDateTv;
 	TextView concertDescriptionTv;
+	TextView concertReplyUserName;
+	
+	EditText replyEditText;
+	Button replySubmit;
+	ListView replyList;
+	
 	String concertName;
 	private String encodeResult;
 	String imgURL;
@@ -71,7 +78,11 @@ public class ConcertDetailActivity extends SherlockActivity {
 		concertPlaceTv = (TextView) findViewById(R.id.concertDetailPlace);
 		concertDateTv = (TextView) findViewById(R.id.concertDetailDate);
 		concertDescriptionTv = (TextView) findViewById(R.id.concertDetailText);
-		
+		concertReplyUserName = (TextView) findViewById(R.id.userName);
+		replyEditText = (EditText) findViewById(R.id.replyEdit);
+		replySubmit = (Button) findViewById(R.id.replySubmit);
+		replyList = (ListView) findViewById(R.id.replyList);
+				
 		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 			
@@ -152,6 +163,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 	    Log.i("",builder.toString()); 
 	    return builder.toString();
 	}
+	
 	
 	
 }

@@ -3,8 +3,8 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#fefee0"
+    android:orientation="vertical"
     tools:context=".ConcertDetailActivity" >
 
     <FrameLayout
@@ -74,5 +74,38 @@
             android:text="[공연 설명]"
             android:textSize="15dp" />
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <EditText
+            android:id="@+id/replyEdit"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:ems="10" >
+
+            
+        </EditText>
+
+        <Button
+            android:id="@+id/replySubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="쓰기" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/replyList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

@@ -109,7 +109,7 @@ public class FavoriteArtistListFragment extends SherlockFragment {
             }
         };
     }
-	 private Response.ErrorListener createMyReqErrorListener() {
+	private Response.ErrorListener createMyReqErrorListener() {
 	        return new Response.ErrorListener() {
 	            @Override
 	            public void onErrorResponse(VolleyError error) {

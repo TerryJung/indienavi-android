@@ -18,11 +18,13 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
 public class MainActivity extends SherlockFragmentActivity {
-	
+	private SearchView searchView;
+//	private SearchItm
 	Fragment mContent;
 	private SlidingMenu leftMenu; 
 	public FragmentManager fragmentManager;
@@ -84,6 +86,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	 public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.action_menu, menu);
+		
+ 
 		return true;
 	  
 	 }
@@ -93,6 +97,7 @@ public class MainActivity extends SherlockFragmentActivity {
         case android.R.id.home:
         	this.leftMenu.toggle();
         	return true;
+//        case R.id.searchMenu;
         default:
             return super.onOptionsItemSelected(item);
         }
@@ -104,6 +109,9 @@ public class MainActivity extends SherlockFragmentActivity {
 		.replace(R.id.mainFrame, fragment)
 		.commit();
 		leftMenu.showContent();
+//		onResume();
 	}
+	
+	
 
 }
