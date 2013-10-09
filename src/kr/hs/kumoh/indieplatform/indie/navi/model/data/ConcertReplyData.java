@@ -6,6 +6,13 @@ public class ConcertReplyData {
 	private String replyText;
 	private String replyDate;
 	
+	public ConcertReplyData(String userName, String replyText, String replyDate) {
+		// TODO Auto-generated constructor stub
+		this.setUserName(userName);
+		this.setReplyText(replyText);
+		this.setReplyDate(replyDate);
+	}
+	
 	public String getUserName() {
 		return userName;
 	}
