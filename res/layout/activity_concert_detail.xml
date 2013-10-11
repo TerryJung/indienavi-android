@@ -83,22 +83,20 @@
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="[현재 유저 네임]" />
 
         <EditText
             android:id="@+id/replyEdit"
-            android:layout_width="194dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10" >
-
-            
         </EditText>
-
-        <Button
+		 <Button
             android:id="@+id/replySubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="쓰기" />
+       
 
     </LinearLayout>
 

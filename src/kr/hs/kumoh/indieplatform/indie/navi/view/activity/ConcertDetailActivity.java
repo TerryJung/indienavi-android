@@ -9,10 +9,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
-import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAlbumAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertReplyAdapter;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.AlbumData;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 
@@ -23,6 +20,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,21 +28,24 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ParseException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.androidquery.AQuery;
@@ -81,16 +82,17 @@ public class ConcertDetailActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_concert_detail);
-		try {
-				encodeResult = URLEncoder.encode(concertName, "UTF8");
-		} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-		} // 내일 테스트해봐야함
-//		View v = null;
+		
+
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF2ecc71));
 		Intent intent = getIntent();
 		concertName = intent.getExtras().getString("concertName");
+		try {
+			encodeResult = URLEncoder.encode(concertName, "UTF8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // 내일 테스트해봐야함
 		placeStr = intent.getExtras().getString("placeName");
 		dateStr = intent.getExtras().getString("concertDate");
 		concertImgStr = intent.getExtras().getString("concertImg");
@@ -108,8 +110,25 @@ public class ConcertDetailActivity extends SherlockActivity {
 		
 		// Reply 부분 
 		concertReplyUserName = (TextView) findViewById(R.id.userName);
+		concertReplyUserName.setText(Constant.USER_NAME);
 		replyEditText = (EditText) findViewById(R.id.replyEdit);
 		replySubmit = (Button) findViewById(R.id.replySubmit);
+		replySubmit.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+//				new Thread(new Runnable() {
+//					
+//					@Override
+//					public void run() {
+//						// TODO Auto-generated method stub
+//						writeReply(concertReplyUserName.getText().toString(), 
+//								replyEditText.getText().toString());
+//					}
+//				});
+			}
+		});
 		replyList = (ListView) findViewById(R.id.replyList);
 		replyAdapter = new ConcertReplyAdapter(this, 0, replyData);
 		replyList.setAdapter(replyAdapter);
@@ -170,6 +189,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		}
 	}
 	private void loadReply() {
+		
         RequestQueue queue = Volley.newRequestQueue(this);
 
 //        int startIndex = albumData.size();
@@ -226,10 +246,8 @@ public class ConcertDetailActivity extends SherlockActivity {
 	public String readConcert() {
 	    StringBuilder builder = new StringBuilder();
 	    HttpClient client = new DefaultHttpClient();
-	    Log.d("concert Detail", concertName);
-	   
-	    Log.d("concert Detail", encodeResult);
-	    HttpGet httpGet = new HttpGet("http://chilchil.me/apps/server/indie/concert_detail.php?concert="+encodeResult);
+	    
+	    HttpGet httpGet = new HttpGet(Constant.SERVER_URL+"apps/server/indie/concert_detail.php?concert="+encodeResult);
 	    try {
 	    	HttpResponse response = client.execute(httpGet);
 	    	StatusLine statusLine = response.getStatusLine();
@@ -243,15 +261,13 @@ public class ConcertDetailActivity extends SherlockActivity {
 	    			builder.append(line);
 	    		}
 	    	} else {
-	    		Log.e(ArtistDetailActivity.class.toString(), "Failed to download file");
+	    		Log.e(ConcertDetailActivity.class.toString(), "Failed to download file");
 	    	}
 	    } catch (ClientProtocolException e) {
 	    	e.printStackTrace();
 	    } catch (IOException e) {
 	    	e.printStackTrace();
 	    }
-	    Log.i("",builder.toString()); 
 	    return builder.toString();
 	}
-	
 }
