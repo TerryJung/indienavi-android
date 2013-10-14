@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,16 +27,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +39,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -63,30 +60,31 @@ import com.android.volley.toolbox.Volley;
 import com.androidquery.AQuery;
 
 public class ConcertDetailActivity extends SherlockActivity {
-	AQuery aq = new AQuery(this);
-	ImageView concertImage;
-	TextView concertNameTv;
-	TextView concertPlaceTv;
-	TextView concertDateTv;
-	TextView concertDescriptionTv;
-	TextView concertReplyUserName;
+	
+	private AQuery aq = new AQuery(this);
+	private ImageView concertImage;
+	private TextView concertNameTv;
+	private TextView concertPlaceTv;
+	private TextView concertDateTv;
+	private TextView concertDescriptionTv;
+	private TextView concertReplyUserName;
     private List<NameValuePair> nameValuePairs;
     private HttpResponse response;
-	EditText replyEditText;
-	Button replySubmit;
-	ListView replyList;
+    private EditText replyEditText;
+	private Button replySubmit;
+	private ListView replyList;
 	private Date d = new java.util.Date();
 	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
 	private String today = df.format(d); 
-	String concertName;
+	private String concertName;
 	private String encodeResult;
-	String imgURL;
-	String nameStr;
-	String placeStr; 
-	String dateStr;
-	String descStr;
-	String linkStr;
-	String concertImgStr;
+	private String imgURL;
+	private String nameStr;
+	private String placeStr; 
+	private String dateStr;
+	private String descStr;
+	private String linkStr;
+	private String concertImgStr;
 	
 	String reply;
 	
@@ -134,8 +132,21 @@ public class ConcertDetailActivity extends SherlockActivity {
 		// Reply 부분 
 		concertReplyUserName = (TextView) findViewById(R.id.userName);
 		concertReplyUserName.setText(Constant.USER_NAME);
-		initFont();
+		
+		concertNameTv.setText(concertName);
+		concertPlaceTv.setText(placeStr);
+		concertDateTv.setText(dateStr);
+//		initFont();
 		replyEditText = (EditText) findViewById(R.id.replyEdit);
+		//폰트
+		Util.fontBold(this, concertNameTv);
+		Util.fontGeneral(this, concertPlaceTv);
+		Util.fontGeneral(this, concertDateTv);
+		Util.fontGeneral(this, concertDescriptionTv);
+		Util.fontGeneral(this, concertReplyUserName);
+		Typeface type = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.ttf");
+		replyEditText.setTypeface(type);
+		//폰트
 		replySubmit = (Button) findViewById(R.id.replySubmit);
 		replySubmit.setOnClickListener(new View.OnClickListener() {
 			
@@ -146,18 +157,19 @@ public class ConcertDetailActivity extends SherlockActivity {
 					replyEditText.setHint("덧글을 작성하세요");
 				} else {
 					new Thread(new Runnable() {
-						
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
-//							Looper.prepare();
-							writeReply(concertReplyUserName.getText().toString(), 
+							Looper.prepare();
+							try {
+								writeReply(concertReplyUserName.getText().toString(), 
 									replyEditText.getText().toString());
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						}
 					}).start();
-//					Looper.loop();
+					Looper.loop();
 				}
-				
 			}
 		});
 		replyList = (ListView) findViewById(R.id.replyList);
@@ -186,9 +198,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						concertNameTv.setText(concertName);
-						concertPlaceTv.setText(placeStr);
-						concertDateTv.setText(dateStr);
+						
 						concertDescriptionTv.setText(descStr);
 					}
 					
@@ -197,15 +207,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 			}
 		}).start();
 	}
-	void initFont(){
-		Util.fontBold(this, concertNameTv);
-		Util.fontGeneral(this, concertPlaceTv);
-		Util.fontGeneral(this, concertDateTv);
-		Util.fontGeneral(this, concertDescriptionTv);
-		Util.fontGeneral(this, concertReplyUserName);
-		Typeface type = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.ttf");
-		replyEditText.setTypeface(type);
-	}
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -310,60 +312,42 @@ public class ConcertDetailActivity extends SherlockActivity {
 	    }
 	    return builder.toString();
 	}
-	private void writeReply(final String userName, final String replyContent) {
-		try{            
-			HttpClient httpclient = getThreadSafeClient();
-			HttpPost httppost = new HttpPost(Constant.SERVER_URL+"apps/server/indie/concert_reply_add.php"); // make sure the url is correct.
-            //add your post data
-            nameValuePairs = new ArrayList<NameValuePair>(3);
-            // name concert reply
-            // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
-            nameValuePairs.add(new BasicNameValuePair("name",userName));             
-            nameValuePairs.add(new BasicNameValuePair("concert", concertName));
-            nameValuePairs.add(new BasicNameValuePair("reply",replyContent)); 
-//            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8);
-//            httppost.setEntity(ent);
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            
-            Log.d("TAG"	, userName + "/" + concertName + "/"+ replyContent);
-           
-            
-            //Execute HTTP Post Request
-            response = httpclient.execute(httppost);
-            // edited by James from coderzheaven.. from here....
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            final String response = httpclient.execute(httppost, responseHandler);
-            System.out.println("Response : " + response); 
-            runOnUiThread(new Runnable() {
-                public void run() {
-                   // tv.setText("Response from PHP : " + response);
-//                    dialog.dismiss();
-                }
-            });
-             
-            if(response.equalsIgnoreCase("reply_OK")){
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast.makeText(ConcertDetailActivity.this,"댓글 성공", Toast.LENGTH_SHORT).show();
-                        replyData.add(new ConcertReplyData(userName, replyContent, today));
-                        replyAdapter.notifyDataSetChanged();
-                    }
-                });
-                
-            }else{}
-             
-        }catch(IOException e){
-//            dialog.dismiss();
-            System.out.println("IOException : " + e.getMessage());
-        }
-	}
-	private static DefaultHttpClient getThreadSafeClient()  {
+	private void writeReply( final String userName,  final String replyContent) throws IOException{
+		URL url = new URL(Constant.SERVER_URL+"apps/server/indie/concert_reply_add.php");
+		HttpURLConnection httpUrl = (HttpURLConnection)url.openConnection();
 
-        DefaultHttpClient client = new DefaultHttpClient();
-        ClientConnectionManager mgr = client.getConnectionManager();
-        HttpParams params = client.getParams();
-        client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, 
-                mgr.getSchemeRegistry()), params);
-        return client;
+		httpUrl.setDefaultUseCaches(false);
+		httpUrl.setDoInput(true);
+		httpUrl.setDoOutput(true);
+		httpUrl.setRequestMethod("POST");
+		httpUrl.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+//		$name = $_REQUEST['name'];
+//		$concert = $_REQUEST['concert'];
+//		$reply = $_REQUEST['reply'];
+		StringBuffer sb = new StringBuffer();
+		sb.append("name").append("=").append(userName).append("&");
+		sb.append("concert").append("=").append(concertName).append("&");
+		sb.append("reply").append("=").append(replyContent).append("&");
+		
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(httpUrl.getOutputStream(), "UTF-8"));
+		pw.write(sb.toString());
+		pw.flush();
+		
+		BufferedReader bf = new BufferedReader(new InputStreamReader(httpUrl.getInputStream(), "UTF-8"));
+		StringBuilder buff = new StringBuilder();
+		String line;
+		while((line = bf.readLine())!=null) {
+			buff.append(line);
+			if(line.equalsIgnoreCase("reply_OK")){
+				runOnUiThread(new Runnable() {
+                  public void run() {
+                      Toast.makeText(ConcertDetailActivity.this,"댓글 성공", Toast.LENGTH_SHORT).show();
+                      replyData.add(new ConcertReplyData(userName, replyContent, today));
+                      replyAdapter.notifyDataSetChanged();
+                      replyEditText.setText("");
+                  }
+              });				
+			}
+		}
 	}
 }
