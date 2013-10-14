@@ -32,7 +32,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,10 +40,8 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.net.ParseException;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -302,10 +300,13 @@ public class ConcertDetailActivity extends SherlockActivity {
 			HttpPost httppost = new HttpPost(Constant.SERVER_URL+"apps/server/indie/concert_reply_add.php"); // make sure the url is correct.
             //add your post data
             nameValuePairs = new ArrayList<NameValuePair>(3);
+            // name concert reply
             // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
             nameValuePairs.add(new BasicNameValuePair("name",userName));             
             nameValuePairs.add(new BasicNameValuePair("concert", concertName));
             nameValuePairs.add(new BasicNameValuePair("reply",replyContent)); 
+//            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8);
+//            httppost.setEntity(ent);
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             
             Log.d("TAG"	, userName + "/" + concertName + "/"+ replyContent);
@@ -329,6 +330,7 @@ public class ConcertDetailActivity extends SherlockActivity {
                     public void run() {
                         Toast.makeText(ConcertDetailActivity.this,"´ñ±Û ¼º°ø", Toast.LENGTH_SHORT).show();
                         replyData.add(new ConcertReplyData(userName, replyContent, today));
+                        replyAdapter.notifyDataSetChanged();
                     }
                 });
                 
@@ -339,13 +341,12 @@ public class ConcertDetailActivity extends SherlockActivity {
             System.out.println("IOException : " + e.getMessage());
         }
 	}
-	public static DefaultHttpClient getThreadSafeClient()  {
+	private static DefaultHttpClient getThreadSafeClient()  {
 
         DefaultHttpClient client = new DefaultHttpClient();
         ClientConnectionManager mgr = client.getConnectionManager();
         HttpParams params = client.getParams();
         client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, 
-
                 mgr.getSchemeRegistry()), params);
         return client;
 	}
