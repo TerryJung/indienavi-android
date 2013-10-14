@@ -1,4 +1,4 @@
-package kr.hs.kumoh.indieplatform.indie.navi.model.data;
+package kr.hs.kumoh.indieplatform.indie.navi.util;
 
 public class Constant {
 

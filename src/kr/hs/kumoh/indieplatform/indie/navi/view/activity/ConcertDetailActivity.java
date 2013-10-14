@@ -14,7 +14,7 @@ import java.util.List;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertReplyAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

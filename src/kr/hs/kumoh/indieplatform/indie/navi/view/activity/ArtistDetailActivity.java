@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistAlbumFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistConcertFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistDetailFragment;
