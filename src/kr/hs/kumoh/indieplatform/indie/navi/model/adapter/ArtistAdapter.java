@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +74,11 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 		holder.debutYearTv.setText(artist.getDebutYear());
 		holder.genreNameTv.setText(artist.getGenreName());
 		holder.likeCntTv.setText(artist.getLikeCnt());
+		Util.fontGeneral(getContext(), holder.artistNameTv);
+		Util.fontGeneral(getContext(), holder.labelNameTv);
+		Util.fontGeneral(getContext(), holder.debutYearTv);
+		Util.fontGeneral(getContext(), holder.genreNameTv);
+		Util.fontGeneral(getContext(), holder.likeCntTv);
 		
 		return v;
 		

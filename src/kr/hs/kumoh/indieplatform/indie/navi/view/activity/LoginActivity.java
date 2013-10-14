@@ -7,6 +7,7 @@ import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -54,7 +55,7 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		idEdit = (EditText) findViewById(R.id.idEdit);
 		pwEdit = (EditText) findViewById(R.id.pwEdit);
-		
+//		idEdit.setTypeface(new Util().fontLight(this, pwEdit));
 		loginBtn = (ImageView) findViewById(R.id.loginBtn);
 		loginBtn.setOnClickListener(new View.OnClickListener() {
 			

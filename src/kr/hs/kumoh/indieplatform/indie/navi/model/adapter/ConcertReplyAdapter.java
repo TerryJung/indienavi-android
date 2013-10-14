@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,9 @@ public class ConcertReplyAdapter extends ArrayAdapter<ConcertReplyData> {
         holder.userNameTv.setText(reply.getUserName());
 		holder.replyTv.setText(reply.getReplyText());
 		holder.dateTv.setText(reply.getReplyDate());
-		
+		Util.fontGeneral(getContext(), holder.userNameTv);
+		Util.fontGeneral(getContext(), holder.replyTv);
+		Util.fontGeneral(getContext(), holder.dateTv);
 		
 		return v;
 	}

@@ -15,6 +15,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertReplyAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -32,13 +33,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -121,13 +122,19 @@ public class ConcertDetailActivity extends SherlockActivity {
 
 		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
 		concertNameTv = (TextView) findViewById(R.id.concertDetailName);
+		
 		concertPlaceTv = (TextView) findViewById(R.id.concertDetailPlace);
+		
 		concertDateTv = (TextView) findViewById(R.id.concertDetailDate);
+		
 		concertDescriptionTv = (TextView) findViewById(R.id.concertDetailText);
 		
+		
+//		concertDateTv.setFT
 		// Reply ºÎºÐ 
 		concertReplyUserName = (TextView) findViewById(R.id.userName);
 		concertReplyUserName.setText(Constant.USER_NAME);
+		initFont();
 		replyEditText = (EditText) findViewById(R.id.replyEdit);
 		replySubmit = (Button) findViewById(R.id.replySubmit);
 		replySubmit.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +196,15 @@ public class ConcertDetailActivity extends SherlockActivity {
 				
 			}
 		}).start();
+	}
+	void initFont(){
+		Util.fontBold(this, concertNameTv);
+		Util.fontGeneral(this, concertPlaceTv);
+		Util.fontGeneral(this, concertDateTv);
+		Util.fontGeneral(this, concertDescriptionTv);
+		Util.fontGeneral(this, concertReplyUserName);
+		Typeface type = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.ttf");
+		replyEditText.setTypeface(type);
 	}
 
 	@Override

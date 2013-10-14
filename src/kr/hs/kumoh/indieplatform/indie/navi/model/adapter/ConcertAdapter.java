@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +57,9 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
         holder.concertNameTv.setText(concert.getConcertName());
 		holder.concertDateTv.setText(concert.getConcertDate());
 		holder.concertPlaceTv.setText(concert.getPlaceName());
-
+		Util.fontGeneral(getContext(), holder.concertNameTv);
+		Util.fontGeneral(getContext(), holder.concertDateTv);
+		Util.fontGeneral(getContext(), holder.concertPlaceTv);
 		return v;
 	}
 	private class ViewHolder {
