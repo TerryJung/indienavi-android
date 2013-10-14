@@ -56,13 +56,7 @@
                 android:padding="10dp"
                 android:text="[공연 장소명]" />
         </LinearLayout>
-		   <LinearLayout
-            android:id="@+id/LinearLayout12"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </LinearLayout>
-     
+		   
     </LinearLayout>
 
 </LinearLayout>

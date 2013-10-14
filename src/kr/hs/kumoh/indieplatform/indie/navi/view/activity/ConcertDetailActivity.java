@@ -6,7 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertReplyAdapter;
@@ -15,11 +18,20 @@ import kr.hs.kumoh.indieplatform.indie.navi.model.data.Constant;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +43,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.ParseException;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -58,11 +71,14 @@ public class ConcertDetailActivity extends SherlockActivity {
 	TextView concertDateTv;
 	TextView concertDescriptionTv;
 	TextView concertReplyUserName;
-	
+    private List<NameValuePair> nameValuePairs;
+    private HttpResponse response;
 	EditText replyEditText;
 	Button replySubmit;
 	ListView replyList;
-	
+	private Date d = new java.util.Date();
+	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+	private String today = df.format(d); 
 	String concertName;
 	private String encodeResult;
 	String imgURL;
@@ -73,6 +89,9 @@ public class ConcertDetailActivity extends SherlockActivity {
 	String linkStr;
 	String concertImgStr;
 	
+	String reply;
+	
+	private String concertURLEncode;
 	private boolean mHasData = false;
     private boolean mInError = false;
     private ArrayList<ConcertReplyData> replyData = new ArrayList<ConcertReplyData>();
@@ -118,15 +137,22 @@ public class ConcertDetailActivity extends SherlockActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-//				new Thread(new Runnable() {
-//					
-//					@Override
-//					public void run() {
-//						// TODO Auto-generated method stub
-//						writeReply(concertReplyUserName.getText().toString(), 
-//								replyEditText.getText().toString());
-//					}
-//				});
+				if(replyEditText.getText().toString().equals("")){
+					replyEditText.setHint("덧글을 작성하세요");
+				} else {
+					new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+//							Looper.prepare();
+							writeReply(concertReplyUserName.getText().toString(), 
+									replyEditText.getText().toString());
+						}
+					}).start();
+//					Looper.loop();
+				}
+				
 			}
 		});
 		replyList = (ListView) findViewById(R.id.replyList);
@@ -269,5 +295,58 @@ public class ConcertDetailActivity extends SherlockActivity {
 	    	e.printStackTrace();
 	    }
 	    return builder.toString();
+	}
+	private void writeReply(final String userName, final String replyContent) {
+		try{            
+			HttpClient httpclient = getThreadSafeClient();
+			HttpPost httppost = new HttpPost(Constant.SERVER_URL+"apps/server/indie/concert_reply_add.php"); // make sure the url is correct.
+            //add your post data
+            nameValuePairs = new ArrayList<NameValuePair>(3);
+            // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
+            nameValuePairs.add(new BasicNameValuePair("name",userName));             
+            nameValuePairs.add(new BasicNameValuePair("concert", concertName));
+            nameValuePairs.add(new BasicNameValuePair("reply",replyContent)); 
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            
+            Log.d("TAG"	, userName + "/" + concertName + "/"+ replyContent);
+           
+            
+            //Execute HTTP Post Request
+            response = httpclient.execute(httppost);
+            // edited by James from coderzheaven.. from here....
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            final String response = httpclient.execute(httppost, responseHandler);
+            System.out.println("Response : " + response); 
+            runOnUiThread(new Runnable() {
+                public void run() {
+                   // tv.setText("Response from PHP : " + response);
+//                    dialog.dismiss();
+                }
+            });
+             
+            if(response.equalsIgnoreCase("reply_OK")){
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(ConcertDetailActivity.this,"댓글 성공", Toast.LENGTH_SHORT).show();
+                        replyData.add(new ConcertReplyData(userName, replyContent, today));
+                    }
+                });
+                
+            }else{}
+             
+        }catch(IOException e){
+//            dialog.dismiss();
+            System.out.println("IOException : " + e.getMessage());
+        }
+	}
+	public static DefaultHttpClient getThreadSafeClient()  {
+
+        DefaultHttpClient client = new DefaultHttpClient();
+        ClientConnectionManager mgr = client.getConnectionManager();
+        HttpParams params = client.getParams();
+        client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, 
+
+                mgr.getSchemeRegistry()), params);
+        return client;
 	}
 }

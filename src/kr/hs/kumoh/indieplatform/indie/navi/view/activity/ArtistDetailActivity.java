@@ -68,6 +68,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 		ArtistName = intent.getExtras().getString("artist");
 		ArtistImg = intent.getExtras().getString("artistImg");
 		Log.d("INTENT", ArtistName);
+		Log.d("Intent URL ", ArtistImg);
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.add(R.id.ArtistDetailFrame, new ArtistDetailFragment());
