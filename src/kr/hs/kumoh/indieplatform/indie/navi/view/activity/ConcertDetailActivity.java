@@ -68,8 +68,6 @@ public class ConcertDetailActivity extends SherlockActivity {
 	private TextView concertDateTv;
 	private TextView concertDescriptionTv;
 	private TextView concertReplyUserName;
-    private List<NameValuePair> nameValuePairs;
-    private HttpResponse response;
     private EditText replyEditText;
 	private Button replySubmit;
 	private ListView replyList;
@@ -78,15 +76,13 @@ public class ConcertDetailActivity extends SherlockActivity {
 	private String today = df.format(d); 
 	private String concertName;
 	private String encodeResult;
-	private String imgURL;
-	private String nameStr;
 	private String placeStr; 
 	private String dateStr;
 	private String descStr;
 	private String linkStr;
 	private String concertImgStr;
 	
-	String reply;
+	private String reply;
 	
 	private String concertURLEncode;
 	private boolean mHasData = false;

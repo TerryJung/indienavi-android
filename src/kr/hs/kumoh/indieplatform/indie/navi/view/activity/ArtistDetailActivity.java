@@ -117,71 +117,14 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						fanAdd(Constant.USER_NAME, ArtistName);
+						
 					}
 				}).start();
 				
 			}
 		});
 	}
-	public void fanAdd(String name, String artist)  {
-		try{            
-            
-//			HttpClient cl
-			httpclient = getThreadSafeClient();
-            httppost = new HttpPost(Constant.SERVER_URL+"apps/server/indie/favorite_artist_add.php"); // make sure the url is correct.
-            //add your post data
-            nameValuePairs = new ArrayList<NameValuePair>(2);
-            // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
-            nameValuePairs.add(new BasicNameValuePair("name",name));  // $Edittext_value = $_POST['Edittext_value'];
-            nameValuePairs.add(new BasicNameValuePair("artist",artist)); 
-            Log.d("httpConn", name+" & "+artist);
-            
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
-            //Execute HTTP Post Request
-            response = httpclient.execute(httppost);
-            // edited by James from coderzheaven.. from here....
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            final String response = httpclient.execute(httppost, responseHandler);
-            System.out.println("Response : " + response); 
-//            runOnUiThread(new Runnable() {
-//                public void run() {
-//                   // tv.setText("Response from PHP : " + response);
-////                    dialog.dismiss();
-//                }
-//            });
-             
-            if(response.equalsIgnoreCase("OK")){
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast.makeText(ArtistDetailActivity.this,"팬이 추가되었습니다", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }else{}
-             
-        } catch (ClientProtocolException e) {
-			// TODO: handle exception
-        	e.printStackTrace();
-		} catch(IOException e){
-//            dialog.dismiss();
-			e.printStackTrace();
-            System.out.println("IOException : " + e.getMessage());
-        } 
-		
-	}
 	
-	
-	public static DefaultHttpClient getThreadSafeClient()  {
-
-        DefaultHttpClient client = new DefaultHttpClient();
-        ClientConnectionManager mgr = client.getConnectionManager();
-        HttpParams params = client.getParams();
-        client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, 
-
-                mgr.getSchemeRegistry()), params);
-        return client;
-	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
