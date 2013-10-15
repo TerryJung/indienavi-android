@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
-import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +25,13 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
     RequestQueue mRequestQueue; 
 //    private RequestQueue mRequestQueue = Volley.newRequestQueue(mContext);
     private ImageLoader mImageLoader;
+    Typeface tf; 
 //    initImageLo
     public ArtistAdapter(Context context, int resource, ArrayList<ArtistData> objects, ImageLoader imageLoader) {
 		super(context, resource, objects);
 		mRequestQueue = Volley.newRequestQueue(context);
 		mImageLoader = imageLoader;
+//		tf = Typeface.createFromAsset(context.getAssets(), FONT);
 //		aq = new AQuery(act)
 		// TODO Auto-generated constructor stub
 	}
@@ -74,11 +76,11 @@ public class ArtistAdapter extends ArrayAdapter<ArtistData> {
 		holder.debutYearTv.setText(artist.getDebutYear());
 		holder.genreNameTv.setText(artist.getGenreName());
 		holder.likeCntTv.setText(artist.getLikeCnt());
-		Util.fontGeneral(getContext(), holder.artistNameTv);
-		Util.fontGeneral(getContext(), holder.labelNameTv);
-		Util.fontGeneral(getContext(), holder.debutYearTv);
-		Util.fontGeneral(getContext(), holder.genreNameTv);
-		Util.fontGeneral(getContext(), holder.likeCntTv);
+//		Util.fontGeneral(getContext(), holder.artistNameTv);//폰트적용부분
+//		Util.fontGeneral(getContext(), holder.labelNameTv);
+//		Util.fontGeneral(getContext(), holder.debutYearTv);
+//		Util.fontGeneral(getContext(), holder.genreNameTv);
+//		Util.fontGeneral(getContext(), holder.likeCntTv);
 		
 		return v;
 		

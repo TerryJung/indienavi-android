@@ -6,7 +6,14 @@
     android:background="#fefee0"
     android:orientation="vertical"
     tools:context=".ConcertDetailActivity" >
-
+<!--  <ScrollView
+        android:id="@+id/mainScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" > -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"> 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -102,10 +109,12 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/replyList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+    	<ListView
+    	    android:id="@+id/replyList"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content" >
 
+    	</ListView>
+	</LinearLayout>
+<!-- </ScrollView>  -->
 </LinearLayout>

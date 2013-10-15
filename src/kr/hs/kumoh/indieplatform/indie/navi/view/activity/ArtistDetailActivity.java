@@ -1,10 +1,17 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistAlbumFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistConcertFragment;
@@ -64,7 +71,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF2ecc71));
 		Intent intent = getIntent();
-//		alf.
+		
 		ArtistName = intent.getExtras().getString("artist");
 		ArtistImg = intent.getExtras().getString("artistImg");
 		Log.d("INTENT", ArtistName);
@@ -117,14 +124,62 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						
+						try {
+							fanAdd(Constant.USER_NAME, ArtistName);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}).start();
 				
 			}
 		});
 	}
-	
+
+	private void fanAdd( final String userName,  final String artistName) throws IOException{
+		URL url = new URL(Constant.SERVER_URL+"apps/server/indie/favorite_artist_add.php");
+		HttpURLConnection httpUrl = (HttpURLConnection)url.openConnection();
+
+		httpUrl.setDefaultUseCaches(false);
+		httpUrl.setDoInput(true);
+		httpUrl.setDoOutput(true);
+		httpUrl.setRequestMethod("POST");
+		httpUrl.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+
+		StringBuffer sb = new StringBuffer();
+//		$name = $_REQUEST['name'];
+//		$artist_name = $_REQUEST['artist'];
+		sb.append("name").append("=").append(userName).append("&");
+		sb.append("artist").append("=").append(artistName);
+		
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(httpUrl.getOutputStream(), "UTF-8"));
+		pw.write(sb.toString());
+		pw.flush();
+		
+		BufferedReader bf = new BufferedReader(new InputStreamReader(httpUrl.getInputStream(), "UTF-8"));
+		StringBuilder buff = new StringBuilder();
+		String line;
+		while((line = bf.readLine())!=null) {
+			buff.append(line);
+			if(line.equalsIgnoreCase("OK")){
+				runOnUiThread(new Runnable() {
+                  public void run() {
+                      Toast.makeText(ArtistDetailActivity.this,"팬에 추가되었습니다", Toast.LENGTH_SHORT).show();
+                  }
+              });				
+			} else {
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						Toast.makeText(ArtistDetailActivity.this,"이미 팬입니다.", Toast.LENGTH_SHORT).show();
+					}
+				});
+			}
+		}
+	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub

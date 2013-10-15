@@ -171,6 +171,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		replyList = (ListView) findViewById(R.id.replyList);
 		replyAdapter = new ConcertReplyAdapter(this, 0, replyData);
 		replyList.setAdapter(replyAdapter);
+//		replyList.setScr
 				
 		final Handler handler = new Handler();
 		new Thread(new Runnable() {
@@ -323,7 +324,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		StringBuffer sb = new StringBuffer();
 		sb.append("name").append("=").append(userName).append("&");
 		sb.append("concert").append("=").append(concertName).append("&");
-		sb.append("reply").append("=").append(replyContent).append("&");
+		sb.append("reply").append("=").append(replyContent);
 		
 		PrintWriter pw = new PrintWriter(new OutputStreamWriter(httpUrl.getOutputStream(), "UTF-8"));
 		pw.write(sb.toString());
