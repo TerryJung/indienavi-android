@@ -64,9 +64,9 @@ public class ArtistConcertAdapter extends ArrayAdapter<ConcertData> {
         holder.concertNameTv.setText(concert.getConcertName());
 		holder.concertPlaceNameTv.setText(concert.getPlaceName());
 		holder.concertDateTv.setText(concert.getConcertDate());
-		Util.fontGeneral(getContext(), holder.concertNameTv);
-		Util.fontGeneral(getContext(), holder.concertPlaceNameTv);
-		Util.fontGeneral(getContext(), holder.concertDateTv);
+//		Util.fontGeneral(getContext(), holder.concertNameTv);
+//		Util.fontGeneral(getContext(), holder.concertPlaceNameTv);
+//		Util.fontGeneral(getContext(), holder.concertDateTv);
 		
 		return v;
 		

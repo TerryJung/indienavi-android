@@ -37,9 +37,9 @@ public class ConcertReplyAdapter extends ArrayAdapter<ConcertReplyData> {
         holder.userNameTv.setText(reply.getUserName());
 		holder.replyTv.setText(reply.getReplyText());
 		holder.dateTv.setText(reply.getReplyDate());
-		Util.fontGeneral(getContext(), holder.userNameTv);
-		Util.fontGeneral(getContext(), holder.replyTv);
-		Util.fontGeneral(getContext(), holder.dateTv);
+//		Util.fontGeneral(getContext(), holder.userNameTv);
+//		Util.fontGeneral(getContext(), holder.replyTv);
+//		Util.fontGeneral(getContext(), holder.dateTv);
 		
 		return v;
 	}

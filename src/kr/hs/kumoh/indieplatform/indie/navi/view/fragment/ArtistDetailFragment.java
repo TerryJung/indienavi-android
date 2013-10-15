@@ -105,7 +105,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 						Log.d("URL", Constant.IMAGE_URL+artistImgURLStr);
 						artistName.setText(artistNameStr);
 						artistFan.setText(artistFanStr);
-						if(artistLabelStr == null) {
+						if(artistLabelStr.equals("null")) {
 							labelName.setVisibility(View.GONE);
 						} else {
 							labelName.setText(artistLabelStr);

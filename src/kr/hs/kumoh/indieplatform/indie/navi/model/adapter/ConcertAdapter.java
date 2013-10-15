@@ -57,9 +57,9 @@ public class ConcertAdapter extends ArrayAdapter<ConcertData> {
         holder.concertNameTv.setText(concert.getConcertName());
 		holder.concertDateTv.setText(concert.getConcertDate());
 		holder.concertPlaceTv.setText(concert.getPlaceName());
-		Util.fontGeneral(getContext(), holder.concertNameTv);
-		Util.fontGeneral(getContext(), holder.concertDateTv);
-		Util.fontGeneral(getContext(), holder.concertPlaceTv);
+//		Util.fontGeneral(getContext(), holder.concertNameTv);
+//		Util.fontGeneral(getContext(), holder.concertDateTv);
+//		Util.fontGeneral(getContext(), holder.concertPlaceTv);
 		return v;
 	}
 	private class ViewHolder {

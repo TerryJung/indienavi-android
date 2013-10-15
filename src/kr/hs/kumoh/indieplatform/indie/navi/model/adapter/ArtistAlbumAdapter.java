@@ -58,9 +58,9 @@ public class ArtistAlbumAdapter extends ArrayAdapter<AlbumData> {
 		holder.albumYear.setText(album.getAlbumYear());
 		holder.albumTitleSong.setText(album.getAlbumTitleSong());
 		
-		Util.fontGeneral(getContext(), holder.albumTitle);
-		Util.fontGeneral(getContext(), holder.albumYear);
-		Util.fontGeneral(getContext(), holder.albumTitleSong);
+//		Util.fontGeneral(getContext(), holder.albumTitle);
+//		Util.fontGeneral(getContext(), holder.albumYear);
+//		Util.fontGeneral(getContext(), holder.albumTitleSong);
 		return v;
 	}
 	private class ViewHolder {

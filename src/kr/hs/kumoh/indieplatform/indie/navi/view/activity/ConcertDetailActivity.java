@@ -135,13 +135,13 @@ public class ConcertDetailActivity extends SherlockActivity {
 //		initFont();
 		replyEditText = (EditText) findViewById(R.id.replyEdit);
 		//폰트
-		Util.fontBold(this, concertNameTv);
-		Util.fontGeneral(this, concertPlaceTv);
-		Util.fontGeneral(this, concertDateTv);
-		Util.fontGeneral(this, concertDescriptionTv);
-		Util.fontGeneral(this, concertReplyUserName);
-		Typeface type = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.ttf");
-		replyEditText.setTypeface(type);
+//		Util.fontBold(this, concertNameTv);
+//		Util.fontGeneral(this, concertPlaceTv);
+//		Util.fontGeneral(this, concertDateTv);
+//		Util.fontGeneral(this, concertDescriptionTv);
+//		Util.fontGeneral(this, concertReplyUserName);
+//		Typeface type = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.ttf");
+//		replyEditText.setTypeface(type);
 		//폰트
 		replySubmit = (Button) findViewById(R.id.replySubmit);
 		replySubmit.setOnClickListener(new View.OnClickListener() {

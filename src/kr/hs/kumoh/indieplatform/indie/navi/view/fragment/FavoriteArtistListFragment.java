@@ -55,8 +55,10 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 					long arg3) {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);
+//				Intent i = new Intent(getActivity(), ArtistDetailActivity.class);
 				i.putExtra("artist", artistData.get(position).getArtistName());
-				startActivity(i);
+				i.putExtra("artistImg", artistData.get(position).getArtistImgURL());
+				startActivity(i);	
 				
 			}
 		});
