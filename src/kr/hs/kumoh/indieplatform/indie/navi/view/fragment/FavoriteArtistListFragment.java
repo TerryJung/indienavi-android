@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -62,7 +63,22 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 				
 			}
 		});
+		
+		lv.setOnItemLongClickListener(new OnItemLongClickListener() {
+			
+			@Override
+			public boolean onItemLongClick(AdapterView<?> av, View v,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				String artName = artistData.get(position).getArtistName();
+				deleteFavorite(Constant.USER_NAME, artName);
+				return false;
+			}
+		});
 		return root;
+	}
+	private void deleteFavorite(String name, String artistName) {
+		
 	}
 	@Override
 	public void onResume() {

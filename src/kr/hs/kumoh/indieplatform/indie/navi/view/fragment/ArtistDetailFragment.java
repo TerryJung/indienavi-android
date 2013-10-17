@@ -113,6 +113,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 						artistText.setText(artistTextStr);
 					}
 					
+					
 				});
 			}
 		}).start();
