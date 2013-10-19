@@ -46,6 +46,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +62,8 @@ import com.androidquery.AQuery;
 
 public class ConcertDetailActivity extends SherlockActivity {
 	
-	private AQuery aq = new AQuery(this);
+	private AQuery aq;
+//	private ScrollView replyScroll;
 	private ImageView concertImage;
 	private TextView concertNameTv;
 	private TextView concertPlaceTv;
@@ -95,7 +97,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_concert_detail);
 		
-
+		aq = new AQuery(this);
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF2ecc71));
 		Intent intent = getIntent();
 		concertName = intent.getExtras().getString("concertName");
@@ -108,13 +110,14 @@ public class ConcertDetailActivity extends SherlockActivity {
 		placeStr = intent.getExtras().getString("placeName");
 		dateStr = intent.getExtras().getString("concertDate");
 		concertImgStr = intent.getExtras().getString("concertImg");
+		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
 		Log.d("URL", concertImgStr);
 		aq.id(R.id.concertImgDetail).image(concertImgStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		replyData = new ArrayList<ConcertReplyData>();
 
-		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
+//		replyScroll = (ScrollView) findViewById(R.id.replyScroll);
 		concertNameTv = (TextView) findViewById(R.id.concertDetailName);
 		
 		concertPlaceTv = (TextView) findViewById(R.id.concertDetailPlace);
@@ -165,6 +168,8 @@ public class ConcertDetailActivity extends SherlockActivity {
 						}
 					}).start();
 					Looper.loop();
+//					replyScroll.invalidate();
+//					replyScroll.requestLayout();
 				}
 			}
 		});

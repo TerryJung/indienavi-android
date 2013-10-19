@@ -132,10 +132,7 @@ public class LoginActivity extends Activity {
             if(response.equalsIgnoreCase("1")){
                 runOnUiThread(new Runnable() {
                     public void run() {
-                    	
-
                         Toast.makeText(LoginActivity.this,"로그인 성공", Toast.LENGTH_SHORT).show();
-                        
                     }
                 });
                 

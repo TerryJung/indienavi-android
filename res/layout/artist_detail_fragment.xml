@@ -1,22 +1,27 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+        		android:id="@+id/scrollView2"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" >
+<LinearLayout
+   
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
      >
-
+	<RelativeLayout
+	    android:id="@+id/topRelative"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
+        android:layout_alignParentTop="true"
         >
         <ImageView
         android:id="@+id/artistImgDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
-        
-        
          />
         <LinearLayout
         	android:layout_width="match_parent"
@@ -68,14 +73,12 @@
         
         
     </FrameLayout>
-    	<ScrollView
-        		android:id="@+id/scrollView2"
-        		android:layout_width="match_parent"
-        		android:layout_height="wrap_content" >
-		<LinearLayout
-	    	android:layout_width="match_parent"
-	    	android:layout_height="wrap_content"
-	    	android:orientation="vertical" >
+    </RelativeLayout>
+    	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
         
     		<ImageView
         		android:id="@+id/labelDesc"
@@ -85,7 +88,6 @@
         		android:layout_margin="15dp" 
         		android:layout_marginTop="5dp"
         		android:layout_marginBottom="0dp"/>
-
  		   <TextView
         		android:id="@+id/labelName"
         		android:layout_width="wrap_content"
@@ -101,10 +103,6 @@
         		android:layout_margin="15dp"
         		android:src="@drawable/description"/>
 
-			<ScrollView
-        		android:id="@+id/scrollView1"
-        		android:layout_width="match_parent"
-        		android:layout_height="wrap_content" >
     			<TextView
         			android:id="@+id/artistText"
         			android:layout_width="wrap_content"
@@ -115,9 +113,9 @@
         			android:layout_marginBottom="20dp"
         			android:text="[아티스트 설명]"
         			android:textSize="15dp" />
-    		</ScrollView>
 
 	</LinearLayout>
-	</ScrollView>
+
 
 </LinearLayout>
+	</ScrollView>

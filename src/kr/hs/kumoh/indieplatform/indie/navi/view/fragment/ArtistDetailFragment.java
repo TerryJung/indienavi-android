@@ -64,8 +64,8 @@ public class ArtistDetailFragment extends SherlockFragment{
 		Log.d("aquery img", Constant.IMAGE_URL+artistImgURLStr);
 		descImg = (ImageView) root.findViewById(R.id.descriptionImg);
 		labelImg = (ImageView) root.findViewById(R.id.labelDesc);
-		Log.d("Artist Detail Constant", Constant.IMAGE_URL+"/artist/monni.jpg");
-		aq.id(R.id.artistImgDetail).image(Constant.IMAGE_URL+"/artist/monni.jpg",true, true, R.drawable.no_image, AQuery.FADE_IN);
+//		Log.d("Artist Detail Constant", Constant.IMAGE_URL+"/artist/monni.jpg");
+//		aq.id(R.id.artistImgDetail).image(Constant.IMAGE_URL+"/artist/monni.jpg",true, true, R.drawable.no_image, AQuery.FADE_IN);
 		artistImg = (ImageView) root.findViewById(R.id.artistImgDetail);
 		artistName = (TextView) root.findViewById(R.id.artistName);
 		artistFan = (TextView) root.findViewById(R.id.artistPan);

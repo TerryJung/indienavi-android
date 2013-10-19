@@ -1,14 +1,10 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/mainScroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        >  
-    <LinearLayout 
-    	android:id="@+id/LinearLayout1"
-    	android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-    	android:background="#fefee0"
-    	android:orientation="vertical">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fefee0"
+    android:orientation="vertical">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -22,7 +18,10 @@
         <ImageView
             android:id="@+id/concertImgDetail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+             />
+            <!-- android:adjustViewBounds="true" -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,5 +111,4 @@
 
     	</ListView>
 	</LinearLayout>
-	</LinearLayout>
-</ScrollView>
+</LinearLayout>
