@@ -7,7 +7,6 @@ import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
-import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

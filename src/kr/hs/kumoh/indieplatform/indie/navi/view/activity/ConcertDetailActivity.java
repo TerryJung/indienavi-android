@@ -13,17 +13,14 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertReplyAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
-import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -35,18 +32,16 @@ import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,7 +66,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 	private TextView concertDescriptionTv;
 	private TextView concertReplyUserName;
     private EditText replyEditText;
-	private Button replySubmit;
+	private ImageView replySubmit;
 	private ListView replyList;
 	private Date d = new java.util.Date();
 	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
@@ -112,7 +107,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		concertImgStr = intent.getExtras().getString("concertImg");
 		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
 		Log.d("URL", concertImgStr);
-		aq.id(R.id.concertImgDetail).image(concertImgStr,true, true, R.drawable.no_image, AQuery.FADE_IN);
+		aq.id(R.id.concertImgDetail).image(concertImgStr);//s,true, true, R.drawable.no_image, AQuery.FADE_IN);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		replyData = new ArrayList<ConcertReplyData>();
@@ -146,7 +141,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 //		Typeface type = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.ttf");
 //		replyEditText.setTypeface(type);
 		//ÆùÆ®
-		replySubmit = (Button) findViewById(R.id.replySubmit);
+		replySubmit = (ImageView) findViewById(R.id.replySubmit);
 		replySubmit.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

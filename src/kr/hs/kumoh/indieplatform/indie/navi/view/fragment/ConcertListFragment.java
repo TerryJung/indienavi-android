@@ -8,6 +8,7 @@ import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ConcertAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ConcertDetailActivity;
+import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistListFragment.EndlessScrollListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,8 +21,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.AbsListView.OnScrollListener;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.android.volley.Request.Method;
@@ -62,6 +65,7 @@ public class ConcertListFragment extends SherlockFragment {
 				
 			}
 		});
+		lv.setOnScrollListener(new EndlessScrollListener());
 		return root;
 	}
 	@Override
@@ -124,4 +128,45 @@ public class ConcertListFragment extends SherlockFragment {
       
         b.show();
 	}
+	public class EndlessScrollListener implements OnScrollListener {
+        // how many entries earlier to start loading next page
+        private int visibleThreshold = 5;
+        private int currentPage = 0;
+        private int previousTotal = 0;
+        private boolean loading = true;
+
+        public EndlessScrollListener() {
+        }
+        public EndlessScrollListener(int visibleThreshold) {
+            this.visibleThreshold = visibleThreshold;
+        }
+        
+        public int getCurrentPage() {
+            return currentPage;
+        }
+		@Override
+		public void onScroll(AbsListView view, int firstVisibleItem,
+				int visibleItemCount, int totalItemCount) {
+			
+			// TODO Auto-generated method stub
+			 if (loading) {
+	                if (totalItemCount > previousTotal) {
+	                    loading = false;
+	                    previousTotal = totalItemCount;
+	                    currentPage++;
+	                }
+	            }
+	            if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+	                // I load the next page of gigs using a background task,
+	                // but you can call any function here.
+	                loadPage();
+	                loading = true;
+	            }
+		}
+		@Override
+		public void onScrollStateChanged(AbsListView view, int scrollState) {
+			// TODO Auto-generated method stub
+			
+		}
+    }
 }

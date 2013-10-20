@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
-import kr.hs.kumoh.indieplatform.indie.navi.util.Util;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

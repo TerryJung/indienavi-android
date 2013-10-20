@@ -1,8 +1,5 @@
 package kr.hs.kumoh.indieplatform.indie.navi.util;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.widget.TextView;
 
 public class Util {
 

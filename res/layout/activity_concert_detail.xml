@@ -86,20 +86,23 @@
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="[현재 유저 네임]" />
+            android:text="username" 
+            android:layout_weight="2"/>
 
         <EditText
             android:id="@+id/replyEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10" 
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1">
         </EditText>
-		 <Button
+		 <ImageView
             android:id="@+id/replySubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="쓰기" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/btn_write"
+            android:layout_weight="2"/>
        
 
     </LinearLayout>
