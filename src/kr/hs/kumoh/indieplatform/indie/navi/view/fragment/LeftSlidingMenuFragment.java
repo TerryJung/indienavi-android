@@ -33,7 +33,7 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 		arrayList.add("공연정보");
 		arrayList.add("아티스트정보");
 		arrayList.add("팬클럽");
-		arrayList.add("설정");
+//		arrayList.add("설정");
 		arrayList.add("로그아웃");
 		arrayList.add("앱 종료");
 		
@@ -53,11 +53,11 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 					switchFragment(new ArtistListFragment());
 				} else if (position == 2) {
 					switchFragment(new FavoriteArtistListFragment());
-				} else if (position == 3) {
+//				} else if (position == 3) {
 					
-				} else if (position == 4) {
+				} else if (position == 3) {
 					LogOutDialogSimple();
-				} else if (position == 5) {
+				} else if (position == 4) {
 					appExit();
 				}
 			}
