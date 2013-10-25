@@ -51,7 +51,6 @@ public class ArtistListFragment extends SherlockFragment {
 		lv = (ListView) root.findViewById(R.id.listView1);
 		artistAdapter = new ArtistAdapter(getActivity(),0, artistData, MyVolley.getImageLoader());
 		lv.setAdapter(artistAdapter);
-//		lv.setOn
 		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -167,5 +166,5 @@ public class ArtistListFragment extends SherlockFragment {
 				// TODO Auto-generated method stub
 				
 			}
-	    }
+	  }
 }
