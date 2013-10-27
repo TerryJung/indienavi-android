@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
+import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ImageActivity;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,11 +23,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,6 +67,16 @@ public class ArtistDetailFragment extends SherlockFragment{
 		descImg = (ImageView) root.findViewById(R.id.descriptionImg);
 		labelImg = (ImageView) root.findViewById(R.id.labelDesc);
 		artistImg = (ImageView) root.findViewById(R.id.artistImgDetail);
+		artistImg.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getActivity(), ImageActivity.class);
+				i.putExtra("imageURL", Constant.IMAGE_URL+artistImgURLStr);
+				startActivity(i);
+			}
+		});
 		artistName = (TextView) root.findViewById(R.id.artistName);
 		artistFan = (TextView) root.findViewById(R.id.artistPan);
 		panTv = (TextView) root.findViewById(R.id.PanTv);

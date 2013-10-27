@@ -38,8 +38,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -101,13 +101,23 @@ public class ConcertDetailActivity extends SherlockActivity {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // 내일 테스트해봐야함
+		}
 		placeStr = intent.getExtras().getString("placeName");
 		dateStr = intent.getExtras().getString("concertDate");
 		concertImgStr = intent.getExtras().getString("concertImg");
 		concertImage = (ImageView) findViewById(R.id.concertImgDetail);
-		Log.d("URL", concertImgStr);
 		aq.id(R.id.concertImgDetail).image(concertImgStr);//s,true, true, R.drawable.no_image, AQuery.FADE_IN);
+		concertImage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(ConcertDetailActivity.this, ImageActivity.class);
+				i.putExtra("imageURL", concertImgStr);
+				startActivity(i);
+			}
+		});
+		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		replyData = new ArrayList<ConcertReplyData>();

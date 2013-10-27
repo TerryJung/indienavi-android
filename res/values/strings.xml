@@ -9,5 +9,9 @@
     <string name="title_activity_signup">SignupActivity</string>
     <string name="title_activity_artist_detail">아티스트의 자세한 정보</string>
     <string name="title_activity_concert_detail">공연의 자세한 정보</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_image">ImageActivity</string>
 
 </resources>

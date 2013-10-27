@@ -12,9 +12,10 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:hardwareAccelerated="true">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.IntroActivity"
             android:label="@string/app_name" >
@@ -31,9 +32,7 @@
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity"
-            android:label="Indie navi" 
-        >
-            
+            android:label="Indie navi" >
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.SignupActivity"
@@ -46,6 +45,12 @@
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.ConcertDetailActivity"
             android:label="@string/title_activity_concert_detail" >
+        </activity>
+        <activity
+            android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.ImageActivity"
+            android:label="@string/title_activity_image" 
+            
+            >
         </activity>
     </application>
 
