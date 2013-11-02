@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.MovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,11 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 	        new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int id) {
 	            // Action for 'Yes' Button
-	        	System.exit(1);
+//	        	MovementMethod 
+	        	getActivity().moveTaskToBack(true);
+	        	getActivity().finish();
+	        	android.os.Process.killProcess(android.os.Process.myPid());
+	        	
 	        }
 	        }).setNegativeButton("¾Æ´Ï¿À",
 	        new DialogInterface.OnClickListener() {

@@ -74,6 +74,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(), ImageActivity.class);
 				i.putExtra("imageURL", Constant.IMAGE_URL+artistImgURLStr);
+				i.putExtra("imageName", artistNameStr);
 				startActivity(i);
 			}
 		});

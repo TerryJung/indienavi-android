@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.hs.kumoh.indieplatform.indie.navi"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="3"
+    android:versionName="1.1.2" >
 
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="16" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.IntroActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,27 +31,34 @@
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustUnspecified" >
+            android:windowSoftInputMode="adjustUnspecified" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity"
-            android:label="Indie navi" >
+            android:label="Indie navi" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.SignupActivity"
-            android:label="@string/title_activity_signup" >
+            android:label="@string/title_activity_signup" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity"
-            android:label="@string/title_activity_artist_detail" >
+            android:label="@string/title_activity_artist_detail" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.ConcertDetailActivity"
-            android:label="@string/title_activity_concert_detail" >
+            android:label="@string/title_activity_concert_detail"             
+            android:windowSoftInputMode="adjustUnspecified" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="kr.hs.kumoh.indieplatform.indie.navi.view.activity.ImageActivity"
-            android:label="@string/title_activity_image" 
+            android:label="@string/title_activity_image"
+            android:screenOrientation="portrait" 
             
             >
         </activity>

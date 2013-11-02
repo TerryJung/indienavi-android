@@ -114,6 +114,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(ConcertDetailActivity.this, ImageActivity.class);
 				i.putExtra("imageURL", concertImgStr);
+				i.putExtra("imageName", concertName);
 				startActivity(i);
 			}
 		});
@@ -141,8 +142,9 @@ public class ConcertDetailActivity extends SherlockActivity {
 		concertPlaceTv.setText(placeStr);
 		concertDateTv.setText(dateStr);
 //		initFont();
+		
 		replyEditText = (EditText) findViewById(R.id.replyEdit);
-		//ÆùÆ®
+
 //		Util.fontBold(this, concertNameTv);
 //		Util.fontGeneral(this, concertPlaceTv);
 //		Util.fontGeneral(this, concertDateTv);
