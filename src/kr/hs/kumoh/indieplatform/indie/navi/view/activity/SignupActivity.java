@@ -7,27 +7,21 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
-import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -45,6 +39,7 @@ public class SignupActivity extends SherlockActivity {
 	private ImageView submitBtn;
 	private ImageView cancelBtn;
 	
+	private ImageView la;
 	private EditText idEdit;
 	private EditText pwEdit;
 	private EditText emailEdit;
@@ -59,6 +54,7 @@ public class SignupActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signup);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//		la = (Button) findViewById(R.id.imageButton1);
 		idEdit = (EditText) findViewById(R.id.idEdit);
 		pwEdit = (EditText) findViewById(R.id.pwEdit);
 		emailEdit = (EditText) findViewById(R.id.emailEdit);
@@ -96,6 +92,16 @@ public class SignupActivity extends SherlockActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				finish();
+			}
+		});
+		la = (ImageView) findViewById(R.id.noticeBtn);
+		la.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(SignupActivity.this, NoticeActivity.class);
+				startActivity(i);
 			}
 		});
 	}
