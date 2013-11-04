@@ -284,11 +284,12 @@ int drawable login_signup_btn 0x7f020085
 int drawable login_user_icon 0x7f020086
 int drawable menu 0x7f020087
 int drawable no_image 0x7f020088
-int drawable rich 0x7f020089
-int drawable search 0x7f02008a
-int drawable sign_up_email 0x7f02008b
-int drawable slide_top 0x7f02008c
-int drawable submit 0x7f02008d
+int drawable personal_infomation 0x7f020089
+int drawable rich 0x7f02008a
+int drawable search 0x7f02008b
+int drawable sign_up_email 0x7f02008c
+int drawable slide_top 0x7f02008d
+int drawable submit 0x7f02008e
 int id ArtistDetailFrame 0x7f040039
 int id LinearLayout1 0x7f040038
 int id PanTv 0x7f040063
@@ -351,7 +352,7 @@ int id artistName 0x7f040061
 int id artistPan 0x7f040062
 int id artistText 0x7f040067
 int id artist_concert 0x7f040059
-int id cancelBtn 0x7f040052
+int id cancelBtn 0x7f040053
 int id concertDate 0x7f040074
 int id concertDetailDate 0x7f040041
 int id concertDetailName 0x7f04003f
@@ -393,7 +394,7 @@ int id menuTv 0x7f04007a
 int id menu_settings 0x7f04007e
 int id normal 0x7f040001
 int id notice 0x7f04004f
-int id noticeBtn 0x7f040053
+int id noticeBtn 0x7f040051
 int id panInt 0x7f04006e
 int id placeName 0x7f040073
 int id pwEdit 0x7f04004b
@@ -412,7 +413,7 @@ int id showHome 0x7f040005
 int id showTitle 0x7f040007
 int id signupBtn 0x7f04004c
 int id slidingmenumain 0x7f04007d
-int id submitBtn 0x7f040051
+int id submitBtn 0x7f040052
 int id tabMode 0x7f040003
 int id topRelative 0x7f04005f
 int id useLogo 0x7f040004

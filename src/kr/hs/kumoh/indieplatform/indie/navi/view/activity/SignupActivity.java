@@ -39,7 +39,7 @@ public class SignupActivity extends SherlockActivity {
 	private ImageView submitBtn;
 	private ImageView cancelBtn;
 	
-	private ImageView la;
+	private ImageView noticeBtn;
 	private EditText idEdit;
 	private EditText pwEdit;
 	private EditText emailEdit;
@@ -94,8 +94,8 @@ public class SignupActivity extends SherlockActivity {
 				finish();
 			}
 		});
-		la = (ImageView) findViewById(R.id.noticeBtn);
-		la.setOnClickListener(new View.OnClickListener() {
+		noticeBtn = (ImageView) findViewById(R.id.noticeBtn);
+		noticeBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
