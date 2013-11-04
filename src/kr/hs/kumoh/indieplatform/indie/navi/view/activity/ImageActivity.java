@@ -1,10 +1,13 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -21,6 +24,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androidquery.AQuery;
@@ -51,6 +55,7 @@ public class ImageActivity extends SherlockActivity {
 		aq = new AQuery(this);
 		mImageView = (ImageView) findViewById(R.id.detailImage);
 		imageURL = intent.getExtras().getString("imageURL");
+		Log.d("URL", imageURL);
 		imageName = intent.getExtras().getString("imageName");
 		aq.id(R.id.detailImage).image(imageURL);
 		
@@ -63,6 +68,8 @@ public class ImageActivity extends SherlockActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				new DownloadFileAsync().execute(imageURL);
+//				Toast.makeText(this, "다운로드 완료", Toast.LENGTH_LONG).show();
+//				Toast.makeText(getApplicationContext(), "다운로드가 완료되었습니다", Toast.LENGTH_LONG);
 			}
 		});
 	}
@@ -77,7 +84,9 @@ class DownloadFileAsync extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+           
             showDialog(DIALOG_DOWNLOAD_PROGRESS);
+//            mProgressDialog.show();
         }
 
         
@@ -86,31 +95,33 @@ class DownloadFileAsync extends AsyncTask<String, String, String> {
 
             try {
                 //connecting to url
-                URL u = new URL(imageURL);
+                URL u = new URL(aurl[0]);
                 Log.d("URL", imageURL);
-                HttpURLConnection c = (HttpURLConnection) u.openConnection();
-                c.setRequestMethod("GET");
-                c.setDoOutput(true);
+                URLConnection c =  u.openConnection();
+//                c.setRequestMethod("GET");
+//                c.setDoOutput(true);
                 c.connect();
                 
                 //lenghtOfFile is used for calculating download progress
-                int lenghtOfFile = c.getContentLength();
                 
+                int lenghtOfFile = c.getContentLength();
                 //this is where the file will be seen after the download
-                FileOutputStream f = new FileOutputStream(new File(rootDir + "/indienavi/", imageName+".jpg"));
+                InputStream input = new BufferedInputStream(u.openStream(), 8192);
+                OutputStream f = new FileOutputStream(new File(rootDir + "/indienavi/", imageName+".jpg"));
                 //file input is from the url
-                InputStream in = c.getInputStream();
-
+//                InputStream in = c.getInputStream();
+                
                 //here's the download code
                 byte[] buffer = new byte[1024];
                 int len1 = 0;
                 long total = 0;
                 
-                while ((len1 = in.read(buffer)) > 0) {
+                while ((len1 = input.read(buffer)) > 0) {
                     total += len1; //total = total + len1
                     publishProgress("" + (int)((total*100)/lenghtOfFile));
                     f.write(buffer, 0, len1);
                 }
+                f.flush();
                 f.close();
                 sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,Uri.parse("file://"+Environment.getExternalStorageDirectory()+"/indienavi")));
                 
@@ -130,6 +141,9 @@ class DownloadFileAsync extends AsyncTask<String, String, String> {
         protected void onPostExecute(String unused) {
             //dismiss the dialog after the file was downloaded
             dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
+            Toast.makeText(getApplicationContext(), "다운로드가 완료되었습니다", Toast.LENGTH_LONG).show();
+            
+//        	mProgressDialog.dismiss();
         }
     }
 	@Override
