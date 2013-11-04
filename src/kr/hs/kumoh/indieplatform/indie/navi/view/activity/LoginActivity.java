@@ -1,7 +1,13 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +75,12 @@ public class LoginActivity extends Activity {
                         	name = idEdit.getText().toString().trim();
                             pw = pwEdit.getText().toString().trim();
                             
-                        	login(name, pw);
+                            try {
+								signupPost(name, pw);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
                                                  
                         }
                       }).start(); 
@@ -104,51 +115,47 @@ public class LoginActivity extends Activity {
 		}
 		
 	}
-	public void login(String name, String pw){
-		try{            
-            
-            httpclient = new DefaultHttpClient();
-            httppost = new HttpPost(Constant.SERVER_URL+"apps/server/indie/signin.php"); // make sure the url is correct.
-            //add your post data
-            nameValuePairs = new ArrayList<NameValuePair>(2);
-            // Always use the same variable name for posting i.e the android side variable name and php side variable name should be similar, 
-            nameValuePairs.add(new BasicNameValuePair("name",name));  // $Edittext_value = $_POST['Edittext_value'];
-            nameValuePairs.add(new BasicNameValuePair("password",pw)); 
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            //Execute HTTP Post Request
-            response = httpclient.execute(httppost);
-            // edited by James from coderzheaven.. from here....
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            final String response = httpclient.execute(httppost, responseHandler);
-            System.out.println("Response : " + response); 
-            runOnUiThread(new Runnable() {
-                public void run() {
-                   // tv.setText("Response from PHP : " + response);
-                    dialog.dismiss();
-                }
-            });
-             
-            if(response.equalsIgnoreCase("1")){
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast.makeText(LoginActivity.this,"로그인 성공", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                
-                putSharedPreference(name, pw, true);
+	private void signupPost(String name, String pass) throws IOException{
+		URL url = new URL(Constant.SERVER_URL+"apps/server/indie/signin.php");
+		HttpURLConnection httpUrl = (HttpURLConnection)url.openConnection();
+
+		httpUrl.setDefaultUseCaches(false);
+		httpUrl.setDoInput(true);
+		httpUrl.setDoOutput(true);
+		httpUrl.setRequestMethod("POST");
+		httpUrl.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+//		$name = $_REQUEST['name'];
+//		$password = $_REQUEST['password'];
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("name").append("=").append(name).append("&");
+		sb.append("password").append("=").append(pass);
+		
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(httpUrl.getOutputStream(), "UTF-8"));
+		pw.write(sb.toString());
+		pw.flush();
+		
+		BufferedReader bf = new BufferedReader(new InputStreamReader(httpUrl.getInputStream(), "UTF-8"));
+		StringBuilder buff = new StringBuilder();
+		String line;
+		while((line = bf.readLine())!=null) {
+			buff.append(line);
+			if(line.equalsIgnoreCase("OK")){
+				runOnUiThread(new Runnable() {
+                  public void run() {
+                	  Toast.makeText(LoginActivity.this,"로그인 성공", Toast.LENGTH_SHORT).show();
+                  }
+              });		
+				putSharedPreference(name, pass, true);
                 Constant.USER_NAME = name;
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
-            }else{}
-             
-        }catch(IOException e){
-            dialog.dismiss();
-            System.out.println("IOException : " + e.getMessage());
-        }
-		
+			} else {
+				dialog.dismiss();
+				showAlert();
+			}
+		}
 	}
-//	String getSharedPreference()
-
 	void putSharedPreference(String name, String pw, boolean login){
 		SharedPreferences userinfo = getSharedPreferences("userinfo", MODE_PRIVATE);
 		SharedPreferences.Editor edits = userinfo.edit();  // 에디터 객체를 생성하여 
