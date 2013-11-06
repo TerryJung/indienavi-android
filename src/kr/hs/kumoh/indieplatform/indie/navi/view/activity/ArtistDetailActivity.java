@@ -76,7 +76,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistAlbumFragment());
-				ft.addToBackStack("w");
+//				ft.addToBackStack("w");
 				ft.commit();	
 			}
 		});
@@ -87,7 +87,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistConcertFragment());
-				ft.addToBackStack(null);
+//				ft.addToBackStack(null);
 				ft.commit();
 			}
 		});
@@ -98,7 +98,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistDetailFragment());
-				ft.addToBackStack(null);
+//				ft.addToBackStack(null);
 				ft.commit();
 			}
 		});

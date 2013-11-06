@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,9 +50,12 @@ public class ArtistDetailFragment extends SherlockFragment{
 	
 	private ImageView descImg;
 	private ImageView labelImg;
+	
+	private Button kakaoShareBtn;
 	private String name = ArtistDetailActivity.ArtistName;
 //	private String artistImg
 	private String artistImgURLStr = ArtistDetailActivity.ArtistImg;
+	private String artistID;
     String artistNameStr;
     String artistFanStr;
     String artistLabelStr;
@@ -83,7 +87,20 @@ public class ArtistDetailFragment extends SherlockFragment{
 		panTv = (TextView) root.findViewById(R.id.PanTv);
 		labelName = (TextView) root.findViewById(R.id.labelName);
 		artistText = (TextView) root.findViewById(R.id.artistText);
-		
+		kakaoShareBtn = (Button) root.findViewById(R.id.kakaoShareBtn);
+		kakaoShareBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(Intent.ACTION_SEND); 
+				intent.setType("text/plain"); 
+				intent.putExtra(Intent.EXTRA_SUBJECT, Constant.USER_NAME+" 님이 "+artistNameStr +" (을)를 추천합니다!"); 
+				intent.putExtra(Intent.EXTRA_TEXT, "http://indienavi.kr/detail.php?artist="+artistID); 
+				intent.setPackage("com.kakao.talk");
+				startActivity(intent);
+			}
+		});
 		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 			
@@ -98,7 +115,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 					JSONObject jsonObject = jsonArray.getJSONObject(0);
 			        Log.i(ArtistDetailActivity.class.getName(), jsonObject.getString("artist_img_url"));
 			        Log.i(ArtistDetailActivity.class.getName(), jsonObject.getString("artist_name"));
-					
+			        artistID = jsonObject.getString("_id");
 		            artistNameStr = jsonObject.getString("artist_name");
 		            artistFanStr = jsonObject.getString("like_count");
 		            artistLabelStr = jsonObject.getString("label");

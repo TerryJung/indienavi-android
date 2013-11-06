@@ -114,6 +114,15 @@
         			android:text="[아티스트 설명]"
         			android:textSize="15dp" />
 
+    			<Button
+    			    android:id="@+id/kakaoShareBtn"
+    			    android:layout_margin="10dp"
+    			    android:layout_width="match_parent"
+    			    android:layout_height="wrap_content"
+    			    android:text="카카오톡으로 공유하기"
+    			    android:textColor="#5A4244"
+    			    android:background="@drawable/btn_kakako" />
+
 	</LinearLayout>
 
 
