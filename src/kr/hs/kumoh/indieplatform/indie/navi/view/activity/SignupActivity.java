@@ -17,7 +17,9 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -141,6 +143,7 @@ public class SignupActivity extends SherlockActivity {
 				finishSignup();
 			} else {
 				dialog.dismiss();
+				showAlert();
 			}
 		}
 	}
@@ -151,6 +154,22 @@ public class SignupActivity extends SherlockActivity {
 		setResult(RESULT_OK, data); // 성공했다는 결과값을 보내면서 데이터 꾸러미를 지고 있는 intent를 함께 전달한다.
 		finish();
 	}
+	public void showAlert(){
+		SignupActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                builder.setTitle("로그인 실패.");
+                builder.setMessage("계정정보를 찾을수 없습니다. 다시시도해보세요.")  
+                       .setCancelable(false)
+                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                           }
+                       });                     
+                AlertDialog alert = builder.create();
+                alert.show();               
+            }
+        });
+    }
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
