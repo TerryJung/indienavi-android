@@ -87,7 +87,7 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 	    // Title for AlertDialog
 	    alert.setTitle("·Î±×¾ÆÀ¿");
 	    // Icon for AlertDialog
-	    alert.setIcon(R.drawable.ic_launcher);
+	    alert.setIcon(R.drawable.launcher_icon);
 	    alert.show();
 	}
 	private void appExit(){
@@ -114,7 +114,7 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 	    // Title for AlertDialog
 	    alert.setTitle("¾Û Á¾·á");
 	    // Icon for AlertDialog
-	    alert.setIcon(R.drawable.ic_launcher);
+	    alert.setIcon(R.drawable.launcher_icon);
 	    alert.show();
 	}
 	private void switchFragment(Fragment fragment) {
