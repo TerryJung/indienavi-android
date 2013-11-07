@@ -115,7 +115,7 @@ public class FavoriteArtistListFragment extends SherlockFragment {
                     	entry = entries.getJSONObject(i);         
                     	String url = entry.getString("artist_img_url");
                     	Log.d("TAG", url);
-                        artistData.add(new ArtistData(entry.getString("artist_img_url"), entry.getString("artist_name"), 
+                        artistData.add(new ArtistData(entry.getString("artist_id"), entry.getString("artist_img_url"), entry.getString("artist_name"), 
                         					entry.getString("label"), entry.getString("debut_year"), 
                         					entry.getString("genre"), entry.getString("like_count")));
                     }
