@@ -330,9 +330,7 @@ public class ConcertDetailActivity extends SherlockActivity {
 		httpUrl.setDoOutput(true);
 		httpUrl.setRequestMethod("POST");
 		httpUrl.setRequestProperty("content-type", "application/x-www-form-urlencoded");
-//		$name = $_REQUEST['name'];
-//		$concert = $_REQUEST['concert'];
-//		$reply = $_REQUEST['reply'];
+
 		StringBuffer sb = new StringBuffer();
 		sb.append("name").append("=").append(userName).append("&");
 		sb.append("concert").append("=").append(concertName).append("&");

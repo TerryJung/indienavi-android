@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="favorite">
+        <item>팬클럽에서 삭제</item>
+        <item>취소</item>
+    </string-array>
+    
+</resources>

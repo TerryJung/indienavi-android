@@ -1,19 +1,30 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.controller.net.MyVolley;
 import kr.hs.kumoh.indieplatform.indie.navi.model.adapter.ArtistAdapter;
 import kr.hs.kumoh.indieplatform.indie.navi.model.data.ArtistData;
+import kr.hs.kumoh.indieplatform.indie.navi.model.data.ConcertReplyData;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
+import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ConcertDetailActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
@@ -33,7 +45,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 public class FavoriteArtistListFragment extends SherlockFragment {
-
+	static final int DIALOG_SELECT = 0;
 	ListView lv;
 	private boolean mHasData = false;
     private boolean mInError = false;
@@ -70,16 +82,83 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 			public boolean onItemLongClick(AdapterView<?> av, View v,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				String artName = artistData.get(position).getArtistName();
-				deleteFavorite(Constant.USER_NAME, artName);
+				
+				
+				String artistID = artistData.get(position).getArtistID();
+				String artistName = artistData.get(position).getArtistName();
+				dia(artistName, artistID, position);
+//				deleteFavorite(Constant.USER_NAME, artistID);
 				return false;
 			}
 		});
 		return root;
 	}
-	private void deleteFavorite(String name, String artistName) {
-		
+	private void deleteFavorite(String name, String artistID, int position) throws IOException{
+		URL url = new URL(Constant.SERVER_URL+"apps/server/indie/favorite_artist_delete.php");
+		HttpURLConnection httpUrl = (HttpURLConnection)url.openConnection();
+
+		httpUrl.setDefaultUseCaches(false);
+		httpUrl.setDoInput(true);
+		httpUrl.setDoOutput(true);
+		httpUrl.setRequestMethod("POST");
+		httpUrl.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("name").append("=").append(name).append("&");
+		sb.append("artist_id").append("=").append(artistID);
+			
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(httpUrl.getOutputStream(), "UTF-8"));
+		pw.write(sb.toString());
+		pw.flush();
+			
+		BufferedReader bf = new BufferedReader(new InputStreamReader(httpUrl.getInputStream(), "UTF-8"));
+		StringBuilder buff = new StringBuilder();
+		String line;
+		while((line = bf.readLine())!=null) {
+			buff.append(line);
+			Log.d("RESPONSE", line);
+			if(line.equalsIgnoreCase("OK")){
+//				runOnUi
+//				artistAdapter.remove(artistData.get(position));
+			}
+		}	
 	}
+	private void dia(String artistName, final String artistID, final int position) {
+		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(getActivity());
+		alert_confirm.setMessage(artistName+" 을(를) 팬클럽에서 삭제하시겠습니까?")
+		.setCancelable(false)
+		.setPositiveButton("확인",
+		new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        // 'YES'
+		    	new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						try {
+							deleteFavorite(Constant.USER_NAME, artistID, position);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}).start();
+		    	
+		    }
+		}).setNegativeButton("취소",
+		new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        // 'No'
+		    return;
+		    }
+		});
+		AlertDialog alert = alert_confirm.create();
+		alert.show();
+	}
+	
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
