@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
@@ -96,38 +99,67 @@ public class ArtistDetailFragment extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-//				Intent intent = new Intent(Intent.ACTION_SEND); 
-//				intent.setType("text/plain"); 
-//				intent.putExtra(Intent.EXTRA_SUBJECT, Constant.USER_NAME+" 님이 "+artistNameStr +" (을)를 추천합니다!"); 
-//				intent.putExtra(Intent.EXTRA_TEXT, "http://indienavi.kr/detail.php?artist="+artistID); 
-//				intent.setPackage("com.kakao.talk");
-//				startActivity(intent);
+				ArrayList<Map<String, String>> metaInfoArray = new ArrayList<Map<String, String>>();
+
+				// If application is support Android platform.
+				Map<String, String> metaInfoAndroid = new Hashtable<String, String>(1);
+				metaInfoAndroid.put("os", "android");
+				metaInfoAndroid.put("devicetype", "phone");
+				metaInfoAndroid.put("installurl", "market://details?id=kr.hs.kumoh.indieplatform.indie.navi");
+				metaInfoAndroid.put("executeurl", "kakaoLinkTest://startActivity");
+				metaInfoArray.add(metaInfoAndroid);
 				
 				KakaoLink kakaoLink = KakaoLink.getLink(getActivity().getApplicationContext());
-				if (!kakaoLink.isAvailableIntent())
-					  return;
 
-					/**
-					 * @param activity
-					 * @param url
-					 * @param message
-					 * @param appId
-					 * @param appVer
-					 * @param appName
-					 * @param encoding
-					 */
-					try {
-						kakaoLink.openKakaoLink(getActivity(), 
-						        "http://indienavi.kr/detail.php?artist="+artistID, 
-						        Constant.USER_NAME+" 님이 "+artistNameStr +" (을)를 추천합니다!", 
-						        getActivity().getPackageName(), 
-						        getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName, 
-						        "인디밴드의 모든것, Indie Navi", 
-						        "UTF-8");
-					} catch (NameNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				// check, intent is available.
+				if(!kakaoLink.isAvailableIntent()) 
+				  return;
+
+				/**
+				 * @param activity * @param url
+				 * @param message * @param appId
+				 * @param appVer  * @param appName
+				 * @param encoding * @param metaInfoArray
+				 */
+				try {
+				kakaoLink.openKakaoAppLink(
+				        getActivity(), 
+				        "http://indienavi.kr", 
+				        Constant.USER_NAME+" 님깨서 "+ artistNameStr + "을(를) 추천합니다!",  
+				        getActivity().getPackageName(), 
+				        getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName,
+				        "인디밴드의 모든것, Indie Navi",
+				        "UTF-8", 
+				        metaInfoArray);
+				} catch (NameNotFoundException e) {
+					// TODO: handle exception
+				}
+//				KakaoLink kakaoLink = KakaoLink.getLink(getActivity().getApplicationContext());
+//				if (!kakaoLink.isAvailableIntent())
+//					  return;
+//
+//					/**
+//					 * @param activity
+//					 * @param url
+//					 * @param message
+//					 * @param appId
+//					 * @param appVer
+//					 * @param appName
+//					 * @param encoding
+//					 */
+//					try {
+//						kakaoLink.openKakaoLink(getActivity(), 
+//						        "http://indienavi.kr/detail.php?artist="+artistID, 
+//						        Constant.USER_NAME+" 님이 "+artistNameStr +" (을)를 추천합니다!", 
+//						        getActivity().getPackageName(), 
+//						        getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName, 
+//						        "인디밴드의 모든것, Indie Navi", 
+//						        "UTF-8");
+//					} catch (NameNotFoundException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//			}}
 			}
 		});
 		final Handler handler = new Handler();

@@ -62,7 +62,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		fragmentTransaction.add(R.id.mainFrame, clf);
 		fragmentTransaction.add(R.id.leftMenu, lsmf);
 		fragmentTransaction.commit();
-		
+		FlurryAgent.setUserId(Constant.USER_NAME);
 	}
 	@Override
 	public void onBackPressed() {

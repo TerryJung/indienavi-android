@@ -18,6 +18,8 @@ public class Constant {
 	
 	public static String FLURRY_LOG_LOGIN = "Login Succeed";
 	
+	public static String FLURRY_LOG_ARTIST_INFO = "Artist Info";
+	
 	public static String FLURRY_LOG_FAN_ADD = "Fan Add";
 	
 	public static String FLURRY_LOG_FAN_DELETE = "Fan Delete";

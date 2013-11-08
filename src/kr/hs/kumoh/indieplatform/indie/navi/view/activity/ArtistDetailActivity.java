@@ -64,8 +64,8 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 		
 		ArtistName = intent.getExtras().getString("artist");
 		ArtistImg = intent.getExtras().getString("artistImg");
-		Log.d("INTENT", ArtistName);
-		Log.d("Intent URL ", ArtistImg);
+		//@parms =  log string (artist name +  LOG)
+		FlurryAgent.logEvent(ArtistName + Constant.FLURRY_LOG_ALBUM_INFO);
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.add(R.id.ArtistDetailFrame, new ArtistDetailFragment());
@@ -99,6 +99,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				FlurryAgent.logEvent(Constant.FLURRY_LOG_ALBUM_INFO);
 				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistDetailFragment());
 //				ft.addToBackStack(null);
 				ft.commit();
