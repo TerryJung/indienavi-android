@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 
 public class ArtistDetailActivity extends SherlockFragmentActivity {
 	private FragmentManager fragmentManager;
@@ -75,6 +76,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				FlurryAgent.logEvent(Constant.FLURRY_LOG_ALBUM_INFO);
 				ft = fragmentManager.beginTransaction().replace(R.id.ArtistDetailFrame, new ArtistAlbumFragment());
 //				ft.addToBackStack("w");
 				ft.commit();	
@@ -108,6 +110,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				FlurryAgent.logEvent(Constant.FLURRY_LOG_FAN_ADD);
 				new Thread(new Runnable() {
 					
 					@Override
@@ -169,6 +172,7 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
 			}
 		}
 	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -180,5 +184,16 @@ public class ArtistDetailActivity extends SherlockFragmentActivity {
             return super.onOptionsItemSelected(item);
         }
 	}
-	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
+	}
 }

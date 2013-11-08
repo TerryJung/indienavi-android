@@ -24,6 +24,8 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.flurry.android.FlurryAgent;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -180,4 +182,16 @@ public class LoginActivity extends Activity {
             }
         });
     }
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
+	}
 }

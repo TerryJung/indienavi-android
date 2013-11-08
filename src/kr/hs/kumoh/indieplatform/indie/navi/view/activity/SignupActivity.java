@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 
 public class SignupActivity extends SherlockActivity {
 	public ProgressDialog dialog = null;
@@ -181,4 +182,17 @@ public class SignupActivity extends SherlockActivity {
             return super.onOptionsItemSelected(item);
         }
 	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
+	}
 }
+

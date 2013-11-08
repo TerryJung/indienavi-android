@@ -10,6 +10,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import uk.co.senab.photoview.PhotoViewAttacher;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androidquery.AQuery;
+import com.flurry.android.FlurryAgent;
 
 public class ImageActivity extends SherlockActivity {
 
@@ -160,8 +162,19 @@ class DownloadFileAsync extends AsyncTask<String, String, String> {
         		return mProgressDialog;
         	default:
         		return null;
-    }
-}
-
+		}
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
+	}
 
 }

@@ -54,6 +54,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.androidquery.AQuery;
+import com.flurry.android.FlurryAgent;
 
 public class ConcertDetailActivity extends SherlockActivity {
 	
@@ -356,5 +357,17 @@ public class ConcertDetailActivity extends SherlockActivity {
               });				
 			}
 		}
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
 	}
 }

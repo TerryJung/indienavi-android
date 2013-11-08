@@ -2,6 +2,7 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
 //import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ArtistListFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.ConcertListFragment;
 import kr.hs.kumoh.indieplatform.indie.navi.view.fragment.FavoriteArtistListFragment;
@@ -19,6 +20,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
+import com.flurry.android.FlurryAgent;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
@@ -111,7 +113,18 @@ public class MainActivity extends SherlockFragmentActivity {
 		leftMenu.showContent();
 //		onResume();
 	}
-	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
+	}
 	
 
 }

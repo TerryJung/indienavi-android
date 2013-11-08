@@ -1,6 +1,9 @@
 package kr.hs.kumoh.indieplatform.indie.navi.view.activity;
 
+import com.flurry.android.FlurryAgent;
+
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +29,17 @@ public class NoticeActivity extends Activity {
 		
 		
 	}
-
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
+	}
 
 }

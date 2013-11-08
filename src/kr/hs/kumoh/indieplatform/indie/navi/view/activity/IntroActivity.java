@@ -8,9 +8,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
 import android.view.Window;
 import android.widget.Toast;
+
+import com.flurry.android.FlurryAgent;
 
 public class IntroActivity extends Activity {
 	
@@ -66,6 +67,22 @@ public class IntroActivity extends Activity {
 				}
 			}
 		}).start();
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		/**
+		 * @parms activity
+		 * @parms API_KEY
+		*/
+		FlurryAgent.onStartSession(this, Constant.FLURRY_API_KEY);
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(this);
 	}
 	void getSharedPreference() {
 		SharedPreferences userinfo = getSharedPreferences("userinfo", MODE_PRIVATE);
