@@ -99,6 +99,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				FlurryAgent.logEvent(Constant.FLURRY_LOG_KAKAO);
 				ArrayList<Map<String, String>> metaInfoArray = new ArrayList<Map<String, String>>();
 
 				// If application is support Android platform.
