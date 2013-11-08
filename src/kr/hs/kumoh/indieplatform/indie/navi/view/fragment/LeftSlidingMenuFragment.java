@@ -3,6 +3,7 @@ package kr.hs.kumoh.indieplatform.indie.navi.view.fragment;
 import java.util.ArrayList;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
+import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.LoginActivity;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.MainActivity;
 import android.app.AlertDialog;
@@ -19,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.flurry.android.FlurryAgent;
 
 public class LeftSlidingMenuFragment extends SherlockFragment{
 	private ListView slidelist;
@@ -125,6 +127,18 @@ public class LeftSlidingMenuFragment extends SherlockFragment{
 			MainActivity ma = (MainActivity) getActivity();
 			ma.switchContent(fragment);
 		}
+	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(getActivity(), Constant.FLURRY_API_KEY);
+	}
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(getActivity());
 	}
 
 }

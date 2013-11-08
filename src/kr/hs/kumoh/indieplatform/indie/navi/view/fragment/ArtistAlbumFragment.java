@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.flurry.android.FlurryAgent;
 public class ArtistAlbumFragment extends SherlockFragment {
 	String name = ArtistDetailActivity.ArtistName;
 	private String encodeResult;
@@ -56,6 +57,18 @@ public class ArtistAlbumFragment extends SherlockFragment {
 		lv.setAdapter(albumAdapter);
 		lv.setClickable(false);
 		return root;
+	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(getActivity(), Constant.FLURRY_API_KEY);
+	}
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(getActivity());
 	}
 	
 	@Override

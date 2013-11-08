@@ -39,6 +39,7 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.androidquery.AQuery;
+import com.flurry.android.FlurryAgent;
 
 public class ArtistDetailFragment extends SherlockFragment{
 	AQuery aq;// = new AQuery(getSherlockActivity());
@@ -206,5 +207,17 @@ public class ArtistDetailFragment extends SherlockFragment{
 	    	e.printStackTrace();
 	    }
 	    return builder.toString();
+	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(getActivity(), Constant.FLURRY_API_KEY);
+	}
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(getActivity());
 	}
 }

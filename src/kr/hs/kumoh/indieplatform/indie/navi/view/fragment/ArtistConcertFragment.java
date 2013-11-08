@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.flurry.android.FlurryAgent;
 
 public class ArtistConcertFragment extends SherlockFragment {
 	String name = ArtistDetailActivity.ArtistName;
@@ -118,5 +119,17 @@ public class ArtistConcertFragment extends SherlockFragment {
         b.setMessage("불러올수 없습니다");
       
         b.show();
+	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		FlurryAgent.onStartSession(getActivity(), Constant.FLURRY_API_KEY);
+	}
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		FlurryAgent.onEndSession(getActivity());
 	}
 }
