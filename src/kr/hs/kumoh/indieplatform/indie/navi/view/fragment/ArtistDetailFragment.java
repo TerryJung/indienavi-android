@@ -107,7 +107,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 				metaInfoAndroid.put("os", "android");
 				metaInfoAndroid.put("devicetype", "phone");
 				metaInfoAndroid.put("installurl", "market://details?id=kr.hs.kumoh.indieplatform.indie.navi");
-				metaInfoAndroid.put("executeurl", "kakaoLinkTest://startActivity");
+				metaInfoAndroid.put("executeurl", "indienavi://IntroActivity");
 				metaInfoArray.add(metaInfoAndroid);
 				
 				KakaoLink kakaoLink = KakaoLink.getLink(getActivity().getApplicationContext());
@@ -126,7 +126,7 @@ public class ArtistDetailFragment extends SherlockFragment{
 				kakaoLink.openKakaoAppLink(
 				        getActivity(), 
 				        "http://indienavi.kr", 
-				        Constant.USER_NAME+" 님깨서 "+ artistNameStr + "을(를) 추천합니다!",  
+				        Constant.USER_NAME+" 님께서 "+ artistNameStr + "을(를) 추천합니다!",  
 				        getActivity().getPackageName(), 
 				        getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName,
 				        "인디밴드의 모든것, Indie Navi",
