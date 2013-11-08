@@ -11,5 +11,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/volley.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/android-query-full.0.25.10.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/PinchToZoonLib"/>
+	<classpathentry exported="true" kind="lib" path="libs/FlurryAnalytics_3.3.0.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
