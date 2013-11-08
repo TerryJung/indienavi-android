@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 
 import kr.hs.kumoh.indieplatform.indie.navi.R;
 import kr.hs.kumoh.indieplatform.indie.navi.util.Constant;
+import kr.hs.kumoh.indieplatform.indie.navi.util.KakaoLink;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ArtistDetailActivity;
 import kr.hs.kumoh.indieplatform.indie.navi.view.activity.ImageActivity;
 
@@ -24,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -93,12 +95,38 @@ public class ArtistDetailFragment extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(Intent.ACTION_SEND); 
-				intent.setType("text/plain"); 
-				intent.putExtra(Intent.EXTRA_SUBJECT, Constant.USER_NAME+" 님이 "+artistNameStr +" (을)를 추천합니다!"); 
-				intent.putExtra(Intent.EXTRA_TEXT, "http://indienavi.kr/detail.php?artist="+artistID); 
-				intent.setPackage("com.kakao.talk");
-				startActivity(intent);
+//				Intent intent = new Intent(Intent.ACTION_SEND); 
+//				intent.setType("text/plain"); 
+//				intent.putExtra(Intent.EXTRA_SUBJECT, Constant.USER_NAME+" 님이 "+artistNameStr +" (을)를 추천합니다!"); 
+//				intent.putExtra(Intent.EXTRA_TEXT, "http://indienavi.kr/detail.php?artist="+artistID); 
+//				intent.setPackage("com.kakao.talk");
+//				startActivity(intent);
+				
+				KakaoLink kakaoLink = KakaoLink.getLink(getActivity().getApplicationContext());
+				if (!kakaoLink.isAvailableIntent())
+					  return;
+
+					/**
+					 * @param activity
+					 * @param url
+					 * @param message
+					 * @param appId
+					 * @param appVer
+					 * @param appName
+					 * @param encoding
+					 */
+					try {
+						kakaoLink.openKakaoLink(getActivity(), 
+						        "http://indienavi.kr/detail.php?artist="+artistID, 
+						        Constant.USER_NAME+" 님이 "+artistNameStr +" (을)를 추천합니다!", 
+						        getActivity().getPackageName(), 
+						        getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName, 
+						        "인디밴드의 모든것, Indie Navi", 
+						        "UTF-8");
+					} catch (NameNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 		});
 		final Handler handler = new Handler();
