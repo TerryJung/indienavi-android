@@ -93,7 +93,7 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 		});
 		return root;
 	}
-	private void deleteFavorite(String name, String artistID, int position) throws IOException{
+	private void deleteFavorite(String name, String artistID, final int position) throws IOException{
 		URL url = new URL(Constant.SERVER_URL+"apps/server/indie/favorite_artist_delete.php");
 		HttpURLConnection httpUrl = (HttpURLConnection)url.openConnection();
 
@@ -118,6 +118,14 @@ public class FavoriteArtistListFragment extends SherlockFragment {
 			buff.append(line);
 			Log.d("RESPONSE", line);
 			if(line.equalsIgnoreCase("OK")){
+				getActivity().runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						artistAdapter.remove(artistData.get(position));
+					}
+				});
 //				runOnUi
 //				artistAdapter.remove(artistData.get(position));
 			}
